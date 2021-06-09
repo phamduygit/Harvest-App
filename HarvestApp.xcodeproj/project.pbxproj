@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A36149C726711BA4001BE31D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36149C626711BA4001BE31D /* HomeView.swift */; };
+		A36149CA26711D1E001BE31D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36149C926711D1E001BE31D /* OnboardingView.swift */; };
 		A39AF4C42671187A00778D05 /* HarvestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4C32671187A00778D05 /* HarvestAppApp.swift */; };
 		A39AF4C62671187A00778D05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4C52671187A00778D05 /* ContentView.swift */; };
 		A39AF4C82671187B00778D05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A39AF4C72671187B00778D05 /* Assets.xcassets */; };
@@ -33,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A36149C626711BA4001BE31D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A36149C926711D1E001BE31D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A39AF4C02671187A00778D05 /* HarvestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarvestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A39AF4C32671187A00778D05 /* HarvestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestAppApp.swift; sourceTree = "<group>"; };
 		A39AF4C52671187A00778D05 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +76,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A36149C526711B76001BE31D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A36149C826711CD2001BE31D /* OnboardingScreen */,
+				A36149C626711BA4001BE31D /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A36149C826711CD2001BE31D /* OnboardingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A36149C926711D1E001BE31D /* OnboardingView.swift */,
+			);
+			path = OnboardingScreen;
+			sourceTree = "<group>";
+		};
 		A39AF4B72671187A00778D05 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +116,7 @@
 		A39AF4C22671187A00778D05 /* HarvestApp */ = {
 			isa = PBXGroup;
 			children = (
+				A36149C526711B76001BE31D /* Views */,
 				A39AF4C32671187A00778D05 /* HarvestAppApp.swift */,
 				A39AF4C52671187A00778D05 /* ContentView.swift */,
 				A39AF4C72671187B00778D05 /* Assets.xcassets */,
@@ -259,6 +281,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A36149C726711BA4001BE31D /* HomeView.swift in Sources */,
+				A36149CA26711D1E001BE31D /* OnboardingView.swift in Sources */,
 				A39AF4C62671187A00778D05 /* ContentView.swift in Sources */,
 				A39AF4C42671187A00778D05 /* HarvestAppApp.swift in Sources */,
 			);
