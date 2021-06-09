@@ -1,0 +1,585 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A39AF4C42671187A00778D05 /* HarvestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4C32671187A00778D05 /* HarvestAppApp.swift */; };
+		A39AF4C62671187A00778D05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4C52671187A00778D05 /* ContentView.swift */; };
+		A39AF4C82671187B00778D05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A39AF4C72671187B00778D05 /* Assets.xcassets */; };
+		A39AF4CB2671187B00778D05 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A39AF4CA2671187B00778D05 /* Preview Assets.xcassets */; };
+		A39AF4D62671187C00778D05 /* HarvestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4D52671187C00778D05 /* HarvestAppTests.swift */; };
+		A39AF4E12671187C00778D05 /* HarvestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4E02671187C00778D05 /* HarvestAppUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A39AF4D22671187C00778D05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A39AF4B82671187A00778D05 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A39AF4BF2671187A00778D05;
+			remoteInfo = HarvestApp;
+		};
+		A39AF4DD2671187C00778D05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A39AF4B82671187A00778D05 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A39AF4BF2671187A00778D05;
+			remoteInfo = HarvestApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A39AF4C02671187A00778D05 /* HarvestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarvestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A39AF4C32671187A00778D05 /* HarvestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestAppApp.swift; sourceTree = "<group>"; };
+		A39AF4C52671187A00778D05 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A39AF4C72671187B00778D05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A39AF4CA2671187B00778D05 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A39AF4CC2671187B00778D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A39AF4D12671187C00778D05 /* HarvestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HarvestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A39AF4D52671187C00778D05 /* HarvestAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestAppTests.swift; sourceTree = "<group>"; };
+		A39AF4D72671187C00778D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A39AF4DC2671187C00778D05 /* HarvestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HarvestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A39AF4E02671187C00778D05 /* HarvestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestAppUITests.swift; sourceTree = "<group>"; };
+		A39AF4E22671187C00778D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A39AF4BD2671187A00778D05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A39AF4CE2671187C00778D05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A39AF4D92671187C00778D05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A39AF4B72671187A00778D05 = {
+			isa = PBXGroup;
+			children = (
+				A39AF4C22671187A00778D05 /* HarvestApp */,
+				A39AF4D42671187C00778D05 /* HarvestAppTests */,
+				A39AF4DF2671187C00778D05 /* HarvestAppUITests */,
+				A39AF4C12671187A00778D05 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A39AF4C12671187A00778D05 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A39AF4C02671187A00778D05 /* HarvestApp.app */,
+				A39AF4D12671187C00778D05 /* HarvestAppTests.xctest */,
+				A39AF4DC2671187C00778D05 /* HarvestAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A39AF4C22671187A00778D05 /* HarvestApp */ = {
+			isa = PBXGroup;
+			children = (
+				A39AF4C32671187A00778D05 /* HarvestAppApp.swift */,
+				A39AF4C52671187A00778D05 /* ContentView.swift */,
+				A39AF4C72671187B00778D05 /* Assets.xcassets */,
+				A39AF4CC2671187B00778D05 /* Info.plist */,
+				A39AF4C92671187B00778D05 /* Preview Content */,
+			);
+			path = HarvestApp;
+			sourceTree = "<group>";
+		};
+		A39AF4C92671187B00778D05 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A39AF4CA2671187B00778D05 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A39AF4D42671187C00778D05 /* HarvestAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				A39AF4D52671187C00778D05 /* HarvestAppTests.swift */,
+				A39AF4D72671187C00778D05 /* Info.plist */,
+			);
+			path = HarvestAppTests;
+			sourceTree = "<group>";
+		};
+		A39AF4DF2671187C00778D05 /* HarvestAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A39AF4E02671187C00778D05 /* HarvestAppUITests.swift */,
+				A39AF4E22671187C00778D05 /* Info.plist */,
+			);
+			path = HarvestAppUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A39AF4BF2671187A00778D05 /* HarvestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A39AF4E52671187C00778D05 /* Build configuration list for PBXNativeTarget "HarvestApp" */;
+			buildPhases = (
+				A39AF4BC2671187A00778D05 /* Sources */,
+				A39AF4BD2671187A00778D05 /* Frameworks */,
+				A39AF4BE2671187A00778D05 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HarvestApp;
+			productName = HarvestApp;
+			productReference = A39AF4C02671187A00778D05 /* HarvestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A39AF4D02671187C00778D05 /* HarvestAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A39AF4E82671187C00778D05 /* Build configuration list for PBXNativeTarget "HarvestAppTests" */;
+			buildPhases = (
+				A39AF4CD2671187C00778D05 /* Sources */,
+				A39AF4CE2671187C00778D05 /* Frameworks */,
+				A39AF4CF2671187C00778D05 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A39AF4D32671187C00778D05 /* PBXTargetDependency */,
+			);
+			name = HarvestAppTests;
+			productName = HarvestAppTests;
+			productReference = A39AF4D12671187C00778D05 /* HarvestAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A39AF4DB2671187C00778D05 /* HarvestAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A39AF4EB2671187C00778D05 /* Build configuration list for PBXNativeTarget "HarvestAppUITests" */;
+			buildPhases = (
+				A39AF4D82671187C00778D05 /* Sources */,
+				A39AF4D92671187C00778D05 /* Frameworks */,
+				A39AF4DA2671187C00778D05 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A39AF4DE2671187C00778D05 /* PBXTargetDependency */,
+			);
+			name = HarvestAppUITests;
+			productName = HarvestAppUITests;
+			productReference = A39AF4DC2671187C00778D05 /* HarvestAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A39AF4B82671187A00778D05 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					A39AF4BF2671187A00778D05 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					A39AF4D02671187C00778D05 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = A39AF4BF2671187A00778D05;
+					};
+					A39AF4DB2671187C00778D05 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = A39AF4BF2671187A00778D05;
+					};
+				};
+			};
+			buildConfigurationList = A39AF4BB2671187A00778D05 /* Build configuration list for PBXProject "HarvestApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A39AF4B72671187A00778D05;
+			productRefGroup = A39AF4C12671187A00778D05 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A39AF4BF2671187A00778D05 /* HarvestApp */,
+				A39AF4D02671187C00778D05 /* HarvestAppTests */,
+				A39AF4DB2671187C00778D05 /* HarvestAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A39AF4BE2671187A00778D05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A39AF4CB2671187B00778D05 /* Preview Assets.xcassets in Resources */,
+				A39AF4C82671187B00778D05 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A39AF4CF2671187C00778D05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A39AF4DA2671187C00778D05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A39AF4BC2671187A00778D05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A39AF4C62671187A00778D05 /* ContentView.swift in Sources */,
+				A39AF4C42671187A00778D05 /* HarvestAppApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A39AF4CD2671187C00778D05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A39AF4D62671187C00778D05 /* HarvestAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A39AF4D82671187C00778D05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A39AF4E12671187C00778D05 /* HarvestAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A39AF4D32671187C00778D05 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A39AF4BF2671187A00778D05 /* HarvestApp */;
+			targetProxy = A39AF4D22671187C00778D05 /* PBXContainerItemProxy */;
+		};
+		A39AF4DE2671187C00778D05 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A39AF4BF2671187A00778D05 /* HarvestApp */;
+			targetProxy = A39AF4DD2671187C00778D05 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A39AF4E32671187C00778D05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A39AF4E42671187C00778D05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A39AF4E62671187C00778D05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"HarvestApp/Preview Content\"";
+				DEVELOPMENT_TEAM = YJ58PTMGRM;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = HarvestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.phamduy.HarvestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A39AF4E72671187C00778D05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"HarvestApp/Preview Content\"";
+				DEVELOPMENT_TEAM = YJ58PTMGRM;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = HarvestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.phamduy.HarvestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A39AF4E92671187C00778D05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YJ58PTMGRM;
+				INFOPLIST_FILE = HarvestAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.phamduy.HarvestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HarvestApp.app/HarvestApp";
+			};
+			name = Debug;
+		};
+		A39AF4EA2671187C00778D05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YJ58PTMGRM;
+				INFOPLIST_FILE = HarvestAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.phamduy.HarvestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HarvestApp.app/HarvestApp";
+			};
+			name = Release;
+		};
+		A39AF4EC2671187C00778D05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YJ58PTMGRM;
+				INFOPLIST_FILE = HarvestAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.phamduy.HarvestAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HarvestApp;
+			};
+			name = Debug;
+		};
+		A39AF4ED2671187C00778D05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YJ58PTMGRM;
+				INFOPLIST_FILE = HarvestAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.phamduy.HarvestAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HarvestApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A39AF4BB2671187A00778D05 /* Build configuration list for PBXProject "HarvestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A39AF4E32671187C00778D05 /* Debug */,
+				A39AF4E42671187C00778D05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A39AF4E52671187C00778D05 /* Build configuration list for PBXNativeTarget "HarvestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A39AF4E62671187C00778D05 /* Debug */,
+				A39AF4E72671187C00778D05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A39AF4E82671187C00778D05 /* Build configuration list for PBXNativeTarget "HarvestAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A39AF4E92671187C00778D05 /* Debug */,
+				A39AF4EA2671187C00778D05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A39AF4EB2671187C00778D05 /* Build configuration list for PBXNativeTarget "HarvestAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A39AF4EC2671187C00778D05 /* Debug */,
+				A39AF4ED2671187C00778D05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A39AF4B82671187A00778D05 /* Project object */;
+}
