@@ -9,10 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     @AppStorage("currentPage") var currentPage = 1
+    @State var isLogin : Bool = false
     var body: some View {
 //        Text("Current Page \(currentPage)")
         if currentPage > 3 {
-            HomeView()
+            if isLogin {
+                HomeView()
+            }
+            else {
+                LoginView()
+            }
         } else {
             OnboardingView()
         }
