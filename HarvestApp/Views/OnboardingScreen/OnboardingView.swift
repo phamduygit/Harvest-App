@@ -8,12 +8,32 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    @AppStorage("currentPage") var currentPage = 1
     var body: some View {
         ZStack {
-            OnboardingScreen(image: "onboarding1", title: "Tính toán thuận tiện", detail: "Giúp bạn tính sản lượng và doanh thu nông sản một cách thuận tiện", bgColor: Color("Color1"))
+            if (currentPage == 1) {
+                OnboardingScreen(image: "onboarding1", title: "Tính toán thuận tiện", detail: "Giúp bạn tính sản lượng và doanh thu nông sản một cách thuận tiện", bgColor: Color("Color1"))
+                    .transition(.scale)
+            }
+            if (currentPage == 2) {
+                OnboardingScreen(image: "onboarding2", title: "Xem giá thị trường", detail: "Bản tin thị trường về nông sản sẽ được liên tục cập nhật để cung cấp cho bạn", bgColor: Color("Color2"))
+                    .transition(.scale)
+            }
+            if (currentPage == 3) {
+                OnboardingScreen(image: "onboarding3", title: "Tìm thương lái", detail: "Giúp cho bạn tìm kiếm thương lái phù hợp để bán nông sản", bgColor: Color("Color3"))
+                    .transition(.scale)
+            }
         }
         .overlay(
-            Button(action: {}, label: {
+            Button(action: {
+                withAnimation {
+                    if currentPage <= 3 {
+                        currentPage += 1
+                    } else {
+                        currentPage = 1
+                    }
+                }
+            }, label: {
                 Image(systemName: "chevron.right")
                     .font(.system(size: 20, weight: .semibold))
                     .foregroundColor(Color.black)
@@ -26,15 +46,15 @@ struct OnboardingView: View {
                                 .stroke(Color.black.opacity(0.04), lineWidth: 4)
                             
                             Circle()
-                                .trim(from: 0.0, to: 0.3)
+                                .trim(from: 0.0, to: CGFloat(currentPage) / CGFloat(3))
                                 .stroke(Color.white, lineWidth: 4)
                                 .rotationEffect(.init(degrees: -90))
                         }
                         .padding(-10)
                     )
-                    .padding()
-            }),
-            alignment: .bottom
+            })
+            .padding(.bottom, 20)
+            ,alignment: .bottom
         )
     }
 }
@@ -50,20 +70,42 @@ struct OnboardingScreen: View {
     var title: String
     var detail: String
     var bgColor: Color
+    @AppStorage("currentPage") var currentPage = 1
     var body: some View {
         VStack (spacing: 20) {
             HStack {
-                Text("Xin chào bạn!")
-                    .font(.title)
-                    .fontWeight(.bold)
+                if (currentPage == 1) {
+                    Text("Xin chào bạn!")
+                        .font(.title)
+                        .fontWeight(.bold)
+                }
+                else {
+                    // back button
+                    Button(action: {
+                        withAnimation(.easeInOut) {
+                            currentPage -= 1
+                        }
+                        
+                    }, label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Color.white)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal)
+                            .background(Color.black.opacity(0.4))
+                            .cornerRadius(10)
+                    })
+                }
                 Spacer()
-                Button(action: {}, label: {
+                Button(action: {
+                    currentPage = 4
+                }, label: {
                     Text("Skip")
                         .kerning(1.4)
                         .foregroundColor(.black)
                 })
             }
             .padding()
+//            Spacer()
             Image(image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -76,8 +118,8 @@ struct OnboardingScreen: View {
                 .foregroundColor(Color.black.opacity(0.5))
                 .multilineTextAlignment(.center)
             
-            Spacer()
+            Spacer(minLength: 120)
         }
-        .background(Color("Color1").ignoresSafeArea())
+        .background(bgColor.cornerRadius(10).ignoresSafeArea())
     }
 }

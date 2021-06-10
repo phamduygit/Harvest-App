@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("currentPage") var currentPage = 1
     var body: some View {
-        HomeView()
+//        Text("Current Page \(currentPage)")
+        if currentPage > 3 {
+            HomeView()
+        } else {
+            OnboardingView()
+        }
+        
     }
 }
 
