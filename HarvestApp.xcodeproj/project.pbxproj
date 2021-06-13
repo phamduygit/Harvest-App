@@ -11,16 +11,23 @@
 		A3465AC026734BD200FE3077 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465ABF26734BD200FE3077 /* SignUpView.swift */; };
 		A3465AC326734C3200FE3077 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465AC226734C3200FE3077 /* InputField.swift */; };
 		A3465AC526734C6F00FE3077 /* InputSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465AC426734C6F00FE3077 /* InputSecureField.swift */; };
-		A3465AC726734CEE00FE3077 /* Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465AC626734CEE00FE3077 /* Rounded.swift */; };
+		A3465AC726734CEE00FE3077 /* RoundedBotton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465AC626734CEE00FE3077 /* RoundedBotton.swift */; };
 		A3465ACB267355E400FE3077 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465ACA267355E400FE3077 /* ForgotPasswordView.swift */; };
 		A36149C726711BA4001BE31D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36149C626711BA4001BE31D /* HomeView.swift */; };
 		A36149CA26711D1E001BE31D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36149C926711D1E001BE31D /* OnboardingView.swift */; };
+		A3699B88267500C8006DEE22 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3699B87267500C8006DEE22 /* CardView.swift */; };
+		A38070882673B3BA00CD24A6 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38070872673B3BA00CD24A6 /* CustomTabBarView.swift */; };
 		A39AF4C42671187A00778D05 /* HarvestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4C32671187A00778D05 /* HarvestAppApp.swift */; };
 		A39AF4C62671187A00778D05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4C52671187A00778D05 /* ContentView.swift */; };
 		A39AF4C82671187B00778D05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A39AF4C72671187B00778D05 /* Assets.xcassets */; };
 		A39AF4CB2671187B00778D05 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A39AF4CA2671187B00778D05 /* Preview Assets.xcassets */; };
 		A39AF4D62671187C00778D05 /* HarvestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4D52671187C00778D05 /* HarvestAppTests.swift */; };
 		A39AF4E12671187C00778D05 /* HarvestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4E02671187C00778D05 /* HarvestAppUITests.swift */; };
+		A3C18BF52675E44E0065F10A /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C18BF42675E44E0065F10A /* ProductDetailView.swift */; };
+		A3C18BF92675EDD90065F10A /* RoundedTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C18BF82675EDD90065F10A /* RoundedTop.swift */; };
+		A3C18BFC2675F6D10065F10A /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C18BFB2675F6D10065F10A /* Column.swift */; };
+		A3C18BFE2676145B0065F10A /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C18BFD2676145B0065F10A /* ProductsView.swift */; };
+		A3C18C00267616A20065F10A /* ItemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C18BFF267616A20065F10A /* ItemCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,10 +52,12 @@
 		A3465ABF26734BD200FE3077 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		A3465AC226734C3200FE3077 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		A3465AC426734C6F00FE3077 /* InputSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSecureField.swift; sourceTree = "<group>"; };
-		A3465AC626734CEE00FE3077 /* Rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rounded.swift; sourceTree = "<group>"; };
+		A3465AC626734CEE00FE3077 /* RoundedBotton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBotton.swift; sourceTree = "<group>"; };
 		A3465ACA267355E400FE3077 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		A36149C626711BA4001BE31D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A36149C926711D1E001BE31D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A3699B87267500C8006DEE22 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		A38070872673B3BA00CD24A6 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
 		A39AF4C02671187A00778D05 /* HarvestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarvestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A39AF4C32671187A00778D05 /* HarvestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestAppApp.swift; sourceTree = "<group>"; };
 		A39AF4C52671187A00778D05 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +70,11 @@
 		A39AF4DC2671187C00778D05 /* HarvestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HarvestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A39AF4E02671187C00778D05 /* HarvestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestAppUITests.swift; sourceTree = "<group>"; };
 		A39AF4E22671187C00778D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3C18BF42675E44E0065F10A /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
+		A3C18BF82675EDD90065F10A /* RoundedTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTop.swift; sourceTree = "<group>"; };
+		A3C18BFB2675F6D10065F10A /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
+		A3C18BFD2676145B0065F10A /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
+		A3C18BFF267616A20065F10A /* ItemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +105,7 @@
 		A322A67F2672031900449D73 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
+				A3699B86267500A8006DEE22 /* Components */,
 				A36149C626711BA4001BE31D /* HomeView.swift */,
 			);
 			path = HomeScreen;
@@ -112,7 +127,6 @@
 			children = (
 				A3465AC226734C3200FE3077 /* InputField.swift */,
 				A3465AC426734C6F00FE3077 /* InputSecureField.swift */,
-				A3465AC626734CEE00FE3077 /* Rounded.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -120,6 +134,8 @@
 		A36149C526711B76001BE31D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A3C18BF32675E40D0065F10A /* MarketNewsScreen */,
+				A38070862673B32900CD24A6 /* Tabbar */,
 				A322A6802672037500449D73 /* LoginScreen */,
 				A322A67F2672031900449D73 /* HomeScreen */,
 				A36149C826711CD2001BE31D /* OnboardingScreen */,
@@ -133,6 +149,22 @@
 				A36149C926711D1E001BE31D /* OnboardingView.swift */,
 			);
 			path = OnboardingScreen;
+			sourceTree = "<group>";
+		};
+		A3699B86267500A8006DEE22 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A3699B87267500C8006DEE22 /* CardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A38070862673B32900CD24A6 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				A38070872673B3BA00CD24A6 /* CustomTabBarView.swift */,
+			);
+			path = Tabbar;
 			sourceTree = "<group>";
 		};
 		A39AF4B72671187A00778D05 = {
@@ -158,6 +190,7 @@
 		A39AF4C22671187A00778D05 /* HarvestApp */ = {
 			isa = PBXGroup;
 			children = (
+				A3C18BF72675EDAC0065F10A /* Helper */,
 				A36149C526711B76001BE31D /* Views */,
 				A39AF4C32671187A00778D05 /* HarvestAppApp.swift */,
 				A39AF4C52671187A00778D05 /* ContentView.swift */,
@@ -192,6 +225,34 @@
 				A39AF4E22671187C00778D05 /* Info.plist */,
 			);
 			path = HarvestAppUITests;
+			sourceTree = "<group>";
+		};
+		A3C18BF32675E40D0065F10A /* MarketNewsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A3C18BFA2675F6AC0065F10A /* Components */,
+				A3C18BF42675E44E0065F10A /* ProductDetailView.swift */,
+				A3C18BFD2676145B0065F10A /* ProductsView.swift */,
+			);
+			path = MarketNewsScreen;
+			sourceTree = "<group>";
+		};
+		A3C18BF72675EDAC0065F10A /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A3465AC626734CEE00FE3077 /* RoundedBotton.swift */,
+				A3C18BF82675EDD90065F10A /* RoundedTop.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		A3C18BFA2675F6AC0065F10A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A3C18BFB2675F6D10065F10A /* Column.swift */,
+				A3C18BFF267616A20065F10A /* ItemCardView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,9 +391,16 @@
 				A3465AC526734C6F00FE3077 /* InputSecureField.swift in Sources */,
 				A39AF4C62671187A00778D05 /* ContentView.swift in Sources */,
 				A3465AC026734BD200FE3077 /* SignUpView.swift in Sources */,
-				A3465AC726734CEE00FE3077 /* Rounded.swift in Sources */,
+				A3465AC726734CEE00FE3077 /* RoundedBotton.swift in Sources */,
 				A3465ACB267355E400FE3077 /* ForgotPasswordView.swift in Sources */,
 				A39AF4C42671187A00778D05 /* HarvestAppApp.swift in Sources */,
+				A3C18BF52675E44E0065F10A /* ProductDetailView.swift in Sources */,
+				A3C18BFC2675F6D10065F10A /* Column.swift in Sources */,
+				A3C18C00267616A20065F10A /* ItemCardView.swift in Sources */,
+				A3C18BFE2676145B0065F10A /* ProductsView.swift in Sources */,
+				A3C18BF92675EDD90065F10A /* RoundedTop.swift in Sources */,
+				A3699B88267500C8006DEE22 /* CardView.swift in Sources */,
+				A38070882673B3BA00CD24A6 /* CustomTabBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,7 +45,7 @@ struct ForgotPasswordView: View {
             
             .padding()
             .background(Color.white.ignoresSafeArea(.all, edges: .bottom))
-            .clipShape(Rounded())
+            .clipShape(RoundedBotton())
             .offset(x: 0, y: -20)
         }
 //        .background(Color.blue.ignoresSafeArea())

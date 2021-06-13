@@ -74,7 +74,7 @@ struct SignUpView: View {
                 }
                 .padding()
                 .background(Color.white.ignoresSafeArea(.all, edges: .bottom))
-                .clipShape(Rounded())
+                .clipShape(RoundedBotton())
             }
             
         }
