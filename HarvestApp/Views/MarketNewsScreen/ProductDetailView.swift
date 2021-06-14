@@ -16,6 +16,7 @@ struct ProductDetailView: View {
     @State private var selection : chose = .week
     @State private var isLike : Bool = false
     @Binding var show : Bool
+    @Binding var showTabBar : Bool
     var body: some View {
         ZStack {
             Color("Color4").ignoresSafeArea()
@@ -111,6 +112,7 @@ struct ProductDetailView: View {
             HStack {
                 Button(action: {
                     self.show.toggle()
+                    self.showTabBar.toggle()
                 }, label: {
                     Image(systemName: "chevron.left")
                         .foregroundColor(Color.white)
@@ -152,6 +154,6 @@ var data = [
 ]
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView(show: Binding.constant(false))
+        ProductDetailView(show: Binding.constant(false), showTabBar: Binding.constant(false))
     }
 }

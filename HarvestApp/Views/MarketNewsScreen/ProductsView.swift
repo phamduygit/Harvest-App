@@ -9,55 +9,74 @@ import SwiftUI
 
 struct ProductsView: View {
     var listProduct = ["Lúa jasmine", "Lúa jasmine", "Lúa jasmine", "Lúa jasmine", "Lúa jasmine", "Lúa jasmine", "Lúa jasmine", "Lúa jasmine",]
-    @State private var showDetail : Bool = false;
+    @State private var filter = FilterCategory.all
+    enum FilterCategory: String, CaseIterable, Identifiable {
+        case all = "Tất cả"
+        case rice = "Lúa"
+        case coffee = "Cà phê"
+        case blackPepper = "Tiêu"
+        var id: FilterCategory { self }
+    }
+    @State private var showFavoritesOnly = false
+    @State private var showDetail : Bool = false
+    @State private var key : String = ""
+    @Binding var showTabBar : Bool
     var body: some View {
         ZStack {
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack {
-                    ZStack {
-                        Color("Color4").ignoresSafeArea()
-                        VStack {
-                            HStack {
-                                Image("avatar")
-                                    .resizable()
-                                    .frame(width: 50, height: 50, alignment: .center)
-                                    .clipShape(Circle())
-                                Spacer()
-                                Button(action: {}, label: {
-                                    Image(systemName: "magnifyingglass")
-                                        .resizable()
-                                        .frame(width: 24, height: 24, alignment: .center)
-                                        .foregroundColor(Color.black)
-                                })
-                                
-                            }
-                            .padding()
-                            HStack {
-                                Text("Bản tin thị trường")
-                                    .font(.title2)
-                                    .fontWeight(.bold)
-                                Spacer()
-                            }
-                            .padding(.horizontal)
-                            VStack(spacing: 10) {
-                                ForEach(listProduct.indices) {index in
-                                    ItemCardView()
-                                        .onTapGesture {
-                                            withAnimation {
-                                                self.showDetail.toggle()
-                                            }
-                                        }
-                                }
-                            }
-                            .padding()
+            VStack {
+                HStack {
+                    HStack {
+                        TextField("Tìm kiếm nông sản", text: $key)
+                        Spacer()
+                        Image(systemName: "magnifyingglass")
+//                            .resizable()
+//                            .frame(width: 24, height: 24, alignment: .center)
                             
-                            Spacer()
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    
+                }
+                .padding()
+                HStack {
+                    Text("Bản tin thị trường")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Spacer()
+                    Menu {
+                        Picker(selection: $filter, label: Text("Picker"), content: {
+                            ForEach(FilterCategory.allCases) { category in
+                                Text(category.rawValue).tag(category)
+                            }
+                        })
+                        Toggle(isOn: $showFavoritesOnly) {
+                            Label("Đã yêu thích", systemImage: "heart.fill")
+                        }
+                    } label: {
+                        Image(systemName: "slider.horizontal.3")
+                            .foregroundColor(Color.black)
+                    }
+
+                }
+                .padding(.horizontal)
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 10) {
+                        ForEach(listProduct.indices) {index in
+                            ItemCardView()
+                                .onTapGesture {
+                                    self.showDetail.toggle()
+                                    self.showTabBar.toggle()
+                                }
                         }
                     }
+                    .padding()
+                    
                 }
             }
+            .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
             if showDetail {
-                ProductDetailView(show: $showDetail)
+                ProductDetailView(show: $showDetail, showTabBar: $showTabBar)
             }
             
         }
@@ -66,6 +85,6 @@ struct ProductsView: View {
 
 struct ProductsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductsView()
+        ProductsView(showTabBar: Binding.constant(true))
     }
 }

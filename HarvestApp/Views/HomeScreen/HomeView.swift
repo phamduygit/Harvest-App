@@ -12,7 +12,6 @@ struct HomeView: View {
     @State private var isLike : Bool = true
     var body: some View {
         ZStack {
-            Color("Color4").edgesIgnoringSafeArea(.all)
             VStack (alignment: .leading){
                 ZStack {
                     HStack {
@@ -30,39 +29,44 @@ struct HomeView: View {
                         
                     }
                     .padding()
-                    .background(Color("Color4").ignoresSafeArea())
                     VStack {
                         Text("Chào buổi sáng")
                         Text("Phạm Duy")
                             .fontWeight(.bold)
                     }
                 }
-                HStack {
-                    TextField("Tìm kiếm nông sản", text: $key)
-                    Spacer()
-                    Image(systemName: "magnifyingglass")
-                        .resizable()
-                        .frame(width: 24, height: 24, alignment: .center)
-                        
-                }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(20)
-                .padding()
-                Text("Nông sản yêu thích")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .padding(.leading)
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack (spacing: 10) {
-                        CardView(isLike: $isLike)
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    HStack {
+                        TextField("Tìm kiếm nông sản", text: $key)
+                        Spacer()
+                        Image(systemName: "magnifyingglass")
+                            .resizable()
+                            .frame(width: 24, height: 24, alignment: .center)
+                            
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .padding()
+                    HStack {
+                        Text("Nông sản yêu thích")
+                            .font(.title2)
+                            .fontWeight(.bold)
                             .padding(.leading)
-                        CardView(isLike: $isLike)
-                        CardView(isLike: $isLike)
+                        Spacer()
+                    }
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack (spacing: 10) {
+                            CardView(isLike: $isLike)
+                                .padding(.leading)
+                            CardView(isLike: $isLike)
+                            CardView(isLike: $isLike)
+                        }
                     }
                 }
-                Spacer()
             }
+            .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
         }
     }
 }

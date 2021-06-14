@@ -9,30 +9,33 @@ import SwiftUI
 
 struct ContentView: View {
     @AppStorage("currentPage") var currentPage = 1
+    @State private var showTabBar = true
     @State var isLogin : Bool = true
     @State private var selection : Int = 0
+    init() {
+        UITabBar.appearance().isHidden = true
+    }
     var body: some View {
 //        Text("Current Page \(currentPage)")
         if currentPage > 3 {
             if isLogin {
-                ZStack {
-                    Color("Color4").edgesIgnoringSafeArea(.all)
-                    VStack {
-                        TabView(selection: $selection) {
-                            HomeView()
-                                .tag(0)
-                            ProductsView()
-                                .tag(1)
-                            Text("Chợ nông sản")
-                                .tag(3)
-                            Text("Cá nhân")
-                                .tag(4)
-                        }
-                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
+                    TabView(selection: $selection) {
+                        HomeView()
+                            .tag(0)
+                        ProductsView(showTabBar: $showTabBar)
+                            .tag(1)
+                        Text("Chợ nông sản")
+                            .tag(3)
+                        Text("Cá nhân")
+                            .tag(4)
+                    }
+                    if showTabBar {
                         CustomTabBarView(selection: $selection)
                     }
-                    .edgesIgnoringSafeArea(.all)
+                    
                 }
+                .ignoresSafeArea(.all, edges: .bottom)
             }
             else {
                 SignInView()
@@ -40,7 +43,6 @@ struct ContentView: View {
         } else {
             OnboardingView()
         }
-        
     }
 }
 
