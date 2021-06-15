@@ -13,6 +13,8 @@
 		A3465AC526734C6F00FE3077 /* InputSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465AC426734C6F00FE3077 /* InputSecureField.swift */; };
 		A3465AC726734CEE00FE3077 /* RoundedBotton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465AC626734CEE00FE3077 /* RoundedBotton.swift */; };
 		A3465ACB267355E400FE3077 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465ACA267355E400FE3077 /* ForgotPasswordView.swift */; };
+		A358AFD526788C37005F569E /* ChoseProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A358AFD426788C37005F569E /* ChoseProductView.swift */; };
+		A358AFD726788F53005F569E /* CategoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A358AFD626788F53005F569E /* CategoryCardView.swift */; };
 		A36149C726711BA4001BE31D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36149C626711BA4001BE31D /* HomeView.swift */; };
 		A36149CA26711D1E001BE31D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36149C926711D1E001BE31D /* OnboardingView.swift */; };
 		A3699B88267500C8006DEE22 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3699B87267500C8006DEE22 /* CardView.swift */; };
@@ -54,6 +56,8 @@
 		A3465AC426734C6F00FE3077 /* InputSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSecureField.swift; sourceTree = "<group>"; };
 		A3465AC626734CEE00FE3077 /* RoundedBotton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBotton.swift; sourceTree = "<group>"; };
 		A3465ACA267355E400FE3077 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		A358AFD426788C37005F569E /* ChoseProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoseProductView.swift; sourceTree = "<group>"; };
+		A358AFD626788F53005F569E /* CategoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCardView.swift; sourceTree = "<group>"; };
 		A36149C626711BA4001BE31D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A36149C926711D1E001BE31D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A3699B87267500C8006DEE22 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -131,9 +135,19 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		A358AFD3267889EA005F569E /* AddProduct */ = {
+			isa = PBXGroup;
+			children = (
+				A358AFD426788C37005F569E /* ChoseProductView.swift */,
+				A358AFD626788F53005F569E /* CategoryCardView.swift */,
+			);
+			path = AddProduct;
+			sourceTree = "<group>";
+		};
 		A36149C526711B76001BE31D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A358AFD3267889EA005F569E /* AddProduct */,
 				A3C18BF32675E40D0065F10A /* MarketNewsScreen */,
 				A38070862673B32900CD24A6 /* Tabbar */,
 				A322A6802672037500449D73 /* LoginScreen */,
@@ -389,9 +403,11 @@
 				A36149CA26711D1E001BE31D /* OnboardingView.swift in Sources */,
 				A3465AC326734C3200FE3077 /* InputField.swift in Sources */,
 				A3465AC526734C6F00FE3077 /* InputSecureField.swift in Sources */,
+				A358AFD526788C37005F569E /* ChoseProductView.swift in Sources */,
 				A39AF4C62671187A00778D05 /* ContentView.swift in Sources */,
 				A3465AC026734BD200FE3077 /* SignUpView.swift in Sources */,
 				A3465AC726734CEE00FE3077 /* RoundedBotton.swift in Sources */,
+				A358AFD726788F53005F569E /* CategoryCardView.swift in Sources */,
 				A3465ACB267355E400FE3077 /* ForgotPasswordView.swift in Sources */,
 				A39AF4C42671187A00778D05 /* HarvestAppApp.swift in Sources */,
 				A3C18BF52675E44E0065F10A /* ProductDetailView.swift in Sources */,
