@@ -11,6 +11,7 @@ struct CustomTabBarView: View {
     var tabs = ["house", "newspaper", "plus.circle.fill", "arrow.left.arrow.right", "person"]
     @State private var isClickedPlus : Bool = false;
     @Binding var selection : Int
+    @State private var showAddProdct : Bool = false;
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
@@ -62,7 +63,7 @@ struct CustomTabBarView: View {
                     VStack {
                         
                         Button(action: {
-                            print("Thu hoạch")
+                            self.showAddProdct.toggle()
                         }, label: {
                             HStack(spacing: 20) {
                                 Image(systemName: "tray.and.arrow.down")
@@ -92,6 +93,9 @@ struct CustomTabBarView: View {
                     .padding(.bottom)
                     .background(Color.white)
                 }
+            }
+            if showAddProdct {
+                ChoseProductView(show: $showAddProdct)
             }
         }
     }
