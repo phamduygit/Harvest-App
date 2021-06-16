@@ -148,31 +148,27 @@ struct ChoseProductView: View {
                             .cornerRadius(15)
                             .padding()
                         })
+                        Button(action: {}, label: {
+                            HStack {
+                                Spacer()
+                                Text("Nhập sản lượng")
+                                    .font(.title2)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.white)
+                                Spacer()
+                            }
+                            .padding()
+                            .background(Color("Color5"))
+                            .clipShape(Capsule())
+                            .padding()
+                            .padding(.bottom)
+                            
+                        })
                     }
-                    
                 }
                 
             }
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
-            .overlay(
-                Button(action: {}, label: {
-                    HStack {
-                        Spacer()
-                        Text("Nhập sản lượng")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(Color.white)
-                        Spacer()
-                    }
-                    .padding()
-                    .background(Color("Color5"))
-                    .clipShape(Capsule())
-                    .padding()
-                    .padding(.bottom)
-                    
-                })
-                , alignment: .bottom
-            )
             if showNames {
                 NameOfProductView(show: $showNames, selected: $indexFilter)
             }

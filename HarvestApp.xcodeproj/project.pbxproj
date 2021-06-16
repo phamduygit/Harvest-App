@@ -13,6 +13,8 @@
 		A3465AC526734C6F00FE3077 /* InputSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465AC426734C6F00FE3077 /* InputSecureField.swift */; };
 		A3465AC726734CEE00FE3077 /* RoundedBotton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465AC626734CEE00FE3077 /* RoundedBotton.swift */; };
 		A3465ACB267355E400FE3077 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465ACA267355E400FE3077 /* ForgotPasswordView.swift */; };
+		A34959A626799ECF0070E795 /* ListWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34959A526799ECF0070E795 /* ListWeightView.swift */; };
+		A34959A82679D9340070E795 /* UpdateWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34959A72679D9340070E795 /* UpdateWeightView.swift */; };
 		A358AFD526788C37005F569E /* ChoseProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A358AFD426788C37005F569E /* ChoseProductView.swift */; };
 		A36149C726711BA4001BE31D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36149C626711BA4001BE31D /* HomeView.swift */; };
 		A36149CA26711D1E001BE31D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36149C926711D1E001BE31D /* OnboardingView.swift */; };
@@ -56,6 +58,8 @@
 		A3465AC426734C6F00FE3077 /* InputSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSecureField.swift; sourceTree = "<group>"; };
 		A3465AC626734CEE00FE3077 /* RoundedBotton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBotton.swift; sourceTree = "<group>"; };
 		A3465ACA267355E400FE3077 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		A34959A526799ECF0070E795 /* ListWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWeightView.swift; sourceTree = "<group>"; };
+		A34959A72679D9340070E795 /* UpdateWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateWeightView.swift; sourceTree = "<group>"; };
 		A358AFD426788C37005F569E /* ChoseProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoseProductView.swift; sourceTree = "<group>"; };
 		A36149C626711BA4001BE31D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A36149C926711D1E001BE31D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 			children = (
 				A358AFD426788C37005F569E /* ChoseProductView.swift */,
 				A3DECE8D26791DDF00C2A47E /* NameOfProductView.swift */,
+				A34959A526799ECF0070E795 /* ListWeightView.swift */,
+				A34959A72679D9340070E795 /* UpdateWeightView.swift */,
 			);
 			path = AddProduct;
 			sourceTree = "<group>";
@@ -399,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3465ABE267335E900FE3077 /* SignInView.swift in Sources */,
+				A34959A82679D9340070E795 /* UpdateWeightView.swift in Sources */,
 				A36149C726711BA4001BE31D /* HomeView.swift in Sources */,
 				A36149CA26711D1E001BE31D /* OnboardingView.swift in Sources */,
 				A3465AC326734C3200FE3077 /* InputField.swift in Sources */,
@@ -416,6 +423,7 @@
 				A3DECE8E26791DDF00C2A47E /* NameOfProductView.swift in Sources */,
 				A3C18BF92675EDD90065F10A /* RoundedTop.swift in Sources */,
 				A3699B88267500C8006DEE22 /* CardView.swift in Sources */,
+				A34959A626799ECF0070E795 /* ListWeightView.swift in Sources */,
 				A38070882673B3BA00CD24A6 /* CustomTabBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
