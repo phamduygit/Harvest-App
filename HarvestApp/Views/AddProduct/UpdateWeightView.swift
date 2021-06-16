@@ -9,7 +9,9 @@ import SwiftUI
 
 struct UpdateWeightView: View {
     @Binding var show : Bool
-    
+    @Binding var listWeightOfSack : [Double]
+    @Binding var indexOfSack : Int
+    @State var number : String
     enum MethodInputValue : String, CaseIterable {
         case keyboard = "Nhập"
         case scan = "Quét"
@@ -78,6 +80,16 @@ struct UpdateWeightView: View {
             .background(Color.black.opacity(0.35))
             .cornerRadius(10)
             
+            VStack (spacing: 10) {
+                Text("Nhập trọng lượng bao thứ \(indexOfSack + 1)")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Text("\(number) kg")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.black.opacity(0.5))
+            }
+            .padding(.top, 20)
             Spacer()
         }
         .background(Color("Color4").ignoresSafeArea())
@@ -88,7 +100,26 @@ struct UpdateWeightView: View {
                         GeometryReader {geometry in
                             VStack (spacing: 10){
                                 ForEach(column.value.indices) {index in
-                                    Button (action: {}, label: {
+                                    Button (action: {
+                                        if (column.value[index] == "delete.left") {
+                                            if number.count == 1 {
+                                                number = "0.0"
+                                            } else {
+                                                if number != "0.0" {
+                                                    number.removeLast()
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            if number == "0.0" {
+                                                number = column.value[index]
+                                            }
+                                            else {
+                                                number += column.value[index]
+                                            }
+                                            
+                                        }
+                                    }, label: {
                                         HStack {
                                             if (column.value[index] == "delete.left") {
                                                 Image(systemName: "delete.left")
@@ -115,16 +146,23 @@ struct UpdateWeightView: View {
                     
                 }
                 .frame(height: 230)
-                HStack {
-                    Spacer()
-                    Image(systemName: "arrow.right")
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                    Spacer()
+                Button(action:{
+                    self.listWeightOfSack[indexOfSack] = Double(number) ?? 0.0
+                    self.indexOfSack += 1
+                    number = "\(listWeightOfSack[indexOfSack])"
+                }) {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "arrow.right")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(Color.black)
+                        Spacer()
+                    }
+                    .frame(height: 50)
+                    .background(Color("Color5"))
+                    .cornerRadius(15)
                 }
-                .frame(height: 50)
-                .background(Color("Color5"))
-                .cornerRadius(15)
             }
             .padding()
             .background(Color.white)
@@ -139,6 +177,6 @@ struct ColumnNum: Identifiable {
 }
 struct UpdateWeightView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateWeightView(show: Binding.constant(false))
+        UpdateWeightView(show: Binding.constant(false), listWeightOfSack: Binding.constant([49.6, 49.6, 49.6, 49.6, 49.6]), indexOfSack: Binding.constant(0), number: "0.0")
     }
 }
