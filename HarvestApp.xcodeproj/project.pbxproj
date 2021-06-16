@@ -32,6 +32,7 @@
 		A3C18BFE2676145B0065F10A /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C18BFD2676145B0065F10A /* ProductsView.swift */; };
 		A3C18C00267616A20065F10A /* ItemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C18BFF267616A20065F10A /* ItemCardView.swift */; };
 		A3DECE8E26791DDF00C2A47E /* NameOfProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DECE8D26791DDF00C2A47E /* NameOfProductView.swift */; };
+		A3EF82B1267A65EE0092D094 /* AddWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EF82B0267A65EE0092D094 /* AddWeightView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		A3C18BFD2676145B0065F10A /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		A3C18BFF267616A20065F10A /* ItemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardView.swift; sourceTree = "<group>"; };
 		A3DECE8D26791DDF00C2A47E /* NameOfProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOfProductView.swift; sourceTree = "<group>"; };
+		A3EF82B0267A65EE0092D094 /* AddWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeightView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				A3DECE8D26791DDF00C2A47E /* NameOfProductView.swift */,
 				A34959A526799ECF0070E795 /* ListWeightView.swift */,
 				A34959A72679D9340070E795 /* UpdateWeightView.swift */,
+				A3EF82B0267A65EE0092D094 /* AddWeightView.swift */,
 			);
 			path = AddProduct;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				A3465AC726734CEE00FE3077 /* RoundedBotton.swift in Sources */,
 				A3465ACB267355E400FE3077 /* ForgotPasswordView.swift in Sources */,
 				A39AF4C42671187A00778D05 /* HarvestAppApp.swift in Sources */,
+				A3EF82B1267A65EE0092D094 /* AddWeightView.swift in Sources */,
 				A3C18BF52675E44E0065F10A /* ProductDetailView.swift in Sources */,
 				A3C18BFC2675F6D10065F10A /* Column.swift in Sources */,
 				A3C18C00267616A20065F10A /* ItemCardView.swift in Sources */,

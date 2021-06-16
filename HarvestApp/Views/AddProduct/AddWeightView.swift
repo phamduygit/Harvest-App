@@ -1,13 +1,13 @@
 //
-//  UpdateWeightView.swift
+//  AddWeightView.swift
 //  HarvestApp
 //
-//  Created by Pham Minh Duy on 16/06/2021.
+//  Created by Pham Minh Duy on 17/06/2021.
 //
 
 import SwiftUI
 
-struct UpdateWeightView: View {
+struct AddWeightView: View {
     @Binding var show : Bool
     @Binding var listWeightOfSack : [Sack]
     @Binding var indexOfSack : Int
@@ -147,8 +147,10 @@ struct UpdateWeightView: View {
                 }
                 .frame(height: 230)
                 Button(action:{
-                    self.listWeightOfSack[indexOfSack].weight = Double(number) ?? 0.0
-                    self.show.toggle()
+//                    print("\(Double(number) ?? 0.0)")
+                    self.listWeightOfSack.append(Sack(id: indexOfSack, weight: Double(number) ?? 0.0))
+                    self.indexOfSack += 1
+                    number = "0.0"
                 }) {
                     HStack {
                         Spacer()
@@ -170,18 +172,14 @@ struct UpdateWeightView: View {
     }
 }
 
-struct ColumnNum: Identifiable {
-    var id: Int
-    var value : [String]
-}
-struct UpdateWeightView_Previews: PreviewProvider {
+struct AddWeightView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateWeightView(show: Binding.constant(false), listWeightOfSack: Binding.constant([
+        AddWeightView(show: Binding.constant(false), listWeightOfSack: Binding.constant([
             Sack(id: 0, weight: 49.6),
             Sack(id: 0, weight: 49.6),
             Sack(id: 0, weight: 49.6),
             Sack(id: 0, weight: 49.6),
             Sack(id: 0, weight: 49.6)
-        ]), indexOfSack: Binding.constant(0), number: "0.0")
+        ]), indexOfSack: Binding.constant(5), number: "0.0")
     }
 }

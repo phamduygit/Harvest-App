@@ -18,6 +18,7 @@ struct ChoseProductView: View {
     @State private var scrolled : Int = 0
     @State private var indexFilter : Int = 0
     @State private var showNames : Bool = false
+    @State private var showInputWeight : Bool = false
     @Binding var show : Bool
     var body: some View {
         
@@ -148,7 +149,9 @@ struct ChoseProductView: View {
                             .cornerRadius(15)
                             .padding()
                         })
-                        Button(action: {}, label: {
+                        Button(action: {
+                            self.showInputWeight.toggle()
+                        }, label: {
                             HStack {
                                 Spacer()
                                 Text("Nhập sản lượng")
@@ -171,6 +174,9 @@ struct ChoseProductView: View {
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
             if showNames {
                 NameOfProductView(show: $showNames, selected: $indexFilter)
+            }
+            if showInputWeight {
+                ListWeightView(category: "lúa", show: $showInputWeight)
             }
         }
     }
