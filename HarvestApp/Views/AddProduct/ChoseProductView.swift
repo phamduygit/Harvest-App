@@ -15,6 +15,13 @@ struct ChoseProductView: View {
         CarđData(id: 2, image: "cate_lychee", color: Color.pink, title: "Vải thiều", offset: 0),
         CarđData(id: 3, image: "cate_pepper", color: Color.purple, title: "Tiêu", offset: 0)
     ]
+    @State var listWeightOfSack = [
+        Sack(id: 0, weight: 49.6),
+        Sack(id: 1, weight: 49.6),
+        Sack(id: 2, weight: 49.6),
+        Sack(id: 3, weight: 49.6),
+        Sack(id: 4, weight: 49.6)
+    ]
     @State private var scrolled : Int = 0
     @State private var indexFilter : Int = 0
     @State private var showNames : Bool = false
@@ -176,7 +183,7 @@ struct ChoseProductView: View {
                 NameOfProductView(show: $showNames, selected: $indexFilter)
             }
             if showInputWeight {
-                ListWeightView(category: "lúa", show: $showInputWeight)
+                ListWeightView(category: "lúa", show: $showInputWeight, listWeightOfSack: $listWeightOfSack)
             }
         }
     }

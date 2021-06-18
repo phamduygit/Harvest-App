@@ -10,16 +10,11 @@ import SwiftUI
 struct ListWeightView: View {
     var category: String
     @Binding var show : Bool
-    @State var listWeightOfSack = [
-        Sack(id: 0, weight: 49.6),
-        Sack(id: 1, weight: 49.6),
-        Sack(id: 2, weight: 49.6),
-        Sack(id: 3, weight: 49.6),
-        Sack(id: 4, weight: 49.6)
-    ]
     @State private var indexUpdate = 0
+    @Binding var listWeightOfSack : [Sack]
     @State private var showUpdateWeight : Bool = false
     @State private var showAddWeight : Bool = false
+    @State private var showAddToStorage : Bool = false
     var body: some View {
         ZStack {
             VStack {
@@ -82,7 +77,9 @@ struct ListWeightView: View {
             }
             .background(Color("Color4").ignoresSafeArea())
             .overlay(
-                Button(action: {}, label: {
+                Button(action: {
+                    self.showAddToStorage.toggle();
+                }, label: {
                     HStack {
                         Spacer()
                         Text("Lưu")
@@ -105,6 +102,9 @@ struct ListWeightView: View {
             if showAddWeight {
                 AddWeightView(show: $showAddWeight, listWeightOfSack: $listWeightOfSack, indexOfSack: $indexUpdate, number: "0.0")
             }
+            if showAddToStorage {
+                AddToStorageView(listWeightOfSack: $listWeightOfSack, show: $showAddToStorage)
+            }
         }
     }
 }
@@ -114,6 +114,6 @@ struct Sack : Identifiable{
 }
 struct ListWeightView_Previews: PreviewProvider {
     static var previews: some View {
-        ListWeightView(category: "lúa", show: Binding.constant(false))
+        ListWeightView(category: "lúa", show: Binding.constant(false), listWeightOfSack: Binding.constant([Sack(id: 0, weight: 49.6), Sack(id: 1, weight: 49.6), Sack(id: 2, weight: 49.6), Sack(id: 3, weight: 49.6),Sack(id: 4, weight: 49.6)]))
     }
 }

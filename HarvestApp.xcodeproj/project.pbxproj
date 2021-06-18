@@ -32,6 +32,7 @@
 		A3C18BFE2676145B0065F10A /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C18BFD2676145B0065F10A /* ProductsView.swift */; };
 		A3C18C00267616A20065F10A /* ItemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C18BFF267616A20065F10A /* ItemCardView.swift */; };
 		A3DECE8E26791DDF00C2A47E /* NameOfProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DECE8D26791DDF00C2A47E /* NameOfProductView.swift */; };
+		A3E93006267CF9A700B53013 /* AddToStorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E93005267CF9A700B53013 /* AddToStorageView.swift */; };
 		A3EF82B1267A65EE0092D094 /* AddWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EF82B0267A65EE0092D094 /* AddWeightView.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		A3C18BFD2676145B0065F10A /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		A3C18BFF267616A20065F10A /* ItemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardView.swift; sourceTree = "<group>"; };
 		A3DECE8D26791DDF00C2A47E /* NameOfProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOfProductView.swift; sourceTree = "<group>"; };
+		A3E93005267CF9A700B53013 /* AddToStorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToStorageView.swift; sourceTree = "<group>"; };
 		A3EF82B0267A65EE0092D094 /* AddWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeightView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 				A34959A526799ECF0070E795 /* ListWeightView.swift */,
 				A34959A72679D9340070E795 /* UpdateWeightView.swift */,
 				A3EF82B0267A65EE0092D094 /* AddWeightView.swift */,
+				A3E93005267CF9A700B53013 /* AddToStorageView.swift */,
 			);
 			path = AddProduct;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				A3465ABE267335E900FE3077 /* SignInView.swift in Sources */,
 				A34959A82679D9340070E795 /* UpdateWeightView.swift in Sources */,
 				A36149C726711BA4001BE31D /* HomeView.swift in Sources */,
+				A3E93006267CF9A700B53013 /* AddToStorageView.swift in Sources */,
 				A36149CA26711D1E001BE31D /* OnboardingView.swift in Sources */,
 				A3465AC326734C3200FE3077 /* InputField.swift in Sources */,
 				A3465AC526734C6F00FE3077 /* InputSecureField.swift in Sources */,
