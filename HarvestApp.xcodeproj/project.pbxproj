@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A32A3E72267FA1DB005CDFC9 /* InStockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A3E71267FA1DB005CDFC9 /* InStockView.swift */; };
+		A32A3E74267FA928005CDFC9 /* DetailInStockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A3E73267FA928005CDFC9 /* DetailInStockView.swift */; };
 		A3465ABE267335E900FE3077 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465ABD267335E900FE3077 /* SignInView.swift */; };
 		A3465AC026734BD200FE3077 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465ABF26734BD200FE3077 /* SignUpView.swift */; };
 		A3465AC326734C3200FE3077 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3465AC226734C3200FE3077 /* InputField.swift */; };
@@ -54,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A32A3E71267FA1DB005CDFC9 /* InStockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InStockView.swift; sourceTree = "<group>"; };
+		A32A3E73267FA928005CDFC9 /* DetailInStockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInStockView.swift; sourceTree = "<group>"; };
 		A3465ABD267335E900FE3077 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		A3465ABF26734BD200FE3077 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		A3465AC226734C3200FE3077 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
@@ -134,6 +138,15 @@
 			path = LoginScreen;
 			sourceTree = "<group>";
 		};
+		A32A3E70267F9E49005CDFC9 /* StorageScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A32A3E71267FA1DB005CDFC9 /* InStockView.swift */,
+				A32A3E73267FA928005CDFC9 /* DetailInStockView.swift */,
+			);
+			path = StorageScreen;
+			sourceTree = "<group>";
+		};
 		A3465AC126734C0200FE3077 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +172,7 @@
 		A36149C526711B76001BE31D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A32A3E70267F9E49005CDFC9 /* StorageScreen */,
 				A358AFD3267889EA005F569E /* AddProduct */,
 				A3C18BF32675E40D0065F10A /* MarketNewsScreen */,
 				A38070862673B32900CD24A6 /* Tabbar */,
@@ -420,6 +434,8 @@
 				A358AFD526788C37005F569E /* ChoseProductView.swift in Sources */,
 				A39AF4C62671187A00778D05 /* ContentView.swift in Sources */,
 				A3465AC026734BD200FE3077 /* SignUpView.swift in Sources */,
+				A32A3E72267FA1DB005CDFC9 /* InStockView.swift in Sources */,
+				A32A3E74267FA928005CDFC9 /* DetailInStockView.swift in Sources */,
 				A3465AC726734CEE00FE3077 /* RoundedBotton.swift in Sources */,
 				A3465ACB267355E400FE3077 /* ForgotPasswordView.swift in Sources */,
 				A39AF4C42671187A00778D05 /* HarvestAppApp.swift in Sources */,
