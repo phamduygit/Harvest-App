@@ -9,9 +9,10 @@ import SwiftUI
 
 struct CustomTabBarView: View {
     var tabs = ["house", "newspaper", "plus.circle.fill", "arrow.left.arrow.right", "person"]
-    @State private var isClickedPlus : Bool = false;
+    @State private var isClickedPlus : Bool = false
+    @State private var showStock: Bool = false
     @Binding var selection : Int
-    @State private var showAddProdct : Bool = false;
+    @State private var showAddProdct : Bool = false
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
@@ -64,6 +65,7 @@ struct CustomTabBarView: View {
                         
                         Button(action: {
                             self.showAddProdct.toggle()
+                            self.isClickedPlus.toggle()
                         }, label: {
                             HStack(spacing: 20) {
                                 Image(systemName: "tray.and.arrow.down")
@@ -76,7 +78,8 @@ struct CustomTabBarView: View {
                             .foregroundColor(Color.black)
                         })
                         Button(action: {
-                            print("Xem kho")
+                            self.showStock.toggle()
+                            self.isClickedPlus.toggle()
                         }, label: {
                             HStack(spacing: 20) {
                                 Image(systemName: "tray.full")
@@ -96,6 +99,9 @@ struct CustomTabBarView: View {
             }
             if showAddProdct {
                 ChoseProductView(show: $showAddProdct)
+            }
+            if showStock {
+                StockView(show: $showStock)
             }
         }
     }
