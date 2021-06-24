@@ -26,7 +26,7 @@ struct TabBarStock: View {
                     HStack (spacing: 0){
                         ForEach(tabs.indices) {index in
                             Text(tabs[index])
-                                .font(.title2)
+                                .font(.headline)
                                 .fontWeight(.bold)
                                 .frame(width: equalWidth, height: 40, alignment: .center)
                                 .onTapGesture {

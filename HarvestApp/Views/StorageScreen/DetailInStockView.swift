@@ -14,7 +14,6 @@ struct DetailInStockView: View {
     @Binding var listWeightOfSack : [Sack]
     @Binding var show : Bool
     var body: some View {
-        
         ZStack {
             VStack {
                 ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
@@ -28,7 +27,7 @@ struct DetailInStockView: View {
                         Spacer()
                     }
                     .padding()
-                    Text("Thu hoạch")
+                    Text("Kho")
                         .font(.title2)
                         .fontWeight(.medium)
                 }

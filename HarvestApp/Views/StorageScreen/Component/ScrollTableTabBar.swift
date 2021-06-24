@@ -31,7 +31,7 @@ struct ScrollTableTabBar<Content: View>: UIViewRepresentable {
     }
     func makeUIView(context: Context) -> UIScrollView {
         setUpScrollView()
-        scrollView.contentSize = CGSize(width: rect.width * CGFloat(tabs.count), height: rect.height - CGFloat(40))
+        scrollView.contentSize = CGSize(width: rect.width * CGFloat(tabs.count), height: rect.height)
         scrollView.addSubview(extractView())
         scrollView.delegate = context.coordinator
         return scrollView

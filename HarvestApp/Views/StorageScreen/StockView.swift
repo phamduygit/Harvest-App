@@ -10,9 +10,10 @@ import SwiftUI
 struct StockView: View {
     @Binding var show: Bool
     @State private var offset : CGFloat = 0
+    @State private var showDetailInStock: Bool = false
     var tabs = ["Trong kho", "Đăng bán", "Đã bán"]
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
                 HStack {
                     Button(action: {
@@ -28,6 +29,7 @@ struct StockView: View {
                     .font(.title2)
                     .fontWeight(.medium)
             }
+            TabBarStock(offset: $offset, tabs: tabs)
             GeometryReader{geomentry in
                 let rect = geomentry.frame(in: .global)
                 ScrollTableTabBar(tabs: tabs, rect: rect, offset: $offset) {
@@ -42,10 +44,7 @@ struct StockView: View {
                 }
                 
             }
-            .overlay(
-                // Tab bar
-                TabBarStock(offset: $offset, tabs: tabs)
-                , alignment: .top)
+            
         }
         .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
     }

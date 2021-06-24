@@ -25,7 +25,7 @@ struct ContentView: View {
                             .tag(0)
                         ProductsView(showTabBar: $showTabBar)
                             .tag(1)
-                        Text("Chợ nông sản")
+                        MarketView(showTabBar: $showTabBar)
                             .tag(3)
                         Text("Cá nhân")
                             .tag(4)

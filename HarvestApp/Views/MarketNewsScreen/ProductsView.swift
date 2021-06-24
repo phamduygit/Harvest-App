@@ -33,7 +33,7 @@ struct ProductsView: View {
 //                            .frame(width: 24, height: 24, alignment: .center)
                             
                     }
-                    .padding()
+                    .padding(10)
                     .background(Color.white)
                     .cornerRadius(10)
                     
