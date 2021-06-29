@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @State private var key : String = ""
     @State private var isLike : Bool = true
+    @State private var showNotification : Bool = false
     var body: some View {
         ZStack {
             VStack (alignment: .leading){
@@ -20,7 +21,9 @@ struct HomeView: View {
                             .frame(width: 50, height: 50, alignment: .center)
                             .clipShape(Circle())
                         Spacer()
-                        Button(action: {}, label: {
+                        Button(action: {
+                            showNotification.toggle()
+                        }, label: {
                             Image(systemName: "bell")
                                 .resizable()
                                 .frame(width: 24, height: 24, alignment: .center)
@@ -28,27 +31,18 @@ struct HomeView: View {
                         })
                         
                     }
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.bottom)
                     VStack {
                         Text("Chào buổi sáng")
                         Text("Phạm Duy")
                             .fontWeight(.bold)
                     }
                 }
-                
+                .sheet(isPresented: $showNotification) {
+                    ListNotificationView()
+                }
                 ScrollView(.vertical, showsIndicators: false) {
-                    HStack {
-                        TextField("Tìm kiếm nông sản", text: $key)
-                        Spacer()
-                        Image(systemName: "magnifyingglass")
-                            .resizable()
-                            .frame(width: 24, height: 24, alignment: .center)
-                            
-                    }
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(20)
-                    .padding()
                     HStack {
                         Text("Nông sản yêu thích")
                             .font(.title2)
@@ -57,7 +51,7 @@ struct HomeView: View {
                         Spacer()
                     }
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack (spacing: 10) {
+                        HStack (spacing: 15) {
                             CardView(isLike: $isLike)
                                 .padding(.leading)
                             CardView(isLike: $isLike)

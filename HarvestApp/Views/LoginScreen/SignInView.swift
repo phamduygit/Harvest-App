@@ -47,7 +47,7 @@ struct SignInView: View {
                             HStack {
                                 Spacer()
                                 Text("Đăng nhập")
-                                    .font(.title)
+                                    .font(.title2)
                                     .fontWeight(.bold)
                                     .foregroundColor(Color.white)
                                 Spacer()

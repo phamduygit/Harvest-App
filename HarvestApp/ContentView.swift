@@ -6,17 +6,17 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
     @AppStorage("currentPage") var currentPage = 1
     @State private var showTabBar = true
-    @State var isLogin : Bool = true
+    @State var isLogin : Bool = Auth.auth().currentUser != nil ? true : false
     @State private var selection : Int = 0
     init() {
         UITabBar.appearance().isHidden = true
     }
     var body: some View {
-//        Text("Current Page \(currentPage)")
         if currentPage > 3 {
             if isLogin {
                 ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
@@ -27,7 +27,7 @@ struct ContentView: View {
                             .tag(1)
                         MarketView(showTabBar: $showTabBar)
                             .tag(3)
-                        Text("Cá nhân")
+                        UserView(isLogin: $isLogin)
                             .tag(4)
                     }
                     if showTabBar {

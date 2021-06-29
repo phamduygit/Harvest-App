@@ -58,7 +58,7 @@ struct CardView: View {
             }
             .font(.system(size: 18))
         }
-        .padding()
+        .padding(10)
         .background(Color.white)
         .cornerRadius(20)
     }

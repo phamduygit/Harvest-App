@@ -6,23 +6,25 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct SignUpView: View {
     var width =  UIScreen.main.bounds.size.width
     @Binding var show : Bool
-    @State var email: String = ""
-    @State var password : String = ""
-    @State var fullName : String = ""
-    @State var numberPhone : String = ""
+    @State private var email: String = ""
+    @State private var password : String = ""
+    @State private var fullName : String = ""
+    @State private var phone : String = ""
+    @State private var image : Image?
+    @State private var showingImagePicker = false
+    @State private var inputImage : UIImage?
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 Image("login")
                     .resizable()
-                    
                     .aspectRatio(contentMode: .fit)
                     .frame(width: width, height: width * 9 / 16, alignment: .center)
-                
                 VStack (alignment: .leading, spacing: 15) {
                     Text("Đăng ký")
                         .fontWeight(.bold)
@@ -30,37 +32,51 @@ struct SignUpView: View {
                         .padding(.top)
                         .padding(.bottom, 20)
                     Group {
-                        
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Ảnh đại diện")
                                 .font(.title2)
                                 .fontWeight(.bold)
                             HStack {
                                 Spacer()
-                                Button(action: {}, label: {
-                                    Image(systemName: "camera.fill")
-                                        .foregroundColor(.black)
-                                        .padding(40)
-                                        .background(Color.gray.opacity(0.5))
-                                        .clipShape(Circle())
+                                Button(action: {
+                                    self.showingImagePicker = true
+                                    
+                                }, label: {
+                                    if image != nil {
+                                        image?
+                                            .resizable()
+                                            .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                            .clipShape(Circle())
+                                    } else {
+                                        Image(systemName: "camera.fill")
+                                            .foregroundColor(.black)
+                                            .padding(40)
+                                            .background(Color.gray.opacity(0.5))
+                                            .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                            .clipShape(Circle())
+                                    }
+                                    
+                                        
                                 })
                                 Spacer()
                             }
                         }
                         .padding(.horizontal)
                         InputField(title: "Họ và tên", placeHolder: "Nhập họ và tên", inputText: $fullName)
-                        InputField(title: "Email", placeHolder: "Nhập email", inputText: $fullName)
-                        InputField(title: "Số điện thoại", placeHolder: "Nhập số điện thoại", inputText: $numberPhone)
+                        InputField(title: "Email", placeHolder: "Nhập email", inputText: $email)
+                        InputField(title: "Số điện thoại", placeHolder: "Nhập số điện thoại", inputText: $phone)
                         InputSecureField(title: "Mật khẩu", placeHolder: "Nhập mật khẩu", inputText: $password)
                     }
                     
                     .padding(.top, 10)
                     Spacer()
-                    Button(action: {}, label: {
+                    Button(action: {
+                        createAccount(avatar: inputImage!, fullName: fullName, email: email, phone: phone, password: password)
+                    }, label: {
                         HStack {
                             Spacer()
                             Text("Đăng ký")
-                                .font(.title)
+                                .font(.title2   )
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.white)
                             Spacer()
@@ -93,6 +109,15 @@ struct SignUpView: View {
             .padding(.leading),
             alignment: .topLeading
         )
+        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage, content: {
+            VStack {
+                ImagePicker(image: $inputImage)
+            }
+        })
+    }
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
     }
 }
 

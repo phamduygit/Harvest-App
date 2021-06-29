@@ -21,8 +21,12 @@ struct InputSecureField: View {
             HStack {
                 if showPassword {
                     TextField(placeHolder, text: $inputText)
+                        .disableAutocorrection(true)
+                        .autocapitalization(.none)
                 } else {
                     SecureField(placeHolder, text: $inputText)
+                        .disableAutocorrection(true)
+                        .autocapitalization(.none)
                 }
                 Button(action: {
                     self.showPassword.toggle()

@@ -18,6 +18,8 @@ struct InputField: View {
                 .fontWeight(.bold)
                 .font(.title2)
             TextField(placeHolder, text: $inputText)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
             Divider()
         }
         .padding(.horizontal)
