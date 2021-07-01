@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var userViewModel : UserViewModel
     @State private var key : String = ""
     @State private var isLike : Bool = true
     @State private var showNotification : Bool = false
@@ -16,7 +18,7 @@ struct HomeView: View {
             VStack (alignment: .leading){
                 ZStack {
                     HStack {
-                        Image("avatar")
+                        AnimatedImage(url: URL(string: userViewModel.userInfo.avatar))
                             .resizable()
                             .frame(width: 50, height: 50, alignment: .center)
                             .clipShape(Circle())
@@ -35,7 +37,7 @@ struct HomeView: View {
                     .padding(.bottom)
                     VStack {
                         Text("Chào buổi sáng")
-                        Text("Phạm Duy")
+                        Text(userViewModel.userInfo.fullName)
                             .fontWeight(.bold)
                     }
                 }

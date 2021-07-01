@@ -7,22 +7,18 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
-import FirebaseAuth
 
 struct UserView: View {
-    @Binding var isLogin : Bool
+    @EnvironmentObject var userVM : UserViewModel
     var body: some View {
         VStack {
-            AnimatedImage(url: Auth.auth().currentUser?.photoURL)
-                .frame(width: 200, height: 200, alignment: .center)
+            AnimatedImage(url: URL(string: userVM.userInfo.avatar))
+                .frame(width: 150, height: 150, alignment: .center)
+                .clipShape(Circle())
+            Text(userVM.userInfo.fullName)
             Button(action: {
-                self.isLogin = false
-                let firebaseAuth = Auth.auth()
-                do {
-                  try firebaseAuth.signOut()
-                } catch let signOutError as NSError {
-                  print ("Error signing out: %@", signOutError)
-                }
+                userVM.isLogin = false
+                userVM.logOut()
             }, label: {
                 HStack {
                     Spacer()
@@ -44,6 +40,6 @@ struct UserView: View {
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        UserView(isLogin: Binding.constant(false))
+        UserView()
     }
 }

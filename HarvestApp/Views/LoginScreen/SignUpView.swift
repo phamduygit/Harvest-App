@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
+//import SDWebImageSwiftUI
+import FirebaseAuth
 
 struct SignUpView: View {
     var width =  UIScreen.main.bounds.size.width
+    @EnvironmentObject var userVM: UserViewModel
     @Binding var show : Bool
-    @State private var email: String = ""
+//    @State private var email: String = ""
     @State private var password : String = ""
-    @State private var fullName : String = ""
-    @State private var phone : String = ""
+//    @State private var fullName : String = ""
+//    @State private var phone : String = ""
+    @State private var userInfo : UserInfo = UserInfo()
     @State private var image : Image?
     @State private var showingImagePicker = false
     @State private var inputImage : UIImage?
@@ -62,16 +65,16 @@ struct SignUpView: View {
                             }
                         }
                         .padding(.horizontal)
-                        InputField(title: "Họ và tên", placeHolder: "Nhập họ và tên", inputText: $fullName)
-                        InputField(title: "Email", placeHolder: "Nhập email", inputText: $email)
-                        InputField(title: "Số điện thoại", placeHolder: "Nhập số điện thoại", inputText: $phone)
+                        InputField(title: "Họ và tên", placeHolder: "Nhập họ và tên", inputText: $userInfo.fullName)
+                        InputField(title: "Email", placeHolder: "Nhập email", inputText: $userInfo.email)
+                        InputField(title: "Số điện thoại", placeHolder: "Nhập số điện thoại", inputText: $userInfo.phone)
                         InputSecureField(title: "Mật khẩu", placeHolder: "Nhập mật khẩu", inputText: $password)
                     }
                     
                     .padding(.top, 10)
                     Spacer()
                     Button(action: {
-                        createAccount(avatar: inputImage!, fullName: fullName, email: email, phone: phone, password: password)
+                        userVM.addUser(avatar: inputImage!, userInfo: userInfo, password: password)
                     }, label: {
                         HStack {
                             Spacer()

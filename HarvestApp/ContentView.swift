@@ -6,28 +6,38 @@
 //
 
 import SwiftUI
-import FirebaseAuth
 
 struct ContentView: View {
+    @StateObject var userVM = UserViewModel()
     @AppStorage("currentPage") var currentPage = 1
     @State private var showTabBar = true
-    @State var isLogin : Bool = Auth.auth().currentUser != nil ? true : false
     @State private var selection : Int = 0
     init() {
         UITabBar.appearance().isHidden = true
     }
     var body: some View {
+//        NavigationView {
+//            VStack {
+//                List(userVM.users) { user in
+//                    Text(user.fullName)
+//                }
+//
+//            }
+//            .navigationTitle("Study Cards")
+//        }
         if currentPage > 3 {
-            if isLogin {
+            if userVM.isLogin {
                 ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
                     TabView(selection: $selection) {
                         HomeView()
+                            .environmentObject(userVM)
                             .tag(0)
                         ProductsView(showTabBar: $showTabBar)
                             .tag(1)
                         MarketView(showTabBar: $showTabBar)
                             .tag(3)
-                        UserView(isLogin: $isLogin)
+                        UserView()
+                            .environmentObject(userVM)
                             .tag(4)
                     }
                     if showTabBar {
@@ -39,6 +49,7 @@ struct ContentView: View {
             }
             else {
                 SignInView()
+                    .environmentObject(userVM)
             }
         } else {
             OnboardingView()

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignInView: View {
     var width =  UIScreen.main.bounds.size.width
+    @EnvironmentObject var userVM: UserViewModel
     @State var email: String = ""
     @State var password : String = ""
     @State var showSignUpScreen : Bool = false
@@ -43,7 +44,9 @@ struct SignInView: View {
                         })
                         .padding(.top, 10)
                         Spacer()
-                        Button(action: {}, label: {
+                        Button(action: {
+                            userVM.logIn(email: email, password: password)
+                        }, label: {
                             HStack {
                                 Spacer()
                                 Text("Đăng nhập")
