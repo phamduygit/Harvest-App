@@ -38,6 +38,7 @@
 		A389BF522684CC2800ACA2C5 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389BF512684CC2800ACA2C5 /* NotificationView.swift */; };
 		A389BF542684D4FD00ACA2C5 /* DetailNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389BF532684D4FD00ACA2C5 /* DetailNotificationView.swift */; };
 		A389BF562684EDB600ACA2C5 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389BF552684EDB600ACA2C5 /* PostView.swift */; };
+		A38CE28B268F5D7D0037207B /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = A38CE28A268F5D7D0037207B /* FacebookLogin */; };
 		A397D9EE2680EDF20008BA6B /* ScrollTableTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A397D9ED2680EDF20008BA6B /* ScrollTableTabBar.swift */; };
 		A39AF4C42671187A00778D05 /* HarvestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4C32671187A00778D05 /* HarvestAppApp.swift */; };
 		A39AF4C62671187A00778D05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4C52671187A00778D05 /* ContentView.swift */; };
@@ -46,6 +47,7 @@
 		A39AF4D62671187C00778D05 /* HarvestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4D52671187C00778D05 /* HarvestAppTests.swift */; };
 		A39AF4E12671187C00778D05 /* HarvestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4E02671187C00778D05 /* HarvestAppUITests.swift */; };
 		A3A2CCD1268E30D30082C0B0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A3A2CCD0268E30D30082C0B0 /* SDWebImageSwiftUI */; };
+		A3A58316268F673D002D9C95 /* FacebookLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A58315268F673D002D9C95 /* FacebookLoginView.swift */; };
 		A3B562A2268461610030F0DF /* MarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B562A1268461610030F0DF /* MarketView.swift */; };
 		A3B562A5268463340030F0DF /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B562A4268463340030F0DF /* PostCard.swift */; };
 		A3B562A72684775D0030F0DF /* DetailPostVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B562A62684775D0030F0DF /* DetailPostVIew.swift */; };
@@ -122,6 +124,7 @@
 		A39AF4DC2671187C00778D05 /* HarvestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HarvestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A39AF4E02671187C00778D05 /* HarvestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestAppUITests.swift; sourceTree = "<group>"; };
 		A39AF4E22671187C00778D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3A58315268F673D002D9C95 /* FacebookLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginView.swift; sourceTree = "<group>"; };
 		A3B562A1268461610030F0DF /* MarketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketView.swift; sourceTree = "<group>"; };
 		A3B562A4268463340030F0DF /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
 		A3B562A62684775D0030F0DF /* DetailPostVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostVIew.swift; sourceTree = "<group>"; };
@@ -145,6 +148,7 @@
 			files = (
 				A3A2CCD1268E30D30082C0B0 /* SDWebImageSwiftUI in Frameworks */,
 				A360087F2688C43300FEB62B /* FirebaseAuth in Frameworks */,
+				A38CE28B268F5D7D0037207B /* FacebookLogin in Frameworks */,
 				A36008812688C43300FEB62B /* FirebaseFirestore in Frameworks */,
 				A3F04E01268C6C49000DB25E /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				A36008832688C43300FEB62B /* FirebaseStorage in Frameworks */,
@@ -416,6 +420,7 @@
 				A3465AC626734CEE00FE3077 /* RoundedBotton.swift */,
 				A3C18BF82675EDD90065F10A /* RoundedTop.swift */,
 				A30D02F52688630700C4DFFB /* ImagePicker.swift */,
+				A3A58315268F673D002D9C95 /* FacebookLoginView.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -467,6 +472,7 @@
 				A36008822688C43300FEB62B /* FirebaseStorage */,
 				A3F04E00268C6C49000DB25E /* FirebaseFirestoreSwift-Beta */,
 				A3A2CCD0268E30D30082C0B0 /* SDWebImageSwiftUI */,
+				A38CE28A268F5D7D0037207B /* FacebookLogin */,
 			);
 			productName = HarvestApp;
 			productReference = A39AF4C02671187A00778D05 /* HarvestApp.app */;
@@ -542,6 +548,7 @@
 			packageReferences = (
 				A360087D2688C43300FEB62B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A3B6EA932688DFCA00FCBF88 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				A38CE289268F5D7D0037207B /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = A39AF4C12671187A00778D05 /* Products */;
 			projectDirPath = "";
@@ -619,6 +626,7 @@
 				A3C18BFC2675F6D10065F10A /* Column.swift in Sources */,
 				A3C18C00267616A20065F10A /* ItemCardView.swift in Sources */,
 				A3056DED26832B0D001AF64A /* TabBarStock.swift in Sources */,
+				A3A58316268F673D002D9C95 /* FacebookLoginView.swift in Sources */,
 				A389BF562684EDB600ACA2C5 /* PostView.swift in Sources */,
 				A3C18BFE2676145B0065F10A /* ProductsView.swift in Sources */,
 				A3DECE8E26791DDF00C2A47E /* NameOfProductView.swift in Sources */,
@@ -959,6 +967,14 @@
 				minimumVersion = 8.2.0;
 			};
 		};
+		A38CE289268F5D7D0037207B /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.1;
+			};
+		};
 		A3B6EA932688DFCA00FCBF88 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -984,6 +1000,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A360087D2688C43300FEB62B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		A38CE28A268F5D7D0037207B /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A38CE289268F5D7D0037207B /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
 		};
 		A3A2CCD0268E30D30082C0B0 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

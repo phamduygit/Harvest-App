@@ -78,10 +78,11 @@ struct SignInView: View {
                         }
                         Divider()
                             .padding(.horizontal)
+//                        FacebookLoginView()
                         HStack (spacing: 30) {
                             Spacer()
                             Button(action: {}, label: {
-                                Image("facebook - icon")
+                                Image("gmail - icon")
                                     .padding()
                                     .background(Color.white)
                                     .clipShape(Circle())
@@ -104,6 +105,9 @@ struct SignInView: View {
                 
             }
             .background(LinearGradient(gradient: Gradient(colors: [Color("Color4"), Color.white]), startPoint: .top, endPoint: .bottom).ignoresSafeArea(.all, edges: .all))
+            .alert(isPresented: $userVM.isError, content: {
+                Alert(title: Text("Đăng nhập thất bại"), message: Text(userVM.errorDescription), dismissButton: .default(Text("OK")))
+            })
             if showSignUpScreen {
                 SignUpView(show: $showSignUpScreen)
             }

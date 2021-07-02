@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ForgotPasswordView: View {
     var width =  UIScreen.main.bounds.size.width
+    @EnvironmentObject var userVM: UserViewModel
     @State var email: String = ""
-    @State var password : String = ""
     @Binding var show : Bool
     var body: some View {
         VStack {
@@ -25,8 +25,11 @@ struct ForgotPasswordView: View {
                     .padding(.top)
                     .padding(.bottom, 20)
                 InputField(title: "Email", placeHolder: "Nhập email", inputText: $email)
-
-                Button(action: {}, label: {
+                Button(action: {
+                    userVM.forgotPassword(email: email)
+                    self.show.toggle()
+                    // show indicator longding
+                }, label: {
                     HStack {
                         Spacer()
                         Text("Gửi")
@@ -48,7 +51,6 @@ struct ForgotPasswordView: View {
             .clipShape(RoundedBotton())
             .offset(x: 0, y: -20)
         }
-//        .background(Color.blue.ignoresSafeArea())
         .background(LinearGradient(gradient: Gradient(colors: [Color("Color4"), Color.white]), startPoint: .top, endPoint: .bottom).ignoresSafeArea(.all, edges: .all))
         .overlay(
             Button(action: {

@@ -14,6 +14,8 @@ class UserViewModel : ObservableObject {
     @Published var userInfo : UserInfo = UserInfo()
     @Published var isLogin : Bool = false
     @Published var userRepository = UserRepository()
+    @Published var isError : Bool = false
+    @Published var errorDescription : String = ""
     private var cancellables : Set<AnyCancellable> = []
     init() {
         self.loadUserInfo()
@@ -32,20 +34,33 @@ class UserViewModel : ObservableObject {
     }
     func addUser(avatar: UIImage, userInfo: UserInfo, password: String) {
         var user = userInfo
-        let userId : String = createAccount(email: user.email, password: password)
-        print(userId)
-        uploadImage(image: avatar) { [self] (url) in
-            updateProfile(photoURL: url, fullName: user.fullName)
-            user.avatar = url
-            user.userId = userId
-            self.isLogin = true
-            self.userInfo = user
-            userRepository.addUser(user)
+        Auth.auth().createUser(withEmail: userInfo.email, password: password) { data, err in
+            if err != nil {
+                self.isError = true
+                self.errorDescription = err?.localizedDescription ?? ""
+                return
+            }
+            let userId = Auth.auth().currentUser?.uid ?? "none"
+            uploadImage(image: avatar) { [self] (url) in
+                updateProfile(photoURL: url, fullName: user.fullName)
+                user.avatar = url
+                user.userId = userId
+                self.isLogin = true
+                self.userInfo = user
+                userRepository.addUser(user)
+            }
         }
+        
     }
     func logIn(email: String, password: String) {
-        signIn(email: email, password: password)
-        loadUserInfo()
+        Auth.auth().signIn(withEmail: email, password: password) { data, error in
+            if error != nil {
+                self.isError = true
+                self.errorDescription = error?.localizedDescription ?? ""
+                return
+            }
+            self.loadUserInfo()
+        }
         
     }
     func logOut() {
@@ -54,6 +69,14 @@ class UserViewModel : ObservableObject {
           try firebaseAuth.signOut()
         } catch let signOutError as NSError {
           print ("Error signing out: %@", signOutError)
+        }
+    }
+    func forgotPassword(email: String) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+                return
+            }
         }
     }
 }

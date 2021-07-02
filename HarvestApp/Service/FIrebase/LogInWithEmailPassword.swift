@@ -65,10 +65,8 @@ func signIn(email: String, password: String) {
     Auth.auth().signIn(withEmail: email, password: password) { data, error in
         if error != nil {
             print("Sign Error \(error?.localizedDescription ?? "")")
+            return
         }
-    }
-    while(Auth.auth().currentUser == nil) {
-        
     }
 }
 func createAccount(email: String, password: String) -> String {

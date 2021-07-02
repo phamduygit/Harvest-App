@@ -13,10 +13,7 @@ struct SignUpView: View {
     var width =  UIScreen.main.bounds.size.width
     @EnvironmentObject var userVM: UserViewModel
     @Binding var show : Bool
-//    @State private var email: String = ""
     @State private var password : String = ""
-//    @State private var fullName : String = ""
-//    @State private var phone : String = ""
     @State private var userInfo : UserInfo = UserInfo()
     @State private var image : Image?
     @State private var showingImagePicker = false
@@ -43,7 +40,6 @@ struct SignUpView: View {
                                 Spacer()
                                 Button(action: {
                                     self.showingImagePicker = true
-                                    
                                 }, label: {
                                     if image != nil {
                                         image?
@@ -58,8 +54,6 @@ struct SignUpView: View {
                                             .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                             .clipShape(Circle())
                                     }
-                                    
-                                        
                                 })
                                 Spacer()
                             }
@@ -74,7 +68,7 @@ struct SignUpView: View {
                     .padding(.top, 10)
                     Spacer()
                     Button(action: {
-                        userVM.addUser(avatar: inputImage!, userInfo: userInfo, password: password)
+                        userVM.addUser(avatar: inputImage ?? UIImage(named: "avatar")!, userInfo: userInfo, password: password)
                     }, label: {
                         HStack {
                             Spacer()
@@ -112,6 +106,9 @@ struct SignUpView: View {
             .padding(.leading),
             alignment: .topLeading
         )
+        .alert(isPresented: $userVM.isError, content: {
+            Alert(title: Text("Đăng nhập thất bại"), message: Text(userVM.errorDescription), dismissButton: .default(Text("OK")))
+        })
         .sheet(isPresented: $showingImagePicker, onDismiss: loadImage, content: {
             VStack {
                 ImagePicker(image: $inputImage)
