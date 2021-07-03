@@ -34,6 +34,11 @@
 		A36AE76B268B6E0000EA5431 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36AE76A268B6E0000EA5431 /* UserViewModel.swift */; };
 		A37868B9268789520082184A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A37868B8268789520082184A /* GoogleService-Info.plist */; };
 		A38070882673B3BA00CD24A6 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38070872673B3BA00CD24A6 /* CustomTabBarView.swift */; };
+		A38549C626903FD2002C1A04 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38549C526903FD2002C1A04 /* Stock.swift */; };
+		A38549C826903FE7002C1A04 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38549C726903FE7002C1A04 /* Product.swift */; };
+		A38549CA26904734002C1A04 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38549C926904734002C1A04 /* ProductViewModel.swift */; };
+		A38549CC26904942002C1A04 /* StockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38549CB26904942002C1A04 /* StockViewModel.swift */; };
+		A38549CF269049C2002C1A04 /* StockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38549CE269049C2002C1A04 /* StockRepository.swift */; };
 		A389BF502684C8D000ACA2C5 /* ListNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389BF4F2684C8D000ACA2C5 /* ListNotificationView.swift */; };
 		A389BF522684CC2800ACA2C5 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389BF512684CC2800ACA2C5 /* NotificationView.swift */; };
 		A389BF542684D4FD00ACA2C5 /* DetailNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389BF532684D4FD00ACA2C5 /* DetailNotificationView.swift */; };
@@ -107,6 +112,11 @@
 		A36AE76A268B6E0000EA5431 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		A37868B8268789520082184A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A38070872673B3BA00CD24A6 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
+		A38549C526903FD2002C1A04 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
+		A38549C726903FE7002C1A04 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		A38549C926904734002C1A04 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
+		A38549CB26904942002C1A04 /* StockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewModel.swift; sourceTree = "<group>"; };
+		A38549CE269049C2002C1A04 /* StockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRepository.swift; sourceTree = "<group>"; };
 		A389BF4F2684C8D000ACA2C5 /* ListNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotificationView.swift; sourceTree = "<group>"; };
 		A389BF512684CC2800ACA2C5 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		A389BF532684D4FD00ACA2C5 /* DetailNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNotificationView.swift; sourceTree = "<group>"; };
@@ -273,6 +283,8 @@
 			isa = PBXGroup;
 			children = (
 				A36AE76A268B6E0000EA5431 /* UserViewModel.swift */,
+				A38549C926904734002C1A04 /* ProductViewModel.swift */,
+				A38549CB26904942002C1A04 /* StockViewModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -291,6 +303,15 @@
 				A38070872673B3BA00CD24A6 /* CustomTabBarView.swift */,
 			);
 			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		A38549CD2690498E002C1A04 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				A3C8D1F7268CBEA4001915EF /* UserRepository.swift */,
+				A38549CE269049C2002C1A04 /* StockRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		A389BF4E2684C79C00ACA2C5 /* Notification */ = {
@@ -338,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				A34B2AEE268AFD7E005CECEE /* Service */,
+				A38549CD2690498E002C1A04 /* Repository */,
 				A3C18BF72675EDAC0065F10A /* Helper */,
 				A365359F2689C95900DDE3C8 /* VIewModel */,
 				A3B6EA962688E19900FCBF88 /* Model */,
@@ -400,6 +422,8 @@
 			isa = PBXGroup;
 			children = (
 				A3B6EA992688E1C300FCBF88 /* UserModel.swift */,
+				A38549C526903FD2002C1A04 /* Stock.swift */,
+				A38549C726903FE7002C1A04 /* Product.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -445,7 +469,6 @@
 			isa = PBXGroup;
 			children = (
 				A3F04E02268C7CD0000DB25E /* LogInWithEmailPassword.swift */,
-				A3C8D1F7268CBEA4001915EF /* UserRepository.swift */,
 			);
 			path = FIrebase;
 			sourceTree = "<group>";
@@ -595,7 +618,9 @@
 			files = (
 				A30D02F62688630700C4DFFB /* ImagePicker.swift in Sources */,
 				A3465ABE267335E900FE3077 /* SignInView.swift in Sources */,
+				A38549C626903FD2002C1A04 /* Stock.swift in Sources */,
 				A34959A82679D9340070E795 /* UpdateWeightView.swift in Sources */,
+				A38549CF269049C2002C1A04 /* StockRepository.swift in Sources */,
 				A36149C726711BA4001BE31D /* HomeView.swift in Sources */,
 				A3056DEB26831D55001AF64A /* SoldView.swift in Sources */,
 				A36AE76B268B6E0000EA5431 /* UserViewModel.swift in Sources */,
@@ -606,6 +631,7 @@
 				A36149CA26711D1E001BE31D /* OnboardingView.swift in Sources */,
 				A397D9EE2680EDF20008BA6B /* ScrollTableTabBar.swift in Sources */,
 				A389BF542684D4FD00ACA2C5 /* DetailNotificationView.swift in Sources */,
+				A38549CA26904734002C1A04 /* ProductViewModel.swift in Sources */,
 				A3465AC326734C3200FE3077 /* InputField.swift in Sources */,
 				A3465AC526734C6F00FE3077 /* InputSecureField.swift in Sources */,
 				A365359D2689C65300DDE3C8 /* UserView.swift in Sources */,
@@ -618,6 +644,7 @@
 				A3C8D1F8268CBEA4001915EF /* UserRepository.swift in Sources */,
 				A32A3E74267FA928005CDFC9 /* DetailInStockView.swift in Sources */,
 				A3465AC726734CEE00FE3077 /* RoundedBotton.swift in Sources */,
+				A38549CC26904942002C1A04 /* StockViewModel.swift in Sources */,
 				A3465ACB267355E400FE3077 /* ForgotPasswordView.swift in Sources */,
 				A39AF4C42671187A00778D05 /* HarvestAppApp.swift in Sources */,
 				A3B562A72684775D0030F0DF /* DetailPostVIew.swift in Sources */,
@@ -638,6 +665,7 @@
 				A38070882673B3BA00CD24A6 /* CustomTabBarView.swift in Sources */,
 				A389BF502684C8D000ACA2C5 /* ListNotificationView.swift in Sources */,
 				A389BF522684CC2800ACA2C5 /* NotificationView.swift in Sources */,
+				A38549C826903FE7002C1A04 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

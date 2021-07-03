@@ -11,6 +11,8 @@ struct AddToStorageView: View {
     @State private var indexFilter : Int = 0
     @State private var showNames : Bool = false
     @State private var showInputWeight : Bool = false
+    @State private var ricesCategory = ["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]
+    @State private var selected : String = "Lúa Jasmine"
     @Binding var listWeightOfSack : [Sack]
     @Binding var show : Bool
     var body: some View {
@@ -103,7 +105,7 @@ struct AddToStorageView: View {
             }
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
             if showNames {
-                NameOfProductView(show: $showNames, selected: $indexFilter)
+                NameOfProductView(show: $showNames, selected: $selected, ricesCategory: $ricesCategory)
             }
             if showInputWeight {
                 ListWeightView(category: "lúa", show: $showInputWeight, listWeightOfSack: $listWeightOfSack)

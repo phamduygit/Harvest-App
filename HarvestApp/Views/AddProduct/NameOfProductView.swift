@@ -9,9 +9,12 @@ import SwiftUI
 
 struct NameOfProductView: View {
     @Binding var show : Bool
-    @Binding var selected : Int
+    @Binding var selected : String
+    @Binding var ricesCategory : [String]
+    @State private var isAddName : Bool = false
+    @State private var newName : String = ""
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
                 HStack {
                     Button(action: {
@@ -22,38 +25,66 @@ struct NameOfProductView: View {
                     })
                     Spacer()
                 }
-                .padding()
-                Text("Tên nông sản")
+                .padding(.horizontal)
+                Text("Thu hoạch")
                     .font(.title2)
-                    .fontWeight(.medium)
             }
-            ForEach(rices.indices) {index in
-                Button(action: {
-                    self.selected = index
-                    self.show.toggle()
-                }, label: {
+            List {
+                ForEach(ricesCategory, id: \.self) {rice in
                     HStack {
-                        Text(rices[index])
-                            .font(.headline)
+                        if selected == rice {
+                            Image(systemName: "checkmark.circle.fill")
+                                .onTapGesture {
+                                    self.selected = rice
+                                }
+                        } else {
+                            Image(systemName: "circle")
+                                .onTapGesture {
+                                    self.selected = rice
+                                }
+                        }
+                        Text(rice)
                             .foregroundColor(Color.black)
-                        Spacer()
                     }
-                    .padding()
-                    .background(Color.white)
                     .cornerRadius(10)
-                    .padding(.horizontal)
-                })
-                
-                    
+                }
+                if isAddName {
+                    HStack {
+                        Image(systemName: "circle")
+                        TextField("Nhập tên nông sản", text: $newName)
+                    }
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            self.isAddName = false
+                            ricesCategory.append(newName)
+                            self.newName = ""
+                        }, label: {
+                            Text("Lưu")
+                        })
+                    }
+                }
             }
-            Spacer()
+            Button(action: {
+                self.isAddName.toggle()
+            }, label: {
+                HStack {
+                    Image(systemName: "plus.circle.fill")
+                        .resizable()
+                        .frame(width: 20, height: 20, alignment: .center)
+                    Text("Thêm tên nông sản")
+                }
+            })
+            .padding()
+            .padding(.bottom)
         }
+        .listStyle(GroupedListStyle())
         .background(Color("Color4").ignoresSafeArea())
     }
 }
 
 struct NameOfProductView_Previews: PreviewProvider {
     static var previews: some View {
-        NameOfProductView(show: Binding.constant(false), selected: Binding.constant(0))
+        NameOfProductView(show: Binding.constant(false), selected: Binding.constant("Lúa Jasmine"), ricesCategory: Binding.constant(["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]))
     }
 }

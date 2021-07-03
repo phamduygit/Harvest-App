@@ -22,8 +22,10 @@ struct ChoseProductView: View {
         Sack(id: 3, weight: 49.6),
         Sack(id: 4, weight: 49.6)
     ]
+    @State private var ricesCategory = ["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]
     @State private var scrolled : Int = 0
     @State private var indexFilter : Int = 0
+    @State private var selected : String = "Lúa Jasmine"
     @State private var showNames : Bool = false
     @State private var showInputWeight : Bool = false
     @Binding var show : Bool
@@ -146,7 +148,7 @@ struct ChoseProductView: View {
                             HStack {
                                 Text("Tên nông sản")
                                 Spacer()
-                                Text(rices[indexFilter])
+                                Text(selected)
                                 Image(systemName: "chevron.right")
                                 
                             }
@@ -180,7 +182,7 @@ struct ChoseProductView: View {
             }
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
             if showNames {
-                NameOfProductView(show: $showNames, selected: $indexFilter)
+                NameOfProductView(show: $showNames, selected: $selected, ricesCategory: $ricesCategory)
             }
             if showInputWeight {
                 ListWeightView(category: "lúa", show: $showInputWeight, listWeightOfSack: $listWeightOfSack)
