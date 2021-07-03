@@ -9,8 +9,8 @@ import SwiftUI
 
 struct UpdateWeightView: View {
     @Binding var show : Bool
-    @Binding var listWeightOfSack : [Sack]
-    @Binding var indexOfSack : Int
+    @EnvironmentObject var productViewModel : ProductViewModel
+    @Binding var indexUpdate: Int
     @State var number : String
     enum MethodInputValue : String, CaseIterable {
         case keyboard = "Nhập"
@@ -81,7 +81,7 @@ struct UpdateWeightView: View {
             .cornerRadius(10)
             
             VStack (spacing: 10) {
-                Text("Nhập trọng lượng bao thứ \(indexOfSack + 1)")
+                Text("Nhập trọng lượng bao thứ")
                     .font(.title2)
                     .fontWeight(.bold)
                 Text("\(number) kg")
@@ -147,7 +147,7 @@ struct UpdateWeightView: View {
                 }
                 .frame(height: 230)
                 Button(action:{
-                    self.listWeightOfSack[indexOfSack].weight = Double(number) ?? 0.0
+                    self.productViewModel.product.weight[indexUpdate] = Float(number) ?? 0.0
                     self.show.toggle()
                 }) {
                     HStack {
@@ -176,12 +176,6 @@ struct ColumnNum: Identifiable {
 }
 struct UpdateWeightView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateWeightView(show: Binding.constant(false), listWeightOfSack: Binding.constant([
-            Sack(id: 0, weight: 49.6),
-            Sack(id: 0, weight: 49.6),
-            Sack(id: 0, weight: 49.6),
-            Sack(id: 0, weight: 49.6),
-            Sack(id: 0, weight: 49.6)
-        ]), indexOfSack: Binding.constant(0), number: "0.0")
+        UpdateWeightView(show: Binding.constant(false), indexUpdate: Binding.constant(0), number: "0.0")
     }
 }

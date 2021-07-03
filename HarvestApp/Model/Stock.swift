@@ -11,6 +11,5 @@ import FirebaseFirestoreSwift
 
 struct Stock: Identifiable, Codable {
     @DocumentID var id: String?
-    var product : [Product] = []
     var userID : String = ""
 }

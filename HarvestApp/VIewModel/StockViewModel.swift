@@ -17,9 +17,13 @@ class StockViewModel: ObservableObject {
         stockRepository.$stocks.map{ stocks in
             stocks.first { stock in
                 stock.userID == Auth.auth().currentUser?.uid
-            } ?? self.stockRepository.addNewStock()
+            } ?? Stock()
         }
         .assign(to: \.stock, on: self)
         .store(in: &cancellables)
+    }
+    
+    func addNewProduct(product: Product) {
+        stockRepository.addNewProdctInStock(stockID: stock.id!, product: product)
     }
 }

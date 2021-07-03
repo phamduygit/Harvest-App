@@ -13,6 +13,7 @@ struct CustomTabBarView: View {
     @State private var showStock: Bool = false
     @Binding var selection : Int
     @State private var showAddProdct : Bool = false
+    @StateObject var productViewModel = ProductViewModel()
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
@@ -99,6 +100,7 @@ struct CustomTabBarView: View {
             }
             if showAddProdct {
                 ChoseProductView(show: $showAddProdct)
+                    .environmentObject(productViewModel)
             }
             if showStock {
                 StockView(show: $showStock)

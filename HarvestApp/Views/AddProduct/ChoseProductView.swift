@@ -15,20 +15,14 @@ struct ChoseProductView: View {
         CarđData(id: 2, image: "cate_lychee", color: Color.pink, title: "Vải thiều", offset: 0),
         CarđData(id: 3, image: "cate_pepper", color: Color.purple, title: "Tiêu", offset: 0)
     ]
-    @State var listWeightOfSack = [
-        Sack(id: 0, weight: 49.6),
-        Sack(id: 1, weight: 49.6),
-        Sack(id: 2, weight: 49.6),
-        Sack(id: 3, weight: 49.6),
-        Sack(id: 4, weight: 49.6)
-    ]
+    @EnvironmentObject var productViewModel : ProductViewModel
     @State private var ricesCategory = ["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]
     @State private var scrolled : Int = 0
-    @State private var indexFilter : Int = 0
     @State private var selected : String = "Lúa Jasmine"
     @State private var showNames : Bool = false
     @State private var showInputWeight : Bool = false
     @Binding var show : Bool
+    @State private var showAlert : Bool = false
     var body: some View {
         
         ZStack {
@@ -73,7 +67,10 @@ struct ChoseProductView: View {
                                                     .foregroundColor(Color.white)
                                                 Spacer()
                                             }
-                                            Button(action: {}, label: {
+                                            Button(action: {
+                                                productViewModel.product.category = category.title
+                                                productViewModel.product.name = selected
+                                            }, label: {
                                                 Text("Chọn")
                                                     .font(.caption)
                                                     .fontWeight(.bold)
@@ -142,24 +139,32 @@ struct ChoseProductView: View {
                         .frame(height: UIScreen.main.bounds.height / 2)
                         .padding(.horizontal)
                         .padding(.top)
+                        if productViewModel.product.category != "" {
+                            Button(action: {
+                                showNames.toggle()
+                            }, label: {
+                                HStack {
+                                    Text("Tên nông sản")
+                                    Spacer()
+                                    Text(selected)
+                                    Image(systemName: "chevron.right")
+                                    
+                                }
+                                .foregroundColor(Color.black)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(15)
+                                .padding()
+                            })
+                        }
+                        
                         Button(action: {
-                            showNames.toggle()
-                        }, label: {
-                            HStack {
-                                Text("Tên nông sản")
-                                Spacer()
-                                Text(selected)
-                                Image(systemName: "chevron.right")
-                                
+                            if productViewModel.product.category !=  "" {
+                                self.showInputWeight.toggle()
                             }
-                            .foregroundColor(Color.black)
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(15)
-                            .padding()
-                        })
-                        Button(action: {
-                            self.showInputWeight.toggle()
+                            else {
+                                self.showAlert.toggle()
+                            }
                         }, label: {
                             HStack {
                                 Spacer()
@@ -181,11 +186,14 @@ struct ChoseProductView: View {
                 
             }
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
+            .alert(isPresented: $showAlert, content: {
+                Alert(title: Text("Chưa chọn loại nông sản"), message: Text("Hãy chọn loại nông sản bạn muốn thu hoạch"), dismissButton: .default(Text("OK")))
+            })
             if showNames {
                 NameOfProductView(show: $showNames, selected: $selected, ricesCategory: $ricesCategory)
             }
             if showInputWeight {
-                ListWeightView(category: "lúa", show: $showInputWeight, listWeightOfSack: $listWeightOfSack)
+                ListWeightView(show: $showInputWeight)
             }
         }
     }

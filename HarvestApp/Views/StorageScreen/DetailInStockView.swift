@@ -129,7 +129,7 @@ struct DetailInStockView: View {
                 NameOfProductView(show: $showNames, selected: $selected, ricesCategory: $ricesCategory)
             }
             if showInputWeight {
-                ListWeightView(category: "lúa", show: $showInputWeight, listWeightOfSack: $listWeightOfSack)
+                ListWeightView(show: $showInputWeight)
             }
         }
     }

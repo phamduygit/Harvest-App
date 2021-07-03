@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct ListWeightView: View {
-    var category: String
     @Binding var show : Bool
-    @State private var indexUpdate = 0
-    @Binding var listWeightOfSack : [Sack]
+    @EnvironmentObject var productViewModel : ProductViewModel
+    @State private var indexUpdate: Int = -1
     @State private var showUpdateWeight : Bool = false
     @State private var showAddWeight : Bool = false
     @State private var showAddToStorage : Bool = false
@@ -29,7 +28,7 @@ struct ListWeightView: View {
                         Spacer()
                         Button(action: {
                             self.showAddWeight.toggle()
-                            self.indexUpdate = listWeightOfSack.count
+                            self.indexUpdate = productViewModel.product.weight.count
                         }, label: {
                             Image(systemName: "plus")
                                 .foregroundColor(Color.black)
@@ -41,7 +40,7 @@ struct ListWeightView: View {
                         .fontWeight(.medium)
                 }
                 HStack {
-                    Text("Danh sách bao \(category)")
+                    Text("Danh sách bao \(productViewModel.product.category)")
                         .font(.title)
                         .fontWeight(.bold)
                     Spacer()
@@ -50,18 +49,17 @@ struct ListWeightView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         Divider()
-                        ForEach(listWeightOfSack, id: \.id) {item in
-                            
+                        ForEach(productViewModel.product.weight.indices ,id: \.self) {index in
                             Button(action: {
-                                self.indexUpdate = item.id
+                                self.indexUpdate = index
                                 self.showUpdateWeight.toggle()
                             }, label: {
                                 HStack {
-                                    Text("Bao thứ \(item.id + 1)")
+                                    Text("Bao thứ \(index + 1)")
                                         .fontWeight(.bold)
                                         .foregroundColor(Color.black)
                                     Spacer()
-                                    Text("\(item.weight, specifier: "%.2f") kg")
+                                    Text("\(productViewModel.product.weight[index], specifier: "%.2f") kg")
                                         .foregroundColor(Color.black.opacity(0.5))
                                     Image(systemName: "chevron.right")
                                         .foregroundColor(Color.black)
@@ -97,13 +95,13 @@ struct ListWeightView: View {
                 , alignment: .bottom
             )
             if showUpdateWeight {
-                UpdateWeightView(show: $showUpdateWeight, listWeightOfSack: $listWeightOfSack, indexOfSack: $indexUpdate, number: "\(listWeightOfSack[indexUpdate].weight)")
+                UpdateWeightView(show: $showUpdateWeight, indexUpdate: $indexUpdate, number: "\(productViewModel.product.weight[indexUpdate])")
             }
             if showAddWeight {
-                AddWeightView(show: $showAddWeight, listWeightOfSack: $listWeightOfSack, indexOfSack: $indexUpdate, number: "0.0")
+                AddWeightView(show: $showAddWeight, indexOfSack: $indexUpdate)
             }
             if showAddToStorage {
-                AddToStorageView(listWeightOfSack: $listWeightOfSack, show: $showAddToStorage)
+                AddToStorageView(show: $showAddToStorage)
             }
         }
     }
@@ -114,6 +112,6 @@ struct Sack : Identifiable{
 }
 struct ListWeightView_Previews: PreviewProvider {
     static var previews: some View {
-        ListWeightView(category: "lúa", show: Binding.constant(false), listWeightOfSack: Binding.constant([Sack(id: 0, weight: 49.6), Sack(id: 1, weight: 49.6), Sack(id: 2, weight: 49.6), Sack(id: 3, weight: 49.6),Sack(id: 4, weight: 49.6)]))
+        ListWeightView(show: Binding.constant(false))
     }
 }

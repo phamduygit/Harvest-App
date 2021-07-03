@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct AddToStorageView: View {
-    @State private var indexFilter : Int = 0
     @State private var showNames : Bool = false
     @State private var showInputWeight : Bool = false
     @State private var ricesCategory = ["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]
     @State private var selected : String = "Lúa Jasmine"
-    @Binding var listWeightOfSack : [Sack]
+    @EnvironmentObject var productViewModel : ProductViewModel
+    @EnvironmentObject var stockViewModel : StockViewModel
     @Binding var show : Bool
     var body: some View {
-        
         ZStack {
             VStack {
                 ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
@@ -29,7 +28,7 @@ struct AddToStorageView: View {
                         })
                         Spacer()
                     }
-                    .padding()
+                    .padding(.horizontal)
                     Text("Thu hoạch")
                         .font(.title2)
                         .fontWeight(.medium)
@@ -55,7 +54,7 @@ struct AddToStorageView: View {
                             HStack {
                                 Text("Tên nông sản")
                                 Spacer()
-                                Text(rices[indexFilter])
+                                Text(productViewModel.product.name)
                                 Image(systemName: "chevron.right")
                                 
                             }
@@ -71,7 +70,7 @@ struct AddToStorageView: View {
                             HStack {
                                 Text("Tổng sản lượng")
                                 Spacer()
-                                Text("\(listWeightOfSack.map({$0.weight}).reduce(0, +), specifier: "%.2f") kg")
+                                Text("\(productViewModel.product.weight.reduce(0, +), specifier: "%.2f") kg")
                                 Image(systemName: "chevron.right")
                                 
                             }
@@ -82,7 +81,7 @@ struct AddToStorageView: View {
                             .padding()
                         })
                         Button(action: {
-//                            self.showInputWeight.toggle()
+                            stockViewModel.addNewProduct(product: productViewModel.product)
                         }, label: {
                             HStack {
                                 Spacer()
@@ -105,10 +104,10 @@ struct AddToStorageView: View {
             }
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
             if showNames {
-                NameOfProductView(show: $showNames, selected: $selected, ricesCategory: $ricesCategory)
+                NameOfProductView(show: $showNames, selected: $productViewModel.product.name, ricesCategory: $ricesCategory)
             }
             if showInputWeight {
-                ListWeightView(category: "lúa", show: $showInputWeight, listWeightOfSack: $listWeightOfSack)
+                ListWeightView(show: $showInputWeight)
             }
         }
     }
@@ -116,6 +115,6 @@ struct AddToStorageView: View {
 
 struct AddToStorageView_Previews: PreviewProvider {
     static var previews: some View {
-        AddToStorageView(listWeightOfSack: Binding.constant([Sack(id: 0, weight: 49.6), Sack(id: 1, weight: 49.6), Sack(id: 2, weight: 49.6), Sack(id: 3, weight: 49.6), Sack(id: 4, weight: 49.6)]), show: Binding.constant(false))
+        AddToStorageView(show: Binding.constant(false))
     }
 }
