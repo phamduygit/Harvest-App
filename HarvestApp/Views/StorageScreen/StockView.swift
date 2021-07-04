@@ -11,6 +11,7 @@ struct StockView: View {
     @Binding var show: Bool
     @State private var offset : CGFloat = 0
     @State private var showDetailInStock: Bool = false
+//    @StateObject var stockViewModel = StockViewModel()
     var tabs = ["Trong kho", "Đăng bán", "Đã bán"]
     var body: some View {
         VStack(spacing: 0) {
@@ -36,6 +37,7 @@ struct StockView: View {
                     HStack {
                         InStockView()
                             .frame(width: rect.width)
+                            
                         PostingView()
                             .frame(width: rect.width)
                         SoldView()

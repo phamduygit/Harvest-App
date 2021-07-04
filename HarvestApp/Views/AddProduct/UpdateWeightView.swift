@@ -9,9 +9,10 @@ import SwiftUI
 
 struct UpdateWeightView: View {
     @Binding var show : Bool
-    @EnvironmentObject var productViewModel : ProductViewModel
+    @Binding var product : Product
     @Binding var indexUpdate: Int
     @State var number : String
+    @State private var isDelete : Bool = false
     enum MethodInputValue : String, CaseIterable {
         case keyboard = "Nhập"
         case scan = "Quét"
@@ -33,6 +34,12 @@ struct UpdateWeightView: View {
                             .foregroundColor(Color.black)
                     })
                     Spacer()
+                    Button(action: {
+                        self.isDelete.toggle()
+                    }, label: {
+                        Image(systemName: "trash")
+                            .foregroundColor(Color.black)
+                    })
                 }
                 .padding()
                 Text("Thu hoạch")
@@ -93,6 +100,19 @@ struct UpdateWeightView: View {
             Spacer()
         }
         .background(Color("Color4").ignoresSafeArea())
+        .alert(isPresented: $isDelete) {
+            Alert(
+                title: Text("Bạn thực sự muốn xoá nó"),
+                message: Text("Sau khi xoá sẽ không hoàn tác được"),
+                primaryButton: .destructive(Text("Xoá")) {
+                    self.product.weight.remove(at: indexUpdate)
+                    self.show.toggle()
+                },
+                secondaryButton: .cancel(Text("Huỷ")) {
+                    
+                }
+            )
+        }
         .overlay(
             VStack(spacing: 10) {
                 HStack(alignment: .top) {
@@ -147,7 +167,7 @@ struct UpdateWeightView: View {
                 }
                 .frame(height: 230)
                 Button(action:{
-                    self.productViewModel.product.weight[indexUpdate] = Float(number) ?? 0.0
+                    self.product.weight[indexUpdate] = Float(number) ?? 0.0
                     self.show.toggle()
                 }) {
                     HStack {
@@ -176,6 +196,6 @@ struct ColumnNum: Identifiable {
 }
 struct UpdateWeightView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateWeightView(show: Binding.constant(false), indexUpdate: Binding.constant(0), number: "0.0")
+        UpdateWeightView(show: Binding.constant(false), product: Binding.constant(Product()), indexUpdate: Binding.constant(0), number: "0.0")
     }
 }

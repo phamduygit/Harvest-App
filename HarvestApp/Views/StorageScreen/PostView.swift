@@ -10,6 +10,7 @@ import SwiftUI
 struct PostView: View {
     @Binding var show : Bool
     @State private var weight : String = ""
+    @Binding var product : Product
     var body: some View {
         VStack(alignment: .leading) {
             ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
@@ -27,7 +28,7 @@ struct PostView: View {
                     .font(.title2)
                     .fontWeight(.medium)
             }
-            CardInStock(item: Binding.constant(ItemInStock(id: 05, name: "Lúa jasmine", image: "rice", totalWeight: 5000, offset: 0, isSwiped: false)))
+            CardInStock(product: $product)
                 .frame(height: 100)
                 .cornerRadius(10)
                 .padding()
@@ -118,8 +119,8 @@ struct PostView: View {
     }
 }
 
-struct PostView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostView(show: Binding.constant(false))
-    }
-}
+//struct PostView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PostView(show: Binding.constant(false), product: <#Binding<Product>#>)
+//    }
+//}

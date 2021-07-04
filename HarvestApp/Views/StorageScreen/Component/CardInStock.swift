@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct CardInStock: View {
-    @Binding var item : ItemInStock
+    @Binding var product : Product
+    @State var item = ItemInStock()
+    @State private var showAlert = false
+    @EnvironmentObject var stockViewModel : StockViewModel
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color("lightblue"), Color.blue]), startPoint: .leading, endPoint: .trailing)
             HStack {
                 Spacer()
-                Button(action: {}, label: {
+                Button(action: {
+                    showAlert.toggle()
+                }, label: {
                     Image(systemName: "trash")
                         .foregroundColor(Color.white)
                         .font(.title)
@@ -22,12 +28,12 @@ struct CardInStock: View {
                 .padding()
             }
             HStack {
-                Image(item.image)
+                AnimatedImage(url: URL(string: product.image))
                     .resizable()
                     .frame(width: 80, height: 80, alignment: .center)
                     .cornerRadius(10)
                 VStack(alignment: .leading, spacing: 15) {
-                    Text(item.name)
+                    Text(product.name)
                         .font(.headline)
                         .fontWeight(.bold)
                     HStack {
@@ -35,7 +41,7 @@ struct CardInStock: View {
                             .fontWeight(.bold)
                             .foregroundColor(Color.black.opacity(0.5))
                         Spacer()
-                        Text("\(item.totalWeight, specifier: "%.2f") kg")
+                        Text("\(product.weight.reduce(0, +), specifier: "%.2f") kg")
                             .fontWeight(.bold)
                             .foregroundColor(Color.black.opacity(0.5))
                     }
@@ -75,19 +81,23 @@ struct CardInStock: View {
                     })
             )
         }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Bạn thực sự muốn xoá nó"),
+                message: Text("Sau khi xoá sẽ không hoàn tác được"),
+                primaryButton: .destructive(Text("Xoá")) {
+                    self.stockViewModel.removeProduct(product: product)
+                },
+                secondaryButton: .cancel(Text("Huỷ")) {
+                    
+                }
+            )
+        }
     }
 }
 
-struct ItemInStock: Identifiable {
-    var id : Int
-    var name : String
-    var image : String
-    var totalWeight: Float
-    var offset: CGFloat
-    var isSwiped: Bool
-}
-struct CardInStock_Previews: PreviewProvider {
-    static var previews: some View {
-        CardInStock(item: Binding.constant(ItemInStock(id: 1, name: "Lúa Jasmine", image: "rice", totalWeight: 5000, offset: 0, isSwiped: false)))
-    }
-}
+//struct CardInStock_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardInStock(item: Binding.constant(ItemInStock(id: 1, name: "Lúa Jasmine", image: "rice", totalWeight: 5000, offset: 0, isSwiped: false)))
+//    }
+//}

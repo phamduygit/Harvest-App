@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var userVM = UserViewModel()
-    @StateObject var stockViewModel = StockViewModel()
     @AppStorage("currentPage") var currentPage = 1
     @State private var showTabBar = true
     @State private var selection : Int = 0
@@ -43,7 +42,6 @@ struct ContentView: View {
                     }
                     if showTabBar {
                         CustomTabBarView(selection: $selection)
-                            .environmentObject(stockViewModel)
                     }
                     
                 }

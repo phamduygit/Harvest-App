@@ -8,37 +8,47 @@
 import SwiftUI
 
 struct InStockView: View {
-    @State private var products = [
-        ItemInStock(id: 1, name: "Lúa Jasmine", image: "rice", totalWeight: 5000, offset: 0, isSwiped: false),
-        ItemInStock(id: 2, name: "Lúa Jasmine", image: "rice", totalWeight: 5000, offset: 0, isSwiped: false),
-        ItemInStock(id: 3, name: "Lúa Jasmine", image: "rice", totalWeight: 5000, offset: 0, isSwiped: false),
-        ItemInStock(id: 4, name: "Lúa Jasmine", image: "rice", totalWeight: 5000, offset: 0, isSwiped: false),
-    ]
+    @State private var items = [ItemInStock()]
     @State private var showDetailView : Bool = false
-    @State private var listWeightOfSack = [Sack(id: 0, weight: 49.6), Sack(id: 1, weight: 49.6), Sack(id: 2, weight: 49.6), Sack(id: 3, weight: 49.6), Sack(id: 4, weight: 49.6)]
+    @State private var indexDetail : Int = -1
+    @State private var indexDelete : Int = -1
+    @EnvironmentObject var stockViewModel : StockViewModel
     var body: some View {
-        
         ZStack {
             ScrollView(.vertical, showsIndicators: true) {
                 VStack(spacing: 10) {
-                    ForEach(products.indices) {index in
-                        CardInStock(item: $products[index])
+                    ForEach(stockViewModel.products.indices, id: \.self) {index in
+                        CardInStock(product: $stockViewModel.products[index])
+                            .onAppear {
+                                items.append(ItemInStock())
+                            }
                             .cornerRadius(10)
                             .onTapGesture {
+                                self.indexDetail = index
+                                print("index \(indexDetail)")
                                 self.showDetailView.toggle()
                             }
                     }
                 }
                 .padding()
             }
+            .frame(width: UIScreen.main.bounds.width)
             .background(Color("Color4").ignoresSafeArea())
             .fullScreenCover(isPresented: $showDetailView, content: {
-                DetailInStockView(listWeightOfSack: $listWeightOfSack, show: $showDetailView)
+                DetailInStockView(indexDetail: $indexDetail, show: $showDetailView)
             })
+            
         }
+        
+        
     }
 }
 
+
+struct ItemInStock {
+    var offset: CGFloat = 0
+    var isSwiped: Bool = false
+}
 struct InStockView_Previews: PreviewProvider {
     static var previews: some View {
         InStockView()

@@ -14,6 +14,7 @@ import Combine
 class StockRepository: ObservableObject {
     let db = Firestore.firestore()
     @Published var stocks = [Stock]()
+    @Published var products = [Product]()
     init () {
         let userId = Auth.auth().currentUser?.uid
         db.collection("stocks").whereField("userID", isEqualTo: userId!).addSnapshotListener { (snapshot, error) in
@@ -27,7 +28,19 @@ class StockRepository: ObservableObject {
             print("ahihi \(self.stocks.count)")
             if self.stocks.count < 1 {
                 self.stocks.append(self.addNewStock())
+            } else {
+                self.db.collection("stocks").document((self.stocks.first?.id)!).collection("products").addSnapshotListener { snapshotProduct, error in
+                    if let error = error {
+                        print(error)
+                        return
+                    }
+                    self.products = snapshotProduct?.documents.compactMap {
+                        try? $0.data(as: Product.self)
+                    } ?? []
+                    
+                }
             }
+            
         }
     }
     func addNewStock() -> Stock {
@@ -45,6 +58,22 @@ class StockRepository: ObservableObject {
             let _ = try db.collection("stocks").document(stockID).collection("products").addDocument(from: product)
         } catch {
             fatalError("Unable encode to stock: \(error.localizedDescription)")
+        }
+    }
+    func saveProductInStock(stockID: String, product: Product) {
+        do {
+            let _ = try db.collection("stocks").document(stockID).collection("products").document(product.id!).setData(from: product)
+        } catch {
+            fatalError("Unable encode to stock: \(error.localizedDescription)")
+        }
+    }
+    func deleteProductInStock(stockID: String, product: Product) {
+        db.collection("stocks").document(stockID).collection("products").document(product.id!).delete()  { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
         }
     }
 }

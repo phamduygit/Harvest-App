@@ -146,7 +146,7 @@ struct ChoseProductView: View {
                                 HStack {
                                     Text("Tên nông sản")
                                     Spacer()
-                                    Text(selected)
+                                    Text(productViewModel.product.name)
                                     Image(systemName: "chevron.right")
                                     
                                 }
@@ -190,7 +190,7 @@ struct ChoseProductView: View {
                 Alert(title: Text("Chưa chọn loại nông sản"), message: Text("Hãy chọn loại nông sản bạn muốn thu hoạch"), dismissButton: .default(Text("OK")))
             })
             if showNames {
-                NameOfProductView(show: $showNames, selected: $selected, ricesCategory: $ricesCategory)
+                NameOfProductView(show: $showNames, selected: $productViewModel.product.name, ricesCategory: $ricesCategory)
             }
             if showInputWeight {
                 ListWeightView(show: $showInputWeight)

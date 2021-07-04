@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddWeightView: View {
     @Binding var show : Bool
-    @EnvironmentObject var productViewModel : ProductViewModel
+    @Binding var product : Product
     @Binding var indexOfSack : Int
     @State var number : String = "0.0"
     enum MethodInputValue : String, CaseIterable {
@@ -148,7 +148,7 @@ struct AddWeightView: View {
                 .frame(height: 230)
                 Button(action:{
 //                    print("\(Double(number) ?? 0.0)")
-                    self.productViewModel.product.weight.append(Float(number) ?? 0.0)
+                    self.product.weight.append(Float(number) ?? 0.0)
                     self.indexOfSack += 1
                     number = "0.0"
                 }) {
@@ -174,6 +174,6 @@ struct AddWeightView: View {
 
 struct AddWeightView_Previews: PreviewProvider {
     static var previews: some View {
-        AddWeightView(show: Binding.constant(false), indexOfSack: Binding.constant(0), number: "0.0")
+        AddWeightView(show: Binding.constant(false), product: Binding.constant(Product()), indexOfSack: Binding.constant(0), number: "0.0")
     }
 }

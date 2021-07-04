@@ -14,6 +14,7 @@ struct CustomTabBarView: View {
     @Binding var selection : Int
     @State private var showAddProdct : Bool = false
     @StateObject var productViewModel = ProductViewModel()
+    @StateObject var stockViewModel = StockViewModel()
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
@@ -48,9 +49,7 @@ struct CustomTabBarView: View {
                                                     .frame(width: index == 2 ? 36 : 24, height: index == 2 ? 36 : 24, alignment: .center)
                                                     .foregroundColor(selection == index ? Color.black : Color.black.opacity(0.5))
                                             }
-                                            
                                         }
-                                        
                                         Spacer()
                                     }
                                 }
@@ -101,9 +100,11 @@ struct CustomTabBarView: View {
             if showAddProdct {
                 ChoseProductView(show: $showAddProdct)
                     .environmentObject(productViewModel)
+                    .environmentObject(stockViewModel)
             }
             if showStock {
                 StockView(show: $showStock)
+                    .environmentObject(stockViewModel)
             }
         }
     }

@@ -48,12 +48,8 @@ func uploadImage(image: UIImage, completion: @escaping ((String) -> Void)) {
                     if error != nil {
                         return
                     }
-//                    avatarURL = url?.absoluteString ?? "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"
                     if let urlText = url?.absoluteString {
-
                         strURL = urlText
-                        print("///////////tttttttt//////// \(strURL)   ////////")
-
                         completion(strURL)
                     }
                 }

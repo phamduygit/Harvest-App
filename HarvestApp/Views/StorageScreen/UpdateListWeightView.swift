@@ -1,19 +1,18 @@
 //
-//  ListWeightView.swift
+//  UpdateListWeightView.swift
 //  HarvestApp
 //
-//  Created by Pham Minh Duy on 16/06/2021.
+//  Created by Pham Minh Duy on 04/07/2021.
 //
 
 import SwiftUI
 
-struct ListWeightView: View {
+struct UpdateListWeightView: View {
     @Binding var show : Bool
-    @EnvironmentObject var productViewModel : ProductViewModel
+    @Binding var product : Product
     @State private var indexUpdate: Int = -1
     @State private var showUpdateWeight : Bool = false
     @State private var showAddWeight : Bool = false
-    @State private var showAddToStorage : Bool = false
     var body: some View {
         ZStack {
             VStack {
@@ -28,7 +27,7 @@ struct ListWeightView: View {
                         Spacer()
                         Button(action: {
                             self.showAddWeight.toggle()
-                            self.indexUpdate = productViewModel.product.weight.count
+                            self.indexUpdate = product.weight.count
                         }, label: {
                             Image(systemName: "plus")
                                 .foregroundColor(Color.black)
@@ -40,7 +39,7 @@ struct ListWeightView: View {
                         .fontWeight(.medium)
                 }
                 HStack {
-                    Text("Danh sách bao \(productViewModel.product.category)")
+                    Text("Danh sách bao \(self.product.category)")
                         .font(.title)
                         .fontWeight(.bold)
                     Spacer()
@@ -49,7 +48,7 @@ struct ListWeightView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         Divider()
-                        ForEach(productViewModel.product.weight.indices ,id: \.self) {index in
+                        ForEach(self.product.weight.indices ,id: \.self) {index in
                             Button(action: {
                                 self.indexUpdate = index
                                 self.showUpdateWeight.toggle()
@@ -59,7 +58,7 @@ struct ListWeightView: View {
                                         .fontWeight(.bold)
                                         .foregroundColor(Color.black)
                                     Spacer()
-                                    Text("\(productViewModel.product.weight[index], specifier: "%.2f") kg")
+                                    Text("\(self.product.weight[index], specifier: "%.2f") kg")
                                         .foregroundColor(Color.black.opacity(0.5))
                                     Image(systemName: "chevron.right")
                                         .foregroundColor(Color.black)
@@ -74,41 +73,18 @@ struct ListWeightView: View {
                 Spacer()
             }
             .background(Color("Color4").ignoresSafeArea())
-            .overlay(
-                Button(action: {
-                    self.showAddToStorage.toggle();
-                }, label: {
-                    HStack {
-                        Spacer()
-                        Text("Lưu")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(Color.white)
-                        Spacer()
-                    }
-                    .padding()
-                    .background(Color("Color5"))
-                    .clipShape(Capsule())
-                })
-                .padding()
-                .padding(.bottom)
-                , alignment: .bottom
-            )
             if showUpdateWeight {
-                UpdateWeightView(show: $showUpdateWeight, product: $productViewModel.product, indexUpdate: $indexUpdate, number: "\(productViewModel.product.weight[indexUpdate])")
+                UpdateWeightView(show: $showUpdateWeight, product: $product, indexUpdate: $indexUpdate, number: "\(self.product.weight[indexUpdate])")
             }
             if showAddWeight {
-                AddWeightView(show: $showAddWeight, product: $productViewModel.product, indexOfSack: $indexUpdate)
-            }
-            if showAddToStorage {
-                AddToStorageView(show: $showAddToStorage)
+                AddWeightView(show: $showAddWeight, product: $product, indexOfSack: $indexUpdate)
             }
         }
     }
 }
 
-struct ListWeightView_Previews: PreviewProvider {
+struct UpdateListWeightView_Previews: PreviewProvider {
     static var previews: some View {
-        ListWeightView(show: Binding.constant(false))
+        UpdateListWeightView(show: Binding.constant(false), product: Binding.constant(Product()))
     }
 }

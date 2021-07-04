@@ -1,22 +1,22 @@
 //
-//  DetailInStockView.swift
+//  UpdateProductView.swift
 //  HarvestApp
 //
-//  Created by Pham Minh Duy on 20/06/2021.
+//  Created by Pham Minh Duy on 04/07/2021.
 //
 
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct DetailInStockView: View {
+struct UpdateProductView: View {
     @State private var showNames : Bool = false
     @State private var showInputWeight : Bool = false
     @State private var ricesCategory = ["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]
     @State private var selected : String = "Lúa Jasmine"
     @Binding var indexDetail : Int
     @Binding var show : Bool
+    
     @EnvironmentObject var stockViewModel : StockViewModel
-    @State private var showEdit : Bool = false
     var body: some View {
         ZStack {
             VStack {
@@ -29,12 +29,6 @@ struct DetailInStockView: View {
                                 .foregroundColor(Color.black)
                         })
                         Spacer()
-                        Button(action: {
-                            self.showEdit.toggle()
-                        }, label: {
-                            Image(systemName: "square.and.pencil")
-                                .foregroundColor(Color.black)
-                        })
                     }
                     .padding(.horizontal)
                     Text("Kho")
@@ -44,7 +38,7 @@ struct DetailInStockView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         HStack {
-                            Text("Chi tiết nông sản")
+                            Text("Cập nhật nông sản")
                                 .font(.title)
                                 .fontWeight(.bold)
                             Spacer()
@@ -55,14 +49,18 @@ struct DetailInStockView: View {
                                 .resizable()
                                 .clipShape(Circle())
                                 .aspectRatio(contentMode: .fit)
+                                
                         }
                         .padding()
                         .frame(height: UIScreen.main.bounds.height / 3)
-                        VStack {
+                        Button(action: {
+                            showNames.toggle()
+                        }, label: {
                             HStack {
                                 Text("Tên nông sản")
                                 Spacer()
                                 Text(stockViewModel.products[indexDetail].name)
+                                Image(systemName: "chevron.right")
                                 
                             }
                             .onAppear {
@@ -72,16 +70,24 @@ struct DetailInStockView: View {
                             .padding()
                             .background(Color.white)
                             .cornerRadius(15)
+                        })
+                        .padding(.horizontal)
+                        .padding(.bottom)
+                        Button(action: {
+                            showInputWeight.toggle()
+                        }, label: {
                             HStack {
                                 Text("Tổng sản lượng")
                                 Spacer()
                                 Text("\(stockViewModel.products[indexDetail].weight.reduce(0, +), specifier: "%.2f") kg")
+                                Image(systemName: "chevron.right")
+                                
                             }
                             .foregroundColor(Color.black)
                             .padding()
                             .background(Color.white)
                             .cornerRadius(15)
-                        }
+                        })
                         .padding(.horizontal)
                         .padding(.bottom)
                         
@@ -93,11 +99,12 @@ struct DetailInStockView: View {
             .overlay(
                 HStack {
                     Button(action: {
-//                            self.showInputWeight.toggle()
+                        stockViewModel.saveProduct(product: stockViewModel.products[indexDetail])
+                        self.show.toggle()
                     }, label: {
                         HStack {
                             Spacer()
-                            Text("Đã bán")
+                            Text("Lưu")
                                 .font(.title2)
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.white)
@@ -110,37 +117,21 @@ struct DetailInStockView: View {
                         .padding(.bottom)
                         
                     })
-                    Button(action: {
-//                            self.showInputWeight.toggle()
-                    }, label: {
-                        HStack {
-                            Spacer()
-                            Text("Đăng bán")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.white)
-                            Spacer()
-                        }
-                        .padding()
-                        .background(Color("Color5"))
-                        .clipShape(Capsule())
-                        .padding()
-                        .padding(.bottom)
-                        
-                    })
-                    
                 }
                 , alignment: .bottom
             )
-            if showEdit {
-                UpdateProductView(indexDetail: $indexDetail, show: $showEdit)
+            if showNames {
+                NameOfProductView(show: $showNames, selected: $stockViewModel.products[indexDetail].name, ricesCategory: $ricesCategory)
+            }
+            if showInputWeight {
+                UpdateListWeightView(show: $showInputWeight, product: $stockViewModel.products[indexDetail])
             }
         }
     }
 }
 
-//struct DetailInStockView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailInStockView(indexDetail: Binding.constant(-1), show: Binding.constant(false))
-//    }
-//}
+struct UpdateProductView_Previews: PreviewProvider {
+    static var previews: some View {
+        UpdateProductView(indexDetail: Binding.constant(0), show: Binding.constant(false))
+    }
+}

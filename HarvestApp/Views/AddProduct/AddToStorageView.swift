@@ -12,8 +12,12 @@ struct AddToStorageView: View {
     @State private var showInputWeight : Bool = false
     @State private var ricesCategory = ["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]
     @State private var selected : String = "Lúa Jasmine"
+    
     @EnvironmentObject var productViewModel : ProductViewModel
     @EnvironmentObject var stockViewModel : StockViewModel
+    @State private var image : Image?
+    @State private var showingImagePicker = false
+    @State private var inputImage : UIImage?
     @Binding var show : Bool
     var body: some View {
         ZStack {
@@ -43,9 +47,29 @@ struct AddToStorageView: View {
                         }
                         .padding(.horizontal)
                         ZStack {
-                            Image("cate_rice")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
+                            VStack(alignment: .leading, spacing: 10) {
+                                HStack {
+                                    Spacer()
+                                    Button(action: {
+                                        self.showingImagePicker = true
+                                    }, label: {
+                                        if image != nil {
+                                            image?
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .clipShape(Circle())
+                                        } else {
+                                            Image(systemName: "camera.fill")
+                                                .foregroundColor(.black)
+                                                .padding(40)
+                                                .background(Color.gray.opacity(0.5))
+                                                .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                                .clipShape(Circle())
+                                        }
+                                    })
+                                    Spacer()
+                                }
+                            }
                         }
                         .frame(height: UIScreen.main.bounds.height / 2)
                         Button(action: {
@@ -62,7 +86,7 @@ struct AddToStorageView: View {
                             .padding()
                             .background(Color.white)
                             .cornerRadius(15)
-                            .padding()
+                            .padding(.horizontal)
                         })
                         Button(action: {
                             showInputWeight.toggle()
@@ -78,10 +102,10 @@ struct AddToStorageView: View {
                             .padding()
                             .background(Color.white)
                             .cornerRadius(15)
-                            .padding()
+                            .padding(.horizontal)
                         })
                         Button(action: {
-                            stockViewModel.addNewProduct(product: productViewModel.product)
+                            stockViewModel.addNewProduct(image: inputImage!,product: productViewModel.product)
                         }, label: {
                             HStack {
                                 Spacer()
@@ -103,6 +127,11 @@ struct AddToStorageView: View {
                 
             }
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
+            .sheet(isPresented: $showingImagePicker, onDismiss: loadImage, content: {
+                VStack {
+                    ImagePicker(image: $inputImage)
+                }
+            })
             if showNames {
                 NameOfProductView(show: $showNames, selected: $productViewModel.product.name, ricesCategory: $ricesCategory)
             }
@@ -110,6 +139,10 @@ struct AddToStorageView: View {
                 ListWeightView(show: $showInputWeight)
             }
         }
+    }
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
     }
 }
 
