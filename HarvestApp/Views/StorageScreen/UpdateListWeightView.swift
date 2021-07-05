@@ -13,6 +13,7 @@ struct UpdateListWeightView: View {
     @State private var indexUpdate: Int = -1
     @State private var showUpdateWeight : Bool = false
     @State private var showAddWeight : Bool = false
+    @EnvironmentObject var categoryViewModel : CategoryViewModel
     var body: some View {
         ZStack {
             VStack {
@@ -39,7 +40,7 @@ struct UpdateListWeightView: View {
                         .fontWeight(.medium)
                 }
                 HStack {
-                    Text("Danh sách bao \(self.product.category)")
+                    Text("Danh sách \(categoryViewModel.getOneCategory(categoryName: product.category).type) \(product.category.lowercased())")
                         .font(.title)
                         .fontWeight(.bold)
                     Spacer()
@@ -74,10 +75,10 @@ struct UpdateListWeightView: View {
             }
             .background(Color("Color4").ignoresSafeArea())
             if showUpdateWeight {
-                UpdateWeightView(show: $showUpdateWeight, product: $product, indexUpdate: $indexUpdate, number: "\(self.product.weight[indexUpdate])")
+                UpdateWeightView(show: $showUpdateWeight, product: $product, indexUpdate: $indexUpdate, type: categoryViewModel.getOneCategory(categoryName: product.category).type, number: "\(self.product.weight[indexUpdate])")
             }
             if showAddWeight {
-                AddWeightView(show: $showAddWeight, product: $product, indexOfSack: $indexUpdate)
+                AddWeightView(show: $showAddWeight, product: $product, indexOfSack: $indexUpdate, type: categoryViewModel.getOneCategory(categoryName: product.category).type)
             }
         }
     }

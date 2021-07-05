@@ -12,6 +12,7 @@ struct AddWeightView: View {
     @Binding var product : Product
     @Binding var indexOfSack : Int
     @State var number : String = "0.0"
+    var type : String
     enum MethodInputValue : String, CaseIterable {
         case keyboard = "Nhập"
         case scan = "Quét"
@@ -81,7 +82,7 @@ struct AddWeightView: View {
             .cornerRadius(10)
             
             VStack (spacing: 10) {
-                Text("Nhập trọng lượng bao thứ \(indexOfSack + 1)")
+                Text("Nhập trọng lượng \(type) thứ \(indexOfSack + 1)")
                     .font(.title2)
                     .fontWeight(.bold)
                 Text("\(number) kg")
@@ -174,6 +175,6 @@ struct AddWeightView: View {
 
 struct AddWeightView_Previews: PreviewProvider {
     static var previews: some View {
-        AddWeightView(show: Binding.constant(false), product: Binding.constant(Product()), indexOfSack: Binding.constant(0), number: "0.0")
+        AddWeightView(show: Binding.constant(false), product: Binding.constant(Product()), indexOfSack: Binding.constant(0), number: "0.0", type: "bao")
     }
 }

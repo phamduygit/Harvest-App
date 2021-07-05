@@ -13,6 +13,7 @@ struct UpdateProductView: View {
     @State private var showInputWeight : Bool = false
     @State private var ricesCategory = ["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]
     @State private var selected : String = "Lúa Jasmine"
+    @State private var listProdcutName = [String]()
     @Binding var indexDetail : Int
     @Binding var show : Bool
     
@@ -121,7 +122,7 @@ struct UpdateProductView: View {
                 , alignment: .bottom
             )
             if showNames {
-                NameOfProductView(show: $showNames, selected: $stockViewModel.products[indexDetail].name, ricesCategory: $ricesCategory)
+                NameOfProductView(show: $showNames, selected: $stockViewModel.products[indexDetail].name, categoryName: $stockViewModel.products[indexDetail].category)
             }
             if showInputWeight {
                 UpdateListWeightView(show: $showInputWeight, product: $stockViewModel.products[indexDetail])

@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 import SDWebImageSwiftUI
 
 struct CardInStock: View {
-    @Binding var product : Product
+    var product : Product
     @State var item = ItemInStock()
     @State private var showAlert = false
     @EnvironmentObject var stockViewModel : StockViewModel
@@ -19,7 +20,7 @@ struct CardInStock: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    showAlert.toggle()
+                    self.showAlert.toggle()
                 }, label: {
                     Image(systemName: "trash")
                         .foregroundColor(Color.white)
@@ -32,18 +33,23 @@ struct CardInStock: View {
                     .resizable()
                     .frame(width: 80, height: 80, alignment: .center)
                     .cornerRadius(10)
-                VStack(alignment: .leading, spacing: 15) {
+                VStack(alignment: .leading, spacing: 5) {
                     Text(product.name)
                         .font(.headline)
                         .fontWeight(.bold)
+                    
                     HStack {
                         Text("Sản lượng")
-                            .fontWeight(.bold)
+                            .fontWeight(.medium)
                             .foregroundColor(Color.black.opacity(0.5))
                         Spacer()
                         Text("\(product.weight.reduce(0, +), specifier: "%.2f") kg")
-                            .fontWeight(.bold)
-                            .foregroundColor(Color.black.opacity(0.5))
+                            .fontWeight(.medium)
+                            .foregroundColor(Color.black)
+                    }
+                    HStack {
+                        Text("Ngày thu hoạch: \(convertTimestamp(timestamp: product.timeHarvest!))")
+                            .font(.footnote)
                     }
                 }
             }
@@ -93,6 +99,13 @@ struct CardInStock: View {
                 }
             )
         }
+    }
+    func convertTimestamp(timestamp: Timestamp) -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "dd/MM/yyyy"
+        let date = timestamp.dateValue()
+        let dateString = dateFormatterGet.string(from: date)
+        return dateString
     }
 }
 

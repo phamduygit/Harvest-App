@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ListWeightView: View {
-    @Binding var show : Bool
+    @Binding var showInputWeigth: Bool
+    @Binding var showAddProdct: Bool
     @EnvironmentObject var productViewModel : ProductViewModel
+    @EnvironmentObject var categoryViewModel : CategoryViewModel
     @State private var indexUpdate: Int = -1
     @State private var showUpdateWeight : Bool = false
     @State private var showAddWeight : Bool = false
@@ -20,7 +22,7 @@ struct ListWeightView: View {
                 ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
                     HStack {
                         Button(action: {
-                            self.show.toggle()
+                            self.showInputWeigth.toggle()
                         }, label: {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(Color.black)
@@ -40,7 +42,7 @@ struct ListWeightView: View {
                         .fontWeight(.medium)
                 }
                 HStack {
-                    Text("Danh sách bao \(productViewModel.product.category)")
+                    Text("Danh sách \(categoryViewModel.getOneCategory(categoryName: productViewModel.product.category).type) \(productViewModel.product.category.lowercased())")
                         .font(.title)
                         .fontWeight(.bold)
                     Spacer()
@@ -95,13 +97,13 @@ struct ListWeightView: View {
                 , alignment: .bottom
             )
             if showUpdateWeight {
-                UpdateWeightView(show: $showUpdateWeight, product: $productViewModel.product, indexUpdate: $indexUpdate, number: "\(productViewModel.product.weight[indexUpdate])")
+                UpdateWeightView(show: $showUpdateWeight, product: $productViewModel.product, indexUpdate: $indexUpdate, type: categoryViewModel.getOneCategory(categoryName: productViewModel.product.category).type, number: "\(productViewModel.product.weight[indexUpdate])")
             }
             if showAddWeight {
-                AddWeightView(show: $showAddWeight, product: $productViewModel.product, indexOfSack: $indexUpdate)
+                AddWeightView(show: $showAddWeight, product: $productViewModel.product, indexOfSack: $indexUpdate, type: categoryViewModel.getOneCategory(categoryName: productViewModel.product.category).type)
             }
             if showAddToStorage {
-                AddToStorageView(show: $showAddToStorage)
+                AddToStorageView(showAddToStorage: $showAddToStorage, showAddProdct: $showAddProdct)
             }
         }
     }
@@ -109,6 +111,6 @@ struct ListWeightView: View {
 
 struct ListWeightView_Previews: PreviewProvider {
     static var previews: some View {
-        ListWeightView(show: Binding.constant(false))
+        ListWeightView(showInputWeigth: Binding.constant(false), showAddProdct: Binding.constant(false))
     }
 }

@@ -10,7 +10,8 @@ import SwiftUI
 struct NameOfProductView: View {
     @Binding var show : Bool
     @Binding var selected : String
-    @Binding var ricesCategory : [String]
+    @Binding var categoryName: String
+    @EnvironmentObject var categoryViewModel : CategoryViewModel
     @State private var isAddName : Bool = false
     @State private var newName : String = ""
     var body: some View {
@@ -30,20 +31,20 @@ struct NameOfProductView: View {
                     .font(.title2)
             }
             List {
-                ForEach(ricesCategory, id: \.self) {rice in
+                ForEach(categoryViewModel.categories[getIndexCategory()].listProductName, id: \.self) {product in
                     HStack {
-                        if selected == rice {
+                        if selected == product {
                             Image(systemName: "checkmark.circle.fill")
                                 .onTapGesture {
-                                    self.selected = rice
+                                    self.selected = product
                                 }
                         } else {
                             Image(systemName: "circle")
                                 .onTapGesture {
-                                    self.selected = rice
+                                    self.selected = product
                                 }
                         }
-                        Text(rice)
+                        Text(product)
                             .foregroundColor(Color.black)
                     }
                     .cornerRadius(10)
@@ -57,7 +58,7 @@ struct NameOfProductView: View {
                         Spacer()
                         Button(action: {
                             self.isAddName = false
-                            ricesCategory.append(newName)
+                            categoryViewModel.categories[getIndexCategory()].listProductName.append(newName)
                             self.newName = ""
                         }, label: {
                             Text("Lưu")
@@ -81,10 +82,16 @@ struct NameOfProductView: View {
         .listStyle(GroupedListStyle())
         .background(Color("Color4").ignoresSafeArea())
     }
+    func getIndexCategory() -> Int {
+        let index = categoryViewModel.categories.firstIndex { category in
+            category.categoryName == categoryName
+        } ?? -1
+        return index
+    }
 }
 
 struct NameOfProductView_Previews: PreviewProvider {
     static var previews: some View {
-        NameOfProductView(show: Binding.constant(false), selected: Binding.constant("Lúa Jasmine"), ricesCategory: Binding.constant(["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]))
+        NameOfProductView(show: Binding.constant(false), selected: Binding.constant("Lúa Jasmine"), categoryName: Binding.constant("Lúa"))
     }
 }

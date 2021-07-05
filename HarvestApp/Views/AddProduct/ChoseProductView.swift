@@ -9,28 +9,23 @@ import SwiftUI
 
 var rices = ["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]
 struct ChoseProductView: View {
-    @State private var categories = [
-        CarđData(id: 0, image: "cate_rice", color: Color.green, title: "Lúa", offset: 0),
-        CarđData(id: 1, image: "cate_coffee", color: Color.gray, title: "Cà Phê", offset: 0),
-        CarđData(id: 2, image: "cate_lychee", color: Color.pink, title: "Vải thiều", offset: 0),
-        CarđData(id: 3, image: "cate_pepper", color: Color.purple, title: "Tiêu", offset: 0)
-    ]
     @EnvironmentObject var productViewModel : ProductViewModel
-    @State private var ricesCategory = ["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]
-    @State private var scrolled : Int = 0
+    @EnvironmentObject var categoryViewModel : CategoryViewModel
+    @State private var listProductName = [String]()
+    @State private var scrolled = 0
     @State private var selected : String = "Lúa Jasmine"
     @State private var showNames : Bool = false
     @State private var showInputWeight : Bool = false
-    @Binding var show : Bool
+    @Binding var showAddProdct : Bool
     @State private var showAlert : Bool = false
+    @State private var type = "bao"
     var body: some View {
-        
         ZStack {
             VStack {
                 ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
                     HStack {
                         Button(action: {
-                            self.show.toggle()
+                            self.showAddProdct.toggle()
                         }, label: {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(Color.black)
@@ -52,88 +47,10 @@ struct ChoseProductView: View {
                         }
                         .padding(.horizontal)
                         ZStack {
-                            ForEach(categories.reversed()) { category in
-                                HStack {
-                                    ZStack (alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
-                                        Image(category.image)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: calculateWidth(), height: UIScreen.main.bounds.height / 2 - CGFloat(category.id - scrolled) * 50, alignment: .center)
-                                        VStack (alignment: .leading, spacing: 18) {
-                                            HStack {
-                                                Text(category.title)
-                                                    .font(.title)
-                                                    .fontWeight(.bold)
-                                                    .foregroundColor(Color.white)
-                                                Spacer()
-                                            }
-                                            Button(action: {
-                                                productViewModel.product.category = category.title
-                                                productViewModel.product.name = selected
-                                            }, label: {
-                                                Text("Chọn")
-                                                    .font(.caption)
-                                                    .fontWeight(.bold)
-                                                    .foregroundColor(Color.white)
-                                                    .padding(.vertical, 6)
-                                                    .padding(.horizontal, 25)
-                                                    .background(Color.blue)
-                                                    .clipShape(Capsule())
-                                            })
-                                        }
-                                        .frame(width: calculateWidth() - 40)
-                                        .padding(.leading, 20)
-                                        .padding(.bottom, 20)
-                                    }
-                                    .background(category.color)
-                                    .cornerRadius(15)
-                                    .offset(x: (category.id - scrolled <= 2) ? CGFloat(category.id - scrolled) * 30 : 60, y: 0)
-                                    Spacer()
-                                }
-                                .contentShape(Rectangle())
-                                .offset(x: category.offset)
-                                .gesture(
-                                    DragGesture()
-                                        .onChanged { value in
-                                            withAnimation {
-                                                if value.translation.width < 0 && category.id != categories.last!.id {
-                                                    categories[category.id].offset = value.translation.width
-                                                }
-                                                else {
-                                                    if category.id > 0 {
-                                                        categories[category.id - 1].offset = -(calculateWidth() + 60) + value.translation.width
-                                                    }
-                                                }
-                                            }
-
-                                        }
-                                        .onEnded { value in
-                                            withAnimation {
-                                                if value.translation.width < 0 {
-                                                    if -value.translation.width > calculateWidth() / 2 && category.id != categories.last!.id {
-                                                        categories[category.id].offset = -(calculateWidth() + 60)
-                                                        scrolled += 1
-                                                    }
-                                                    else {
-                                                        categories[category.id].offset = 0
-                                                    }
-                                                }
-                                                else {
-                                                    if category.id > 0 {
-                                                        if value.translation.width > calculateWidth() / 2 {
-                                                            categories[category.id - 1].offset = 0
-                                                            scrolled -= 1
-                                                        }
-                                                        else {
-                                                            categories[category.id - 1].offset = -(calculateWidth() + 60)
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                        }
-                                )
-
+                            ForEach(categoryViewModel.categories.reversed()) { category in
+                                CategoryCard(index: getIndexOfCategory(category: category), scrolled: $scrolled, listProductName: $listProductName)
+                                    .environmentObject(categoryViewModel)
+                                //                                Text(category.categoryName)
                             }
                         }
                         .frame(height: UIScreen.main.bounds.height / 2)
@@ -183,30 +100,30 @@ struct ChoseProductView: View {
                         })
                     }
                 }
-                
             }
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
             .alert(isPresented: $showAlert, content: {
                 Alert(title: Text("Chưa chọn loại nông sản"), message: Text("Hãy chọn loại nông sản bạn muốn thu hoạch"), dismissButton: .default(Text("OK")))
             })
             if showNames {
-                NameOfProductView(show: $showNames, selected: $productViewModel.product.name, ricesCategory: $ricesCategory)
+                NameOfProductView(show: $showNames, selected: $productViewModel.product.name, categoryName: $productViewModel.product.category)
             }
             if showInputWeight {
-                ListWeightView(show: $showInputWeight)
+                ListWeightView(showInputWeigth: $showInputWeight, showAddProdct: $showAddProdct)
             }
         }
     }
-    func calculateWidth() -> CGFloat {
-        let screen = UIScreen.main.bounds.width - 50
-        let width = screen - (30 * 2)
-        return width
+    func getIndexOfCategory(category: Category) -> Int {
+        let index = categoryViewModel.categories.firstIndex { cate in
+            cate.id == category.id
+        }
+        return index ?? -1
     }
 }
 
 struct ChoseProductView_Previews: PreviewProvider {
     static var previews: some View {
-        ChoseProductView(show: Binding.constant(false))
+        ChoseProductView(showAddProdct: Binding.constant(false))
     }
 }
 

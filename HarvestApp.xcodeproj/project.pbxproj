@@ -30,10 +30,15 @@
 		A36149C726711BA4001BE31D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36149C626711BA4001BE31D /* HomeView.swift */; };
 		A36149CA26711D1E001BE31D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36149C926711D1E001BE31D /* OnboardingView.swift */; };
 		A365359D2689C65300DDE3C8 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A365359C2689C65300DDE3C8 /* UserView.swift */; };
+		A36676EC26936C2800C93464 /* AddProductSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36676EB26936C2800C93464 /* AddProductSuccessView.swift */; };
 		A3689DB12691F33F0049358C /* UpdateProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3689DB02691F33F0049358C /* UpdateProductView.swift */; };
 		A3699B88267500C8006DEE22 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3699B87267500C8006DEE22 /* CardView.swift */; };
 		A36AE76B268B6E0000EA5431 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36AE76A268B6E0000EA5431 /* UserViewModel.swift */; };
 		A37868B9268789520082184A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A37868B8268789520082184A /* GoogleService-Info.plist */; };
+		A378CB1A2692F7BF00159BD1 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = A378CB192692F7BF00159BD1 /* Category.swift */; };
+		A378CB1C2692F8BA00159BD1 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A378CB1B2692F8BA00159BD1 /* CategoryRepository.swift */; };
+		A378CB1E2692FAAB00159BD1 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A378CB1D2692FAAB00159BD1 /* CategoryViewModel.swift */; };
+		A378CB212692FCC800159BD1 /* CategoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A378CB202692FCC800159BD1 /* CategoryCard.swift */; };
 		A38070882673B3BA00CD24A6 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38070872673B3BA00CD24A6 /* CustomTabBarView.swift */; };
 		A38549C626903FD2002C1A04 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38549C526903FD2002C1A04 /* Stock.swift */; };
 		A38549C826903FE7002C1A04 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38549C726903FE7002C1A04 /* Product.swift */; };
@@ -110,10 +115,15 @@
 		A36149C626711BA4001BE31D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A36149C926711D1E001BE31D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A365359C2689C65300DDE3C8 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		A36676EB26936C2800C93464 /* AddProductSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductSuccessView.swift; sourceTree = "<group>"; };
 		A3689DB02691F33F0049358C /* UpdateProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProductView.swift; sourceTree = "<group>"; };
 		A3699B87267500C8006DEE22 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		A36AE76A268B6E0000EA5431 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		A37868B8268789520082184A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A378CB192692F7BF00159BD1 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		A378CB1B2692F8BA00159BD1 /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
+		A378CB1D2692FAAB00159BD1 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		A378CB202692FCC800159BD1 /* CategoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCard.swift; sourceTree = "<group>"; };
 		A38070872673B3BA00CD24A6 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
 		A38549C526903FD2002C1A04 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		A38549C726903FE7002C1A04 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -242,12 +252,14 @@
 		A358AFD3267889EA005F569E /* AddProduct */ = {
 			isa = PBXGroup;
 			children = (
+				A378CB1F2692FC9500159BD1 /* Component */,
 				A358AFD426788C37005F569E /* ChoseProductView.swift */,
 				A3DECE8D26791DDF00C2A47E /* NameOfProductView.swift */,
 				A34959A526799ECF0070E795 /* ListWeightView.swift */,
 				A34959A72679D9340070E795 /* UpdateWeightView.swift */,
 				A3EF82B0267A65EE0092D094 /* AddWeightView.swift */,
 				A3E93005267CF9A700B53013 /* AddToStorageView.swift */,
+				A36676EB26936C2800C93464 /* AddProductSuccessView.swift */,
 			);
 			path = AddProduct;
 			sourceTree = "<group>";
@@ -291,6 +303,7 @@
 				A36AE76A268B6E0000EA5431 /* UserViewModel.swift */,
 				A38549C926904734002C1A04 /* ProductViewModel.swift */,
 				A38549CB26904942002C1A04 /* StockViewModel.swift */,
+				A378CB1D2692FAAB00159BD1 /* CategoryViewModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -301,6 +314,14 @@
 				A3699B87267500C8006DEE22 /* CardView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		A378CB1F2692FC9500159BD1 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				A378CB202692FCC800159BD1 /* CategoryCard.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		A38070862673B32900CD24A6 /* Tabbar */ = {
@@ -316,6 +337,7 @@
 			children = (
 				A3C8D1F7268CBEA4001915EF /* UserRepository.swift */,
 				A38549CE269049C2002C1A04 /* StockRepository.swift */,
+				A378CB1B2692F8BA00159BD1 /* CategoryRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -430,6 +452,7 @@
 				A3B6EA992688E1C300FCBF88 /* UserModel.swift */,
 				A38549C526903FD2002C1A04 /* Stock.swift */,
 				A38549C726903FE7002C1A04 /* Product.swift */,
+				A378CB192692F7BF00159BD1 /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -637,12 +660,14 @@
 				A36149CA26711D1E001BE31D /* OnboardingView.swift in Sources */,
 				A397D9EE2680EDF20008BA6B /* ScrollTableTabBar.swift in Sources */,
 				A389BF542684D4FD00ACA2C5 /* DetailNotificationView.swift in Sources */,
+				A378CB1C2692F8BA00159BD1 /* CategoryRepository.swift in Sources */,
 				A38549CA26904734002C1A04 /* ProductViewModel.swift in Sources */,
 				A3465AC326734C3200FE3077 /* InputField.swift in Sources */,
 				A3465AC526734C6F00FE3077 /* InputSecureField.swift in Sources */,
 				A365359D2689C65300DDE3C8 /* UserView.swift in Sources */,
 				A3B562A2268461610030F0DF /* MarketView.swift in Sources */,
 				A358AFD526788C37005F569E /* ChoseProductView.swift in Sources */,
+				A378CB1A2692F7BF00159BD1 /* Category.swift in Sources */,
 				A32770232682447100A926C7 /* StockView.swift in Sources */,
 				A39AF4C62671187A00778D05 /* ContentView.swift in Sources */,
 				A3465AC026734BD200FE3077 /* SignUpView.swift in Sources */,
@@ -667,11 +692,14 @@
 				A3056DE726831CC7001AF64A /* PostingView.swift in Sources */,
 				A3B6EA9A2688E1C300FCBF88 /* UserModel.swift in Sources */,
 				A3C18BF92675EDD90065F10A /* RoundedTop.swift in Sources */,
+				A378CB1E2692FAAB00159BD1 /* CategoryViewModel.swift in Sources */,
 				A3699B88267500C8006DEE22 /* CardView.swift in Sources */,
 				A34959A626799ECF0070E795 /* ListWeightView.swift in Sources */,
 				A38070882673B3BA00CD24A6 /* CustomTabBarView.swift in Sources */,
 				A389BF502684C8D000ACA2C5 /* ListNotificationView.swift in Sources */,
+				A36676EC26936C2800C93464 /* AddProductSuccessView.swift in Sources */,
 				A3689DB12691F33F0049358C /* UpdateProductView.swift in Sources */,
+				A378CB212692FCC800159BD1 /* CategoryCard.swift in Sources */,
 				A389BF522684CC2800ACA2C5 /* NotificationView.swift in Sources */,
 				A38549C826903FE7002C1A04 /* Product.swift in Sources */,
 			);

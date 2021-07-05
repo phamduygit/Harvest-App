@@ -11,6 +11,7 @@ struct UpdateWeightView: View {
     @Binding var show : Bool
     @Binding var product : Product
     @Binding var indexUpdate: Int
+    var type: String
     @State var number : String
     @State private var isDelete : Bool = false
     enum MethodInputValue : String, CaseIterable {
@@ -88,7 +89,7 @@ struct UpdateWeightView: View {
             .cornerRadius(10)
             
             VStack (spacing: 10) {
-                Text("Nhập trọng lượng bao thứ")
+                Text("Nhập trọng lượng \(type) thứ")
                     .font(.title2)
                     .fontWeight(.bold)
                 Text("\(number) kg")
@@ -196,6 +197,6 @@ struct ColumnNum: Identifiable {
 }
 struct UpdateWeightView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateWeightView(show: Binding.constant(false), product: Binding.constant(Product()), indexUpdate: Binding.constant(0), number: "0.0")
+        UpdateWeightView(show: Binding.constant(false), product: Binding.constant(Product()), indexUpdate: Binding.constant(0), type: "bao", number: "0.0")
     }
 }

@@ -10,22 +10,23 @@ import SwiftUI
 struct AddToStorageView: View {
     @State private var showNames : Bool = false
     @State private var showInputWeight : Bool = false
-    @State private var ricesCategory = ["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]
+    @State private var listProductName = [String]()
     @State private var selected : String = "Lúa Jasmine"
-    
     @EnvironmentObject var productViewModel : ProductViewModel
     @EnvironmentObject var stockViewModel : StockViewModel
     @State private var image : Image?
     @State private var showingImagePicker = false
     @State private var inputImage : UIImage?
-    @Binding var show : Bool
+    @State private var addProductSucess : Bool = false
+    @Binding var showAddToStorage : Bool
+    @Binding var showAddProdct : Bool
     var body: some View {
         ZStack {
             VStack {
                 ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
                     HStack {
                         Button(action: {
-                            self.show.toggle()
+                            self.showAddToStorage.toggle()
                         }, label: {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(Color.black)
@@ -106,6 +107,7 @@ struct AddToStorageView: View {
                         })
                         Button(action: {
                             stockViewModel.addNewProduct(image: inputImage!,product: productViewModel.product)
+                            addProductSucess.toggle()
                         }, label: {
                             HStack {
                                 Spacer()
@@ -132,12 +134,16 @@ struct AddToStorageView: View {
                     ImagePicker(image: $inputImage)
                 }
             })
+            .sheet(isPresented: $addProductSucess, content: {
+                AddProductSuccessView(showAddProdct: $showAddProdct)
+            })
             if showNames {
-                NameOfProductView(show: $showNames, selected: $productViewModel.product.name, ricesCategory: $ricesCategory)
+                NameOfProductView(show: $showNames, selected: $productViewModel.product.name, categoryName: $productViewModel.product.category)
             }
             if showInputWeight {
-                ListWeightView(show: $showInputWeight)
+                UpdateListWeightView(show: $showInputWeight, product: $productViewModel.product)
             }
+            
         }
     }
     func loadImage() {
@@ -148,6 +154,6 @@ struct AddToStorageView: View {
 
 struct AddToStorageView_Previews: PreviewProvider {
     static var previews: some View {
-        AddToStorageView(show: Binding.constant(false))
+        AddToStorageView(showAddToStorage: Binding.constant(false), showAddProdct: Binding.constant(false))
     }
 }
