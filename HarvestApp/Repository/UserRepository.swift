@@ -36,7 +36,13 @@ class UserRepository: ObservableObject {
             fatalError("Unable encode to user: \(error.localizedDescription)")
         }
     }
-    
+    func updateUserInfo(userInfo: UserInfo) {
+        do {
+            let _ = try db.collection("users").document(userInfo.id!).setData(from: userInfo)
+        } catch {
+            fatalError("Unable encode to user: \(error.localizedDescription)")
+        }
+    }
     func printUser() {
         print("\n")
         for user in self.usersInfo {

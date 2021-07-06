@@ -39,10 +39,19 @@ class StockViewModel: ObservableObject {
         self.stockRepository.saveProductInStock(stockID: self.stock.id!, product: product)
     }
     func removeProduct(product: Product) {
-
         self.stockRepository.deleteProductInStock(stockID: self.stock.id!, product: product)
         stockRepository.$products
             .assign(to: \.products, on: self)
             .store(in: &cancellables)
+    }
+    func listProductInStock() -> [Product] {
+        return self.products.filter { products in
+            products.status == 1
+        }
+    }
+    func listSoldProduct() -> [Product] {
+        return self.products.filter { products in
+            products.status == 3
+        }
     }
 }

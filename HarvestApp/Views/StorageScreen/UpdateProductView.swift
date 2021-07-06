@@ -11,12 +11,10 @@ import SDWebImageSwiftUI
 struct UpdateProductView: View {
     @State private var showNames : Bool = false
     @State private var showInputWeight : Bool = false
-    @State private var ricesCategory = ["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]
-    @State private var selected : String = "Lúa Jasmine"
     @State private var listProdcutName = [String]()
-    @Binding var indexDetail : Int
+    @Binding var product : Product
     @Binding var show : Bool
-    
+    @State private var selected = ""
     @EnvironmentObject var stockViewModel : StockViewModel
     var body: some View {
         ZStack {
@@ -46,7 +44,7 @@ struct UpdateProductView: View {
                         }
                         .padding(.horizontal)
                         ZStack {
-                            AnimatedImage(url: URL(string: stockViewModel.products[indexDetail].image))
+                            AnimatedImage(url: URL(string: product.image))
                                 .resizable()
                                 .clipShape(Circle())
                                 .aspectRatio(contentMode: .fit)
@@ -60,12 +58,12 @@ struct UpdateProductView: View {
                             HStack {
                                 Text("Tên nông sản")
                                 Spacer()
-                                Text(stockViewModel.products[indexDetail].name)
+                                Text(product.name)
                                 Image(systemName: "chevron.right")
                                 
                             }
                             .onAppear {
-                                self.selected = stockViewModel.products[indexDetail].name
+                                self.selected = product.name
                             }
                             .foregroundColor(Color.black)
                             .padding()
@@ -80,7 +78,7 @@ struct UpdateProductView: View {
                             HStack {
                                 Text("Tổng sản lượng")
                                 Spacer()
-                                Text("\(stockViewModel.products[indexDetail].weight.reduce(0, +), specifier: "%.2f") kg")
+                                Text("\(product.weight.reduce(0, +), specifier: "%.2f") kg")
                                 Image(systemName: "chevron.right")
                                 
                             }
@@ -100,7 +98,7 @@ struct UpdateProductView: View {
             .overlay(
                 HStack {
                     Button(action: {
-                        stockViewModel.saveProduct(product: stockViewModel.products[indexDetail])
+                        stockViewModel.saveProduct(product: product)
                         self.show.toggle()
                     }, label: {
                         HStack {
@@ -122,10 +120,10 @@ struct UpdateProductView: View {
                 , alignment: .bottom
             )
             if showNames {
-                NameOfProductView(show: $showNames, selected: $stockViewModel.products[indexDetail].name, categoryName: $stockViewModel.products[indexDetail].category)
+                NameOfProductView(show: $showNames, selected: $product.name, categoryName: $product.category)
             }
             if showInputWeight {
-                UpdateListWeightView(show: $showInputWeight, product: $stockViewModel.products[indexDetail])
+                UpdateListWeightView(show: $showInputWeight, product: $product)
             }
         }
     }
@@ -133,6 +131,6 @@ struct UpdateProductView: View {
 
 struct UpdateProductView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateProductView(indexDetail: Binding.constant(0), show: Binding.constant(false))
+        UpdateProductView(product: Binding.constant(Product()), show: Binding.constant(false))
     }
 }

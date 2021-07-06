@@ -13,10 +13,11 @@ struct DetailInStockView: View {
     @State private var showInputWeight : Bool = false
     @State private var ricesCategory = ["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]
     @State private var selected : String = "Lúa Jasmine"
-    @Binding var indexDetail : Int
+    @Binding var product : Product
     @Binding var show : Bool
     @EnvironmentObject var stockViewModel : StockViewModel
     @State private var showEdit : Bool = false
+    @State private var showPosting : Bool = false
     var body: some View {
         ZStack {
             VStack {
@@ -51,7 +52,7 @@ struct DetailInStockView: View {
                         }
                         .padding(.horizontal)
                         ZStack {
-                            AnimatedImage(url: URL(string: stockViewModel.products[indexDetail].image))
+                            AnimatedImage(url: URL(string: product.image))
                                 .resizable()
                                 .clipShape(Circle())
                                 .aspectRatio(contentMode: .fit)
@@ -62,11 +63,11 @@ struct DetailInStockView: View {
                             HStack {
                                 Text("Tên nông sản")
                                 Spacer()
-                                Text(stockViewModel.products[indexDetail].name)
+                                Text(product.name)
                                 
                             }
                             .onAppear {
-                                self.selected = stockViewModel.products[indexDetail].name
+                                self.selected = product.name
                             }
                             .foregroundColor(Color.black)
                             .padding()
@@ -75,7 +76,7 @@ struct DetailInStockView: View {
                             HStack {
                                 Text("Tổng sản lượng")
                                 Spacer()
-                                Text("\(stockViewModel.products[indexDetail].weight.reduce(0, +), specifier: "%.2f") kg")
+                                Text("\(product.weight.reduce(0, +), specifier: "%.2f") kg")
                             }
                             .foregroundColor(Color.black)
                             .padding()
@@ -91,14 +92,15 @@ struct DetailInStockView: View {
             }
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
             .overlay(
-                HStack {
+                HStack(spacing: 20) {
                     Button(action: {
-//                            self.showInputWeight.toggle()
+                        product.status = 3
+                        stockViewModel.saveProduct(product: product)
+                        show.toggle()
                     }, label: {
                         HStack {
                             Spacer()
                             Text("Đã bán")
-                                .font(.title2)
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.white)
                             Spacer()
@@ -106,17 +108,14 @@ struct DetailInStockView: View {
                         .padding()
                         .background(Color.yellow)
                         .clipShape(Capsule())
-                        .padding()
-                        .padding(.bottom)
                         
                     })
                     Button(action: {
-//                            self.showInputWeight.toggle()
+                        self.showPosting.toggle()
                     }, label: {
                         HStack {
                             Spacer()
                             Text("Đăng bán")
-                                .font(.title2)
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.white)
                             Spacer()
@@ -124,16 +123,19 @@ struct DetailInStockView: View {
                         .padding()
                         .background(Color("Color5"))
                         .clipShape(Capsule())
-                        .padding()
-                        .padding(.bottom)
                         
                     })
                     
                 }
+                .padding(.horizontal)
+                .padding(.bottom)
                 , alignment: .bottom
             )
             if showEdit {
-                UpdateProductView(indexDetail: $indexDetail, show: $showEdit)
+                UpdateProductView(product: $product, show: $showEdit)
+            }
+            if showPosting {
+                PostView(show: $showPosting, product: $product)
             }
         }
     }

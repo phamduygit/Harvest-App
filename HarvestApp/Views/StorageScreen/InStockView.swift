@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InStockView: View {
     @State private var showDetailView : Bool = false
-    @State private var indexDetail : Int = -1
+    @State private var selectedProdcut : Product = Product()
     @State private var indexDelete : Int = -1
     @State private var showAlertDelete : Bool = false
     @EnvironmentObject var stockViewModel : StockViewModel
@@ -17,12 +17,11 @@ struct InStockView: View {
         ZStack {
             ScrollView(.vertical, showsIndicators: true) {
                 VStack(spacing: 10) {
-                    ForEach(stockViewModel.products) {product in
+                    ForEach(stockViewModel.listProductInStock()) {product in
                         CardInStock(product: product)
                             .cornerRadius(10)
                             .onTapGesture {
-                                self.indexDetail = getIndexInStock(product: product)
-                                print("index \(indexDetail)")
+                                self.selectedProdcut = product
                                 self.showDetailView.toggle()
                             }
                     }
@@ -32,19 +31,11 @@ struct InStockView: View {
             .frame(width: UIScreen.main.bounds.width)
             .background(Color("Color4").ignoresSafeArea())
             .fullScreenCover(isPresented: $showDetailView, content: {
-                DetailInStockView(indexDetail: $indexDetail, show: $showDetailView)
+                DetailInStockView(product: $selectedProdcut, show: $showDetailView)
             })
         }
-        
-    }
-    func getIndexInStock(product: Product) -> Int {
-        let index = stockViewModel.products.firstIndex { item in
-            item.id == product.id
-        } ?? -1
-        return index
     }
 }
-
 
 struct ItemInStock {
     var offset: CGFloat = 0

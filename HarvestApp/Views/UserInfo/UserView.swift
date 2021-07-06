@@ -10,18 +10,23 @@ import SDWebImageSwiftUI
 
 struct UserView: View {
     @EnvironmentObject var userVM : UserViewModel
+    @State private var showEditUser : Bool = false
     var body: some View {
         NavigationView {
             VStack {
-                
-                VStack(alignment: .center) {
-                    AnimatedImage(url: URL(string: userVM.userInfo.avatar))
-                        .frame(width: 150, height: 150, alignment: .center)
-                        .clipShape(Circle())
-                    Text(userVM.userInfo.fullName)
-                }
                 List {
-                    
+                    Section(header: Text("Ảnh đại diện")) {
+                        HStack {
+                            Spacer()
+                            AnimatedImage(url: URL(string: userVM.userInfo.avatar))
+                                .frame(width: 150, height: 150, alignment: .center)
+                                .clipShape(Circle())
+                            Spacer()
+                        }
+                    }
+                    Section(header: Text("Họ và tên")) {
+                        Text(userVM.userInfo.fullName)
+                    }
                     Section(header: Text("Email")) {
                         Text(userVM.userInfo.email)
                     }
@@ -39,14 +44,24 @@ struct UserView: View {
                             Spacer()
                         }
                     })
+                    
                 }
-                
-                
+                .padding(.bottom, 50)
             }
             .listStyle(InsetGroupedListStyle())
             .navigationBarTitle("Cá nhân")
+            .toolbar(content: {
+                Button(action: {
+                    showEditUser.toggle()
+                }, label: {
+                    Image(systemName: "square.and.pencil")
+                        .foregroundColor(Color.black)
+                })
+            })
         }
-        
+        .sheet(isPresented: $showEditUser, content: {
+            EditUserView(userInfo: $userVM.userInfo)
+        })
     }
 }
 

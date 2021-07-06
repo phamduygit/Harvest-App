@@ -52,6 +52,23 @@ class UserViewModel : ObservableObject {
         }
         
     }
+    func updateUserInfo(avatar: UIImage?, userInfo: UserInfo) {
+        if Auth.auth().currentUser == nil {
+            return
+        }
+        var user = userInfo
+        if avatar != nil {
+            uploadImage(image: avatar!) { [self] (url) in
+                updateProfile(photoURL: url, fullName: userInfo.fullName)
+                user.avatar = url
+                userRepository.updateUserInfo(userInfo: user)
+            }
+        } else {
+            updateProfile(photoURL: userInfo.avatar, fullName: userInfo.fullName)
+            userRepository.updateUserInfo(userInfo: user)
+        }
+        
+    }
     func logIn(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { data, error in
             if error != nil {

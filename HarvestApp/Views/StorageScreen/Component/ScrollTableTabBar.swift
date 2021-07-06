@@ -36,7 +36,6 @@ struct ScrollTableTabBar<Content: View>: UIViewRepresentable {
         scrollView.delegate = context.coordinator
         return scrollView
     }
-    
     func updateUIView(_ uiView: UIScrollView, context: Context) {
         uiView.delegate = nil
         UIView.animate(withDuration: 0.4) {
@@ -46,9 +45,7 @@ struct ScrollTableTabBar<Content: View>: UIViewRepresentable {
                 uiView.delegate = context.coordinator
             }
         }
-
     }
-    
     func setUpScrollView() {
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
