@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-var rices = ["Lúa Jasmine", "Lúa IR 50404", "Lúa OM 9577", "Lúa OM 9582"]
 struct ChoseProductView: View {
-    @EnvironmentObject var productViewModel : ProductViewModel
+    @StateObject var productViewModel = ProductViewModel()
     @EnvironmentObject var categoryViewModel : CategoryViewModel
     @State private var listProductName = [String]()
     @State private var scrolled = 0
@@ -50,6 +49,7 @@ struct ChoseProductView: View {
                             ForEach(categoryViewModel.categories.reversed()) { category in
                                 CategoryCard(index: getIndexOfCategory(category: category), scrolled: $scrolled, listProductName: $listProductName)
                                     .environmentObject(categoryViewModel)
+                                    .environmentObject(productViewModel)
                                 //                                Text(category.categoryName)
                             }
                         }
@@ -107,9 +107,11 @@ struct ChoseProductView: View {
             })
             if showNames {
                 NameOfProductView(show: $showNames, selected: $productViewModel.product.name, categoryName: $productViewModel.product.category)
+                    .environmentObject(productViewModel)
             }
             if showInputWeight {
                 ListWeightView(showInputWeigth: $showInputWeight, showAddProdct: $showAddProdct)
+                    .environmentObject(productViewModel)
             }
         }
     }

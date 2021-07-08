@@ -16,6 +16,7 @@ struct CustomTabBarView: View {
     @StateObject var productViewModel = ProductViewModel()
     @StateObject var stockViewModel = StockViewModel()
     @StateObject var categoryViewModel = CategoryViewModel()
+    @StateObject var postViewModel = PostViewModel()
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
@@ -100,7 +101,6 @@ struct CustomTabBarView: View {
             }
             if showAddProdct {
                 ChoseProductView(showAddProdct: $showAddProdct)
-                    .environmentObject(productViewModel)
                     .environmentObject(stockViewModel)
                     .environmentObject(categoryViewModel)
             }
@@ -108,6 +108,7 @@ struct CustomTabBarView: View {
                 StockView(show: $showStock)
                     .environmentObject(stockViewModel)
                     .environmentObject(categoryViewModel)
+                    .environmentObject(postViewModel)
             }
         }
     }

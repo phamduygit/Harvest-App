@@ -14,12 +14,14 @@ struct MarketView: View {
         case rice = "Lúa"
         case coffee = "Cà phê"
         case blackPepper = "Tiêu"
+        case lychee = "Vải"
         var id: FilterCategory { self }
     }
-    @State private var showBookMark : Bool = false
     @State private var showDetailPost : Bool = false
-    @State private var isTapDetail : Bool = false
+    @State private var selectedPost = Post()
+    @State private var showBookMark = false
     @Binding var showTabBar : Bool
+    @EnvironmentObject var postViewModel : PostViewModel
     var body: some View {
         ZStack {
             VStack(spacing: 10) {
@@ -44,20 +46,23 @@ struct MarketView: View {
 
                 }
                 .padding(.horizontal)
-                ScrollView(.vertical, showsIndicators: false) {
+                ScrollView(.vertical, showsIndicators: true) {
                     VStack(spacing: 10) {
-                        ForEach(1..<5) {index in
-                            PostCard(isTapDetail: $isTapDetail, showTabBar: $showTabBar)
+                        ForEach(postViewModel.filtered(category: filter.rawValue)) {post in
+                            PostCard(post: post, showTabBar: $showTabBar)
+                                .cornerRadius(10)
+                                .onTapGesture {
+                                    showDetailPost.toggle()
+                                }
                         }
                     }
-                    .padding(.top, 20)
-                    .padding(.bottom, 40)
+                    .padding()
                 }
 
             }
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
-            if isTapDetail {
-                DetailPostVIew(show: $isTapDetail, showTabBar: $showTabBar)
+            if showDetailPost {
+                DetailPostView(show: $showDetailPost, showTabBar: $showTabBar, post: $selectedPost)
             }
         }
     }

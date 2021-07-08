@@ -60,6 +60,15 @@ class StockRepository: ObservableObject {
             fatalError("Unable encode to stock: \(error.localizedDescription)")
         }
     }
+    func addProduct(stockID: String, product: Product) -> String {
+        var ref: DocumentReference? = nil
+        do {
+            ref = try db.collection("stocks").document(stockID).collection("products").addDocument(from: product)
+        } catch {
+            fatalError("Unable encode to stock: \(error.localizedDescription)")
+        }
+        return ref!.documentID
+    }
     func saveProductInStock(stockID: String, product: Product) {
         do {
             let _ = try db.collection("stocks").document(stockID).collection("products").document(product.id!).setData(from: product)

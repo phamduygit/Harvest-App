@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var userVM = UserViewModel()
+    @StateObject var postViewModel = PostViewModel()
     @AppStorage("currentPage") var currentPage = 1
     @State private var showTabBar = true
     @State private var selection : Int = 0
@@ -35,6 +36,7 @@ struct ContentView: View {
                         ProductsView(showTabBar: $showTabBar)
                             .tag(1)
                         MarketView(showTabBar: $showTabBar)
+                            .environmentObject(postViewModel)
                             .tag(3)
                         UserView()
                             .environmentObject(userVM)

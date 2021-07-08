@@ -1,20 +1,17 @@
 //
-//  DetailInStockView.swift
+//  DetailSoldView.swift
 //  HarvestApp
 //
-//  Created by Pham Minh Duy on 20/06/2021.
+//  Created by Pham Minh Duy on 08/07/2021.
 //
 
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct DetailInStockView: View {
+struct DetailSoldView: View {
     @Binding var product : Product
     @Binding var show : Bool
     @EnvironmentObject var stockViewModel : StockViewModel
-    @State private var showEdit : Bool = false
-    @State private var showPosting : Bool = false
-    @State private var showSellingView : Bool = false
     var body: some View {
         ZStack {
             VStack {
@@ -27,12 +24,6 @@ struct DetailInStockView: View {
                                 .foregroundColor(Color.black)
                         })
                         Spacer()
-                        Button(action: {
-                            self.showEdit.toggle()
-                        }, label: {
-                            Image(systemName: "square.and.pencil")
-                                .foregroundColor(Color.black)
-                        })
                     }
                     .padding(.horizontal)
                     Text("Kho")
@@ -76,6 +67,24 @@ struct DetailInStockView: View {
                             .padding()
                             .background(Color.white)
                             .cornerRadius(15)
+                            HStack {
+                                Text("Giá")
+                                Spacer()
+                                Text("\(product.price, specifier: "%.0f") đ/kg")
+                            }
+                            .foregroundColor(Color.black)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(15)
+                            HStack {
+                                Text("Doanh thu")
+                                Spacer()
+                                Text("\(product.price * product.weight.reduce(0, +), specifier: "%.0f") đồng")
+                            }
+                            .foregroundColor(Color.black)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(15)
                         }
                         .padding(.horizontal)
                         .padding(.bottom)
@@ -84,58 +93,12 @@ struct DetailInStockView: View {
                 }
             }
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
-            .sheet(isPresented: $showSellingView) {
-                SellingView(show: $showSellingView, showStock: $show, product: $product, post: Binding.constant(Post()))
-            }
-            .overlay(
-                HStack(spacing: 20) {
-                    Button(action: {
-                        showSellingView.toggle()
-                    }, label: {
-                        HStack {
-                            Spacer()
-                            Text("Đã bán")
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.white)
-                            Spacer()
-                        }
-                        .padding()
-                        .background(Color.yellow)
-                        .clipShape(Capsule())
-                        
-                    })
-                    Button(action: {
-                        self.showPosting.toggle()
-                    }, label: {
-                        HStack {
-                            Spacer()
-                            Text("Đăng bán")
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.white)
-                            Spacer()
-                        }
-                        .padding()
-                        .background(Color("Color5"))
-                        .clipShape(Capsule())
-                        
-                    })
-                }
-                .padding(.horizontal)
-                .padding(.bottom)
-                , alignment: .bottom
-            )
-            if showEdit {
-                UpdateProductView(product: $product, show: $showEdit)
-            }
-            if showPosting {
-                PostingView(show: $showPosting, showDetail: $show, product: $product)
-            }
         }
     }
 }
 
-//struct DetailInStockView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailInStockView(indexDetail: Binding.constant(-1), show: Binding.constant(false))
-//    }
-//}
+struct DetailSoldView_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailSoldView(product: Binding.constant(Product()), show: Binding.constant(false))
+    }
+}

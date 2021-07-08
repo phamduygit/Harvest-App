@@ -16,5 +16,6 @@ struct Product: Identifiable, Codable {
     var image: String = ""
     var weight: [Float] = []
     var status: Int = 1
+    var price: Float = 0
     @ServerTimestamp var timeHarvest : Timestamp?
 }

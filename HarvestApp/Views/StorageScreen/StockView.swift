@@ -37,7 +37,7 @@ struct StockView: View {
                     HStack {
                         InStockView()
                             .frame(width: rect.width)
-                        PostingView()
+                        PostView()
                             .frame(width: rect.width)
                         SoldView()
                             .frame(width: rect.width)

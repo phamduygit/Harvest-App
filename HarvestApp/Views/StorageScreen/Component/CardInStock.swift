@@ -37,18 +37,17 @@ struct CardInStock: View {
                     Text(product.name)
                         .font(.headline)
                         .fontWeight(.bold)
-                    
                     HStack {
-                        Text("Sản lượng")
+                        Text("Sản lượng:")
                             .fontWeight(.medium)
                             .foregroundColor(Color.black.opacity(0.5))
-                        Spacer()
                         Text("\(product.weight.reduce(0, +), specifier: "%.2f") kg")
                             .fontWeight(.medium)
                             .foregroundColor(Color.black)
+                        Spacer()
                     }
                     HStack {
-                        Text("Ngày thu hoạch: \(convertTimestamp(timestamp: product.timeHarvest!))")
+                        Text("Ngày thu hoạch: \(convertTimestamp(timestamp: product.timeHarvest))")
                             .font(.footnote)
                     }
                 }
@@ -68,7 +67,6 @@ struct CardInStock: View {
                                 item.offset = value.translation.width
                             }
                         }
-                        
                     })
                     .onEnded({ value in
                         if value.translation.width < 0 {
@@ -100,12 +98,17 @@ struct CardInStock: View {
             )
         }
     }
-    func convertTimestamp(timestamp: Timestamp) -> String {
+    func convertTimestamp(timestamp: Timestamp?) -> String {
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "dd/MM/yyyy"
-        let date = timestamp.dateValue()
-        let dateString = dateFormatterGet.string(from: date)
-        return dateString
+        if timestamp != nil {
+            let date = timestamp!.dateValue()
+            let dateString = dateFormatterGet.string(from: date)
+            return dateString
+        } else {
+            return "con coc"
+        }
+        
     }
 }
 

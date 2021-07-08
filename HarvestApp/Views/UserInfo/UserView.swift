@@ -60,7 +60,7 @@ struct UserView: View {
             })
         }
         .sheet(isPresented: $showEditUser, content: {
-            EditUserView(userInfo: $userVM.userInfo)
+            EditUserView(showAlertEdit: $showEditUser, userInfo: $userVM.userInfo)
         })
     }
 }

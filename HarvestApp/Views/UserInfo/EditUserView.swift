@@ -9,6 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct EditUserView: View {
+    @Binding var showAlertEdit : Bool
     @Binding var userInfo : UserInfo
     @State private var image : Image?
     @State private var showingImagePicker = false
@@ -67,6 +68,7 @@ struct EditUserView: View {
                 Spacer()
                 Button(action: {
                     self.userViewModel.updateUserInfo(avatar: inputImage, userInfo: userInfo)
+                    self.showAlertEdit.toggle()
                 }, label: {
                     Text("Lưu")
                 })
@@ -88,6 +90,6 @@ struct EditUserView: View {
 
 struct EditUserView_Previews: PreviewProvider {
     static var previews: some View {
-        EditUserView(userInfo: Binding.constant(UserInfo()))
+        EditUserView(showAlertEdit: Binding.constant(false), userInfo: Binding.constant(UserInfo()))
     }
 }

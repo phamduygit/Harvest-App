@@ -12,6 +12,9 @@ struct UpdateProductView: View {
     @State private var showNames : Bool = false
     @State private var showInputWeight : Bool = false
     @State private var listProdcutName = [String]()
+    @State private var image : Image?
+    @State private var showingImagePicker = false
+    @State private var inputImage : UIImage?
     @Binding var product : Product
     @Binding var show : Bool
     @State private var selected = ""
@@ -44,13 +47,40 @@ struct UpdateProductView: View {
                         }
                         .padding(.horizontal)
                         ZStack {
-                            AnimatedImage(url: URL(string: product.image))
-                                .resizable()
-                                .clipShape(Circle())
-                                .aspectRatio(contentMode: .fit)
-                                
+                            VStack(alignment: .leading, spacing: 10) {
+                                HStack {
+                                    Spacer()
+                                    Button(action: {
+                                        self.showingImagePicker = true
+                                    }, label: {
+                                        if image != nil {
+                                            image?
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .clipShape(Circle())
+                                        } else {
+                                            if product.image == "" {
+                                                Image(systemName: "camera.fill")
+                                                    .foregroundColor(.black)
+                                                    .padding(40)
+                                                    .background(Color.gray.opacity(0.5))
+                                                    .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                                    .clipShape(Circle())
+                                            } else {
+                                                AnimatedImage(url: URL(string: product.image))
+                                                    .resizable()
+                                                    .clipShape(Circle())
+                                                    .aspectRatio(contentMode: .fit)
+                                                    .padding()
+                                            }
+                                            
+                                        }
+                                    })
+                                    Spacer()
+                                }
+                            }
                         }
-                        .padding()
+                        
                         .frame(height: UIScreen.main.bounds.height / 3)
                         Button(action: {
                             showNames.toggle()
@@ -98,7 +128,7 @@ struct UpdateProductView: View {
             .overlay(
                 HStack {
                     Button(action: {
-                        stockViewModel.saveProduct(product: product)
+                        stockViewModel.saveProductAndImage(image: inputImage, product: product)
                         self.show.toggle()
                     }, label: {
                         HStack {
@@ -119,6 +149,11 @@ struct UpdateProductView: View {
                 }
                 , alignment: .bottom
             )
+            .sheet(isPresented: $showingImagePicker, onDismiss: loadImage, content: {
+                VStack {
+                    ImagePicker(image: $inputImage)
+                }
+            })
             if showNames {
                 NameOfProductView(show: $showNames, selected: $product.name, categoryName: $product.category)
             }
@@ -126,6 +161,10 @@ struct UpdateProductView: View {
                 UpdateListWeightView(show: $showInputWeight, product: $product)
             }
         }
+    }
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
     }
 }
 

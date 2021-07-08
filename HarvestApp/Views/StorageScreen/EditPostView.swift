@@ -1,23 +1,21 @@
 //
-//  PostingView.swift
+//  EditPostView.swift
 //  HarvestApp
 //
-//  Created by Pham Minh Duy on 23/06/2021.
+//  Created by Pham Minh Duy on 08/07/2021.
 //
 
 import SwiftUI
 
-struct PostingView: View {
+struct EditPostView: View {
     @Binding var show : Bool
-    @Binding var showDetail : Bool
-    @ObservedObject var weigth = NumbersOnly()
+//    @ObservedObject var weigth = NumbersOnly()
     @ObservedObject var price = NumbersOnly()
     @State private var description : String = ""
     @Binding var product : Product
-    @StateObject var postViewModel = PostViewModel()
-    @StateObject var userViweModel = UserViewModel()
-    @EnvironmentObject var stockViewModel : StockViewModel
-    @State private var showAlert: Bool = false
+    @Binding var post: Post
+    @EnvironmentObject var postViewModel: PostViewModel
+//    @State private var showAlert: Bool = false
     var body: some View {
         VStack(alignment: .leading) {
             ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
@@ -50,7 +48,7 @@ struct PostingView: View {
                             Text("Tên nông sản")
                                 .font(.headline)
                             Spacer()
-                            Text("Lúa jasmine")
+                            Text(post.productName)
                                 .font(.headline)
                                 .foregroundColor(Color.black.opacity(0.4))
                         }
@@ -59,11 +57,7 @@ struct PostingView: View {
                             Text("Sản lượng")
                                 .font(.headline)
                             HStack {
-                                TextField("Nhập sản lượng", text: $weigth.value)
-                                    .keyboardType(.decimalPad)
-                                    .onAppear() {
-                                        weigth.value = String(format: "%.2f", (product.weight.reduce(0, +)))
-                                    }
+                                Text("\(post.weight, specifier: "%.2f")")
                                 Spacer()
                                 Text("kg")
                             }
@@ -75,6 +69,9 @@ struct PostingView: View {
                             HStack {
                                 TextField("Nhập giá", text: $price.value)
                                     .keyboardType(.decimalPad)
+                                    .onAppear() {
+                                        price.value = String(format: "%.2f", (post.price))
+                                    }
                                 Spacer()
                                 Text("đ/kg")
                             }
@@ -85,6 +82,9 @@ struct PostingView: View {
                                 .font(.headline)
                             HStack {
                                 TextField("Nhập mô tả", text: $description)
+                                    .onAppear() {
+                                        description = post.description
+                                    }
                             }
                             Divider()
                         }
@@ -95,9 +95,9 @@ struct PostingView: View {
             }
         }
         .padding(.bottom, 60)
-        .alert(isPresented: $showAlert, content: {
-            Alert(title: Text("Sản lượng không đủ"), message: Text("Vui lòng nhập lại sản lượng muốn bán"), dismissButton: .default(Text("OK")))
-        })
+//        .alert(isPresented: $showAlert, content: {
+//            Alert(title: Text("Sản lượng không đủ"), message: Text("Vui lòng nhập lại sản lượng muốn bán"), dismissButton: .default(Text("OK")))
+//        })
         .overlay(
             HStack(spacing: 30) {
                 Button(action: {
@@ -116,12 +116,14 @@ struct PostingView: View {
                     
                 })
                 Button(action: {
-                    posting()
-                    showDetail.toggle()
+                    post.price = (price.value as NSString).floatValue
+                    post.description = description
+                    postViewModel.updatePost(post: post)
+                    show.toggle()
                 }, label: {
                     HStack {
                         Spacer()
-                        Text("Đăng")
+                        Text("Lưu")
                             .fontWeight(.bold)
                             .foregroundColor(Color.white)
                         Spacer()
@@ -138,33 +140,10 @@ struct PostingView: View {
         )
         .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
     }
-    func posting() {
-        if product.weight.reduce(0, +) - (weigth.value as NSString).floatValue == 0 {
-            postViewModel.addPost(product: product, userInfo: userViweModel.userInfo, price: (price.value as NSString).floatValue, totalWeight: (weigth.value as NSString).floatValue, description: description)
-            product.status = 2
-            stockViewModel.saveProduct(product: product)
-        } else if product.weight.reduce(0, +) - (weigth.value as NSString).floatValue > 0 {
-            let newProduct = stockViewModel.postProdct(product: product, totalWeight: (weigth.value as NSString).floatValue)
-            postViewModel.addPost(product: newProduct, userInfo: userViweModel.userInfo, price: (price.value as NSString).floatValue, totalWeight: (weigth.value as NSString).floatValue, description: description)
-        } else {
-            self.showAlert.toggle()
-        }
-    }
 }
 
-class NumbersOnly: ObservableObject {
-    @Published var value = "" {
-        didSet {
-            let filtered = value.filter { $0.isNumber || $0 == "."}
-            if value != filtered {
-                value = filtered
-            }
-        }
-    }
-}
-
-struct PostingView_Previews: PreviewProvider {
+struct EditPostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostingView(show: Binding.constant(false), showDetail: Binding.constant(false), product: Binding.constant(Product()))
+        EditPostView(show: Binding.constant(false), product: Binding.constant(Product()), post: Binding.constant(Post()))
     }
 }

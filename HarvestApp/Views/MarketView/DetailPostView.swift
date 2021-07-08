@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct DetailPostVIew: View {
+struct DetailPostView: View {
     @Binding var show: Bool
     @Binding var showTabBar : Bool
+    @Binding var post: Post
     var body: some View {
         VStack {
             Image("rice")
@@ -138,6 +139,6 @@ struct DetailPostVIew: View {
 
 struct DetailPostVIew_Previews: PreviewProvider {
     static var previews: some View {
-        DetailPostVIew(show: Binding.constant(false), showTabBar: Binding.constant(false))
+        DetailPostView(show: Binding.constant(false), showTabBar: Binding.constant(false), post: Binding.constant(Post()))
     }
 }

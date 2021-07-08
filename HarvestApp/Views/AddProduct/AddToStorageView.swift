@@ -106,7 +106,7 @@ struct AddToStorageView: View {
                             .padding(.horizontal)
                         })
                         Button(action: {
-                            stockViewModel.addNewProduct(image: inputImage!,product: productViewModel.product)
+                            stockViewModel.addNewProduct(image: inputImage,product: productViewModel.product)
                             addProductSucess.toggle()
                         }, label: {
                             HStack {

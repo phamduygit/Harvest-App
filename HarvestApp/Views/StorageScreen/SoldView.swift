@@ -31,7 +31,7 @@ struct SoldView: View {
             .frame(width: UIScreen.main.bounds.width)
             .background(Color("Color4").ignoresSafeArea())
             .fullScreenCover(isPresented: $showDetailView, content: {
-                DetailInStockView(product: $selectedProdcut, show: $showDetailView)
+                DetailSoldView(product: $selectedProdcut, show: $showDetailView)
             })
         }
     }

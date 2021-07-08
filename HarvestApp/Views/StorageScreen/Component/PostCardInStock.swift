@@ -1,24 +1,23 @@
 //
-//  PostCard.swift
+//  PostCardInStock.swift
 //  HarvestApp
 //
-//  Created by Pham Minh Duy on 24/06/2021.
+//  Created by Pham Minh Duy on 07/07/2021.
 //
 
 import SwiftUI
 import SDWebImageSwiftUI
 import FirebaseFirestore
 
-struct PostCard: View {
+struct PostCardInStock: View {
     var post: Post
-    @Binding var showTabBar : Bool
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 10) {
                 AnimatedImage(url: URL(string: post.avatar))
                     .resizable()
                     .clipShape(Circle())
-                    .frame(width: 50, height: 50, alignment: .center)
+                    .frame(width: 60, height: 60, alignment: .center)
                     .aspectRatio(contentMode: .fit)
                 HStack(alignment: .top, spacing: 0) {
                     VStack(alignment: .leading, spacing: 5) {
@@ -28,11 +27,10 @@ struct PostCard: View {
                         Text(convertTimestamp(timestamp: post.createdTime))
                             .font(.subheadline)
                             .foregroundColor(Color.black.opacity(0.5))
-                            .foregroundColor(Color.black)
                     }
                     Spacer()
                     Button(action: {}, label: {
-                        Image(systemName: "bookmark")
+                        Image(systemName: "multiply")
                             .foregroundColor(Color.black)
                     })
                     
@@ -52,7 +50,7 @@ struct PostCard: View {
                             .foregroundColor(Color.black)
                         Text("Sản lượng: \(post.weight, specifier: "%.2f") kg")
                             .foregroundColor(Color.black)
-                        Text("Giá: \(post.price, specifier: "%.0f") đ/kg")
+                        Text("Giá: \(post.price, specifier: "%.2f") đ/kg")
                             .foregroundColor(Color.black)
                     }
                     Spacer()
@@ -83,8 +81,8 @@ struct PostCard: View {
     }
 }
 
-struct PostCard_Previews: PreviewProvider {
+struct PostCardInStock_Previews: PreviewProvider {
     static var previews: some View {
-        PostCard(post: Post(), showTabBar: Binding.constant(false))
+        PostCardInStock(post: Post())
     }
 }
