@@ -18,20 +18,20 @@ struct UserView: View {
                     Section(header: Text("Ảnh đại diện")) {
                         HStack {
                             Spacer()
-                            AnimatedImage(url: URL(string: userVM.userInfo.avatar))
+                            AnimatedImage(url: URL(string: userVM.user.avatar))
                                 .frame(width: 150, height: 150, alignment: .center)
                                 .clipShape(Circle())
                             Spacer()
                         }
                     }
                     Section(header: Text("Họ và tên")) {
-                        Text(userVM.userInfo.fullName)
+                        Text(userVM.user.fullName)
                     }
                     Section(header: Text("Email")) {
-                        Text(userVM.userInfo.email)
+                        Text(userVM.user.email)
                     }
                     Section(header: Text("Số điện thoại")) {
-                        Text(userVM.userInfo.phone)
+                        Text(userVM.user.phone)
                     }
                     Button(action: {
                         userVM.isLogin = false
@@ -60,7 +60,7 @@ struct UserView: View {
             })
         }
         .sheet(isPresented: $showEditUser, content: {
-            EditUserView(showAlertEdit: $showEditUser, userInfo: $userVM.userInfo)
+            EditUserView(showAlertEdit: $showEditUser, userInfo: $userVM.user)
         })
     }
 }

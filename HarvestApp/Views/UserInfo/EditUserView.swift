@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 struct EditUserView: View {
     @Binding var showAlertEdit : Bool
-    @Binding var userInfo : UserInfo
+    @Binding var userInfo : User
     @State private var image : Image?
     @State private var showingImagePicker = false
     @State private var inputImage : UIImage?
@@ -90,6 +90,6 @@ struct EditUserView: View {
 
 struct EditUserView_Previews: PreviewProvider {
     static var previews: some View {
-        EditUserView(showAlertEdit: Binding.constant(false), userInfo: Binding.constant(UserInfo()))
+        EditUserView(showAlertEdit: Binding.constant(false), userInfo: Binding.constant(User()))
     }
 }

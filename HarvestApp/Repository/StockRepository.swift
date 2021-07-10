@@ -25,7 +25,6 @@ class StockRepository: ObservableObject {
             self.stocks = snapshot?.documents.compactMap {
                 try? $0.data(as: Stock.self)
             } ?? []
-            print("ahihi \(self.stocks.count)")
             if self.stocks.count < 1 {
                 self.stocks.append(self.addNewStock())
             } else {

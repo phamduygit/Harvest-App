@@ -6,42 +6,34 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct DetailPostView: View {
-    @Binding var show: Bool
-    @Binding var showTabBar : Bool
     @Binding var post: Post
+    @Binding var show: Bool
+    @State private var showBookProduct: Bool = false
     var body: some View {
         VStack {
-            Image("rice")
+            AnimatedImage(url: URL(string: post.image))
                 .resizable()
                 .frame(height: 300)
-                .aspectRatio(contentMode: .fit)
             VStack {
                 VStack {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("Trần Văn Lâm")
+                            Text(post.fullName)
                                 .font(.title2)
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.black)
-                            Text("Bán lúa")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.black.opacity(0.5))
                         }
                         Spacer()
                         HStack(spacing: 15) {
                             Image(systemName: "envelope.fill")
-                                .resizable()
-                                .frame(width: 30, height: 30, alignment: .center)
                                 .foregroundColor(Color.white)
                                 .padding(10)
                                 .background(Color.yellow)
                                 .cornerRadius(10)
                             Image(systemName: "phone.fill")
-                                .resizable()
-                                .frame(width: 30, height: 30, alignment: .center)
                                 .foregroundColor(Color.white)
                                 .padding(10)
                                 .background(Color.green)
@@ -51,46 +43,33 @@ struct DetailPostView: View {
                     .padding(.bottom, 10)
                     Divider()
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("Lúa jasmine")
+                        Text(post.productName)
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(Color.black)
                         HStack {
                             Text("Giá")
-                                .font(.title3)
-                                .fontWeight(.bold)
                                 .foregroundColor(Color.black.opacity(0.5))
                             Spacer()
-                            Text("5900 đ/kg")
-                                .font(.title3)
-                                .fontWeight(.bold)
+                            Text("\(post.price, specifier: "%.0f") đ/kg")
                                 .foregroundColor(Color.black.opacity(0.5))
                         }
                         HStack {
                             Text("Sản lượng")
-                                .font(.title3)
-                                .fontWeight(.bold)
                                 .foregroundColor(Color.black.opacity(0.5))
                             Spacer()
-                            Text("5000 kg")
-                                .font(.title3)
-                                .fontWeight(.bold)
+                            Text("\(post.weight, specifier: "%.2f") kg")
                                 .foregroundColor(Color.black.opacity(0.5))
                         }
                         HStack {
                             Text("Tổng")
-                                .font(.title3)
-                                .fontWeight(.bold)
                                 .foregroundColor(Color.black.opacity(0.5))
                             Spacer()
-                            Text("\(5900 * 5000) đ")
-                                .font(.title3)
-                                .fontWeight(.bold)
+                            Text("\(post.price * post.weight, specifier: "%.0f") đồng")
                                 .foregroundColor(Color.black.opacity(0.5))
                         }
                     }
                     Spacer()
-                    
                 }
                 .padding(.top, 10)
                 .padding()
@@ -98,12 +77,14 @@ struct DetailPostView: View {
                 .clipShape(RoundedTop())
                 .offset(y: -50)
                 Spacer()
-                Button(action: {}, label: {
+                Button(action: {
+                    showBookProduct.toggle()
+                }, label: {
                     HStack {
                         Spacer()
                         Text("Đặt cọc")
-                            .font(.title)
-                            .fontWeight(.bold)
+                            .font(.title3)
+                            .fontWeight(.medium)
                             .foregroundColor(Color.white)
                         Spacer()
                     }
@@ -115,14 +96,14 @@ struct DetailPostView: View {
                 .padding(.bottom)
             }
             .background(Color.white)
-            
-
         }
+        .sheet(isPresented: $showBookProduct, content: {
+            BookProductView(show: $showBookProduct, post: $post)
+        })
         .ignoresSafeArea(.all, edges: .all)
         .overlay(
             Button(action: {
                 self.show.toggle()
-                self.showTabBar.toggle()
             }, label: {
                 Image(systemName: "chevron.left")
                     .foregroundColor(Color.white)
@@ -139,6 +120,6 @@ struct DetailPostView: View {
 
 struct DetailPostVIew_Previews: PreviewProvider {
     static var previews: some View {
-        DetailPostView(show: Binding.constant(false), showTabBar: Binding.constant(false), post: Binding.constant(Post()))
+        DetailPostView(post: Binding.constant(Post()), show: Binding.constant(false))
     }
 }

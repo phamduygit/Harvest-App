@@ -140,12 +140,12 @@ struct PostingView: View {
     }
     func posting() {
         if product.weight.reduce(0, +) - (weigth.value as NSString).floatValue == 0 {
-            postViewModel.addPost(product: product, userInfo: userViweModel.userInfo, price: (price.value as NSString).floatValue, totalWeight: (weigth.value as NSString).floatValue, description: description)
+            postViewModel.addPost(product: product, userInfo: userViweModel.user, price: (price.value as NSString).floatValue, totalWeight: (weigth.value as NSString).floatValue, description: description)
             product.status = 2
             stockViewModel.saveProduct(product: product)
         } else if product.weight.reduce(0, +) - (weigth.value as NSString).floatValue > 0 {
             let newProduct = stockViewModel.postProdct(product: product, totalWeight: (weigth.value as NSString).floatValue)
-            postViewModel.addPost(product: newProduct, userInfo: userViweModel.userInfo, price: (price.value as NSString).floatValue, totalWeight: (weigth.value as NSString).floatValue, description: description)
+            postViewModel.addPost(product: newProduct, userInfo: userViweModel.user, price: (price.value as NSString).floatValue, totalWeight: (weigth.value as NSString).floatValue, description: description)
         } else {
             self.showAlert.toggle()
         }

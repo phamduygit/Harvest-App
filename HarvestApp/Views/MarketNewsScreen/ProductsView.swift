@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProductsView: View {
-    var listProduct = ["Lúa jasmine", "Lúa jasmine", "Lúa jasmine", "Lúa jasmine", "Lúa jasmine", "Lúa jasmine", "Lúa jasmine", "Lúa jasmine",]
     @State private var filter = FilterCategory.all
     enum FilterCategory: String, CaseIterable, Identifiable {
         case all = "Tất cả"
@@ -19,26 +18,26 @@ struct ProductsView: View {
     }
     @State private var showFavoritesOnly = false
     @State private var showDetail : Bool = false
-    @State private var key : String = ""
     @Binding var showTabBar : Bool
+    @EnvironmentObject var itemViewModel : ItemViewModel
+    @EnvironmentObject var userViewModel : UserViewModel
+    @State private var selectedItem = Item()
+    @State private var selectedDate: Date = Date()
     var body: some View {
         ZStack {
-            VStack {
-                HStack {
-                    HStack {
-                        TextField("Tìm kiếm nông sản", text: $key)
-                        Spacer()
-                        Image(systemName: "magnifyingglass")
-//                            .resizable()
-//                            .frame(width: 24, height: 24, alignment: .center)
-                            
-                    }
-                    .padding(10)
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    
-                }
-                .padding()
+            VStack(spacing: 5) {
+//                HStack {
+//                    HStack {
+//                        TextField("Tìm kiếm nông sản", text: $key)
+//                        Spacer()
+//                        Image(systemName: "magnifyingglass")
+//                    }
+//                    .padding(10)
+//                    .background(Color.white)
+//                    .cornerRadius(10)
+//
+//                }
+//                .padding()
                 HStack {
                     Text("Bản tin thị trường")
                         .font(.title)
@@ -53,6 +52,7 @@ struct ProductsView: View {
                         Toggle(isOn: $showFavoritesOnly) {
                             Label("Đã yêu thích", systemImage: "heart.fill")
                         }
+                        
                     } label: {
                         Image(systemName: "slider.horizontal.3")
                             .foregroundColor(Color.black)
@@ -60,13 +60,15 @@ struct ProductsView: View {
 
                 }
                 .padding(.horizontal)
+                DatePicker("Ngày cập nhật", selection: $selectedDate, displayedComponents: [.date])
+                    .padding(.horizontal)
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 10) {
-                        ForEach(listProduct.indices) {index in
-                            ItemCardView()
+                        ForEach(itemViewModel.listItemFiltered(category: filter.rawValue, favorites: userViewModel.user.favorite, isFavorite: showFavoritesOnly, updateDate: selectedDate)) {item in
+                            ItemCardView(item: item)
                                 .onTapGesture {
-                                    self.showDetail.toggle()
-                                    self.showTabBar.toggle()
+                                    selectedItem = item
+                                    showDetail.toggle()
                                 }
                         }
                     }
@@ -75,11 +77,10 @@ struct ProductsView: View {
                 }
             }
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
-            if showDetail {
-                ProductDetailView(show: $showDetail, showTabBar: $showTabBar)
-            }
-            
         }
+        .fullScreenCover(isPresented: $showDetail, content: {
+            ProductDetailView(show: $showDetail, selectedItem: $selectedItem)
+        })
     }
 }
 

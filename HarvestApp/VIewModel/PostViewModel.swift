@@ -18,7 +18,7 @@ class PostViewModel: ObservableObject {
             .assign(to: \.posts, on: self)
             .store(in: &cancellables)
     }
-    func addPost(product: Product, userInfo: UserInfo, price: Float, totalWeight: Float, description: String) {
+    func addPost(product: Product, userInfo: User, price: Float, totalWeight: Float, description: String) {
         var post = Post()
         post.avatar = userInfo.avatar
         post.fullName = userInfo.fullName
@@ -44,12 +44,32 @@ class PostViewModel: ObservableObject {
     func deletePost(post: Post) {
         postRepository.deletePost(post: post)
     }
-    func filtered(category: String) -> [Post] {
+    func getOnePost(postID: String) -> Post {
+        return posts.first { post in
+            post.id == postID
+        } ?? Post()
+    }
+    func filtered(category: String, bookmarks: [String], isMark: Bool) -> [Post] {
+        let markedPost = posts.filter { post in
+            bookmarks.contains(post.id!)
+        }
         if category == "Tất cả" {
-            return posts
+            if isMark {
+                return markedPost
+            } else {
+                return posts
+            }
+            
         }
-        return posts.filter { post in
-            post.category == category
+        if isMark {
+            return markedPost.filter { post in
+                post.category == category
+            }
+        } else {
+            return posts.filter { post in
+                post.category == category
+            }
         }
+        
     }
 }

@@ -35,7 +35,7 @@ func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
 func uploadImage(image: UIImage, completion: @escaping ((String) -> Void)) {
     var strURL = ""
     let imageName = NSUUID().uuidString
-    let resizedImage = resizeImage(image: image, targetSize: CGSize.init(width: 150, height: 150))
+    let resizedImage = resizeImage(image: image, targetSize: CGSize.init(width: 300, height: 300))
     if let imageData = resizedImage.jpegData(compressionQuality: 1) {
         let storage = Storage.storage().reference().child("avatar/\(imageName)")
         storage.putData(imageData, metadata: nil) { data, error in

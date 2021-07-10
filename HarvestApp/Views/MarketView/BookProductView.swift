@@ -1,20 +1,21 @@
 //
-//  SellingView.swift
+//  BookProductView.swift
 //  HarvestApp
 //
-//  Created by Pham Minh Duy on 08/07/2021.
+//  Created by Pham Minh Duy on 09/07/2021.
 //
 
 import SwiftUI
 
-struct SellingView: View {
+struct BookProductView: View {
     @Binding var show: Bool
-    @Binding var showStock: Bool
-    @Binding var product: Product
     @Binding var post: Post
     @ObservedObject var price = NumbersOnly()
-    @EnvironmentObject var stockViewModel: StockViewModel
+    @ObservedObject var bookPrice = NumbersOnly()
+    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var postViewModel : PostViewModel
+    @State private var message: String = ""
+    @State private var notification = Notification()
     @State private var showAlert: Bool = false
     var body: some View {
         NavigationView {
@@ -24,7 +25,7 @@ struct SellingView: View {
                         Text("Tên nông sản")
                             .font(.headline)
                         Spacer()
-                        Text(product.name)
+                        Text(post.productName)
                             .font(.headline)
                             .foregroundColor(Color.black.opacity(0.4))
                     }
@@ -33,7 +34,7 @@ struct SellingView: View {
                         Text("Sản lượng")
                             .font(.headline)
                         HStack {
-                            Text("\(product.weight.reduce(0, +), specifier: "%.2f")")
+                            Text("\(post.weight, specifier: "%.2f")")
                             Spacer()
                             Text("kg")
                         }
@@ -46,10 +47,30 @@ struct SellingView: View {
                             TextField("Nhập giá", text: $price.value)
                                 .keyboardType(.decimalPad)
                                 .onAppear() {
-                                    price.value = String(format: "%.2f", (product.price))
+                                    price.value = String(format: "%.0f", (post.price))
                                 }
                             Spacer()
-                            Text("đ/kg")
+                            Text("đồng")
+                        }
+                        Divider()
+                    }
+                    VStack (alignment: .leading, spacing: 10 ) {
+                        Text("Giá đặt cọc")
+                            .font(.headline)
+                        HStack {
+                            TextField("Nhập giá đặt cọc", text: $bookPrice.value)
+                                .keyboardType(.decimalPad)
+                            Spacer()
+                            Text("đồng")
+                        }
+                        Divider()
+                    }
+                    VStack (alignment: .leading, spacing: 10 ) {
+                        Text("Tin nhắn")
+                            .font(.headline)
+                        HStack {
+                            TextField("Nhập tin nhắn", text: $message)
+                            Spacer()
                         }
                         Divider()
                     }
@@ -72,26 +93,29 @@ struct SellingView: View {
                         .padding()
                         .background(Color.gray)
                         .clipShape(Capsule())
-                        
                     })
                     Button(action: {
-                        if price.value == "" {
+                        if price.value == "" || bookPrice.value == "" || message == "" {
                             showAlert.toggle()
                         } else {
-                            product.status = 3
-                            product.price = (price.value as NSString).floatValue
-                            stockViewModel.saveProduct(product: product)
-                            if post.id != nil {
-                                postViewModel.deletePost(post: post)
-                            }
+                            notification.avatar = userViewModel.user.avatar
+                            notification.name = userViewModel.user.fullName
+                            notification.userID = userViewModel.user.userId
+                            notification.email = userViewModel.user.email
+                            notification.phone = userViewModel.user.phone
+                            notification.message = message
+                            notification.postID = post.id!
+                            notification.price = (price.value as NSString).floatValue
+                            notification.bookWeight = post.weight
+                            notification.bookPrice = (bookPrice.value as NSString).floatValue
+                            userViewModel.addNotification(notification: notification, userID: post.userID)
                             show.toggle()
-                            showStock.toggle()
                         }
                         
                     }, label: {
                         HStack {
                             Spacer()
-                            Text("Lưu")
+                            Text("Chấp nhận")
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.white)
                             Spacer()
@@ -99,14 +123,13 @@ struct SellingView: View {
                         .padding()
                         .background(Color("Color5"))
                         .clipShape(Capsule())
-                        
                     })
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
                 , alignment: .bottom
             )
-            .navigationBarTitle("Xác nhận đã bán")
+            .navigationBarTitle("Đặt cọc nông sản")
             .alert(isPresented: $showAlert, content: {
                 Alert(title: Text("Chưa nhập đủ thông tin"), message: Text("Yêu cầu bạn phải nhập đầy thông tin"), dismissButton: .default(Text("OK")))
             })
@@ -114,8 +137,8 @@ struct SellingView: View {
     }
 }
 
-struct SellingView_Previews: PreviewProvider {
+struct BookProductView_Previews: PreviewProvider {
     static var previews: some View {
-        SellingView(show: Binding.constant(false), showStock: Binding.constant(false), product: Binding.constant(Product()), post: Binding.constant(Post()))
+        BookProductView(show: Binding.constant(false), post: Binding.constant(Post()))
     }
 }

@@ -22,6 +22,7 @@ struct MarketView: View {
     @State private var showBookMark = false
     @Binding var showTabBar : Bool
     @EnvironmentObject var postViewModel : PostViewModel
+    @EnvironmentObject var userViewModel : UserViewModel
     var body: some View {
         ZStack {
             VStack(spacing: 10) {
@@ -48,22 +49,22 @@ struct MarketView: View {
                 .padding(.horizontal)
                 ScrollView(.vertical, showsIndicators: true) {
                     VStack(spacing: 10) {
-                        ForEach(postViewModel.filtered(category: filter.rawValue)) {post in
-                            PostCard(post: post, showTabBar: $showTabBar)
+                        ForEach(postViewModel.filtered(category: filter.rawValue,bookmarks: userViewModel.user.bookmarks, isMark: showBookMark ).reversed()) {post in
+                            PostCard(post: post)
                                 .cornerRadius(10)
                                 .onTapGesture {
+                                    selectedPost = post
                                     showDetailPost.toggle()
                                 }
                         }
                     }
                     .padding()
                 }
-
             }
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
-            if showDetailPost {
-                DetailPostView(show: $showDetailPost, showTabBar: $showTabBar, post: $selectedPost)
-            }
+        }
+        .fullScreenCover(isPresented: $showDetailPost) {
+            DetailPostView(post: $selectedPost, show: $showDetailPost)
         }
     }
 }

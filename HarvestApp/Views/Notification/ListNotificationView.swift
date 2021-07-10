@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ListNotificationView: View {
     @State private var showDetail : Bool = false
+    @StateObject private var userViewModel = UserViewModel()
     var body: some View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(0..<5) {index in
-                        NavigationLink(destination: DetailNotificationView()) {
-                            NotificationView()
+                    ForEach(userViewModel.notifications) { notification in
+                        NavigationLink(destination: DetailNotificationView(notification: notification)) {
+                            NotificationView(notification: notification)
                         }
                     }
                 }

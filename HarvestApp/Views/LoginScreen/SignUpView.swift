@@ -14,7 +14,7 @@ struct SignUpView: View {
     @EnvironmentObject var userVM: UserViewModel
     @Binding var show : Bool
     @State private var password : String = ""
-    @State private var userInfo : UserInfo = UserInfo()
+    @State private var userInfo : User = User()
     @State private var image : Image?
     @State private var showingImagePicker = false
     @State private var inputImage : UIImage?

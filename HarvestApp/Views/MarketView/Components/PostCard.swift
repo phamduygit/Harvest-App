@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 struct PostCard: View {
     var post: Post
-    @Binding var showTabBar : Bool
+    @EnvironmentObject var userViewModel: UserViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 10) {
@@ -31,8 +31,14 @@ struct PostCard: View {
                             .foregroundColor(Color.black)
                     }
                     Spacer()
-                    Button(action: {}, label: {
-                        Image(systemName: "bookmark")
+                    Button(action: {
+                        if isMark() {
+                            userViewModel.removeBookmark(postID: post.id!)
+                        } else {
+                            userViewModel.addBookmark(postID: post.id!)
+                        }
+                    }, label: {
+                        Image(systemName: isMark() ? "bookmark.fill": "bookmark")
                             .foregroundColor(Color.black)
                     })
                     
@@ -61,10 +67,6 @@ struct PostCard: View {
             .padding(10)
             .background(Color.gray.opacity(0.2))
             .cornerRadius(15)
-//            .onTapGesture {
-//                self.isTapDetail.toggle()
-//                self.showTabBar.toggle()
-//            }
         }
         .padding()
         .background(Color.white)
@@ -79,12 +81,14 @@ struct PostCard: View {
         } else {
             return "con coc"
         }
-        
+    }
+    func isMark() -> Bool {
+        return userViewModel.user.bookmarks.contains(post.id!)
     }
 }
 
 struct PostCard_Previews: PreviewProvider {
     static var previews: some View {
-        PostCard(post: Post(), showTabBar: Binding.constant(false))
+        PostCard(post: Post())
     }
 }

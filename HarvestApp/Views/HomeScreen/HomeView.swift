@@ -18,7 +18,7 @@ struct HomeView: View {
             VStack (alignment: .leading){
                 ZStack {
                     HStack {
-                        AnimatedImage(url: URL(string: userViewModel.userInfo.avatar))
+                        AnimatedImage(url: URL(string: userViewModel.user.avatar))
                             .resizable()
                             .frame(width: 50, height: 50, alignment: .center)
                             .clipShape(Circle())
@@ -31,13 +31,12 @@ struct HomeView: View {
                                 .frame(width: 24, height: 24, alignment: .center)
                                 .foregroundColor(Color.black)
                         })
-                        
                     }
                     .padding(.horizontal)
                     .padding(.bottom)
                     VStack {
                         Text("Chào buổi sáng")
-                        Text(userViewModel.userInfo.fullName)
+                        Text(userViewModel.user.fullName)
                             .fontWeight(.bold)
                     }
                 }

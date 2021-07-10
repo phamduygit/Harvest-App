@@ -62,12 +62,17 @@
 		A39AF4CB2671187B00778D05 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A39AF4CA2671187B00778D05 /* Preview Assets.xcassets */; };
 		A39AF4D62671187C00778D05 /* HarvestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4D52671187C00778D05 /* HarvestAppTests.swift */; };
 		A39AF4E12671187C00778D05 /* HarvestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39AF4E02671187C00778D05 /* HarvestAppUITests.swift */; };
+		A3A060892698324B0015A115 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A060882698324B0015A115 /* Notification.swift */; };
+		A3A0608B269842FA0015A115 /* BookProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A0608A269842FA0015A115 /* BookProductView.swift */; };
 		A3A2CCD1268E30D30082C0B0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A3A2CCD0268E30D30082C0B0 /* SDWebImageSwiftUI */; };
 		A3A38D3126952AD9001276FE /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A38D3026952AD9001276FE /* Post.swift */; };
 		A3A38D33269542A3001276FE /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A38D32269542A3001276FE /* PostRepository.swift */; };
 		A3A38D35269545C0001276FE /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A38D34269545C0001276FE /* PostViewModel.swift */; };
 		A3A38D372695A602001276FE /* PostCardInStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A38D362695A602001276FE /* PostCardInStock.swift */; };
 		A3A58316268F673D002D9C95 /* FacebookLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A58315268F673D002D9C95 /* FacebookLoginView.swift */; };
+		A3AB6663269976810011F0F8 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AB6662269976810011F0F8 /* Item.swift */; };
+		A3AB66652699792C0011F0F8 /* ItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AB66642699792C0011F0F8 /* ItemRepository.swift */; };
+		A3AB666726997AFD0011F0F8 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AB666626997AFD0011F0F8 /* ItemViewModel.swift */; };
 		A3B562A2268461610030F0DF /* MarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B562A1268461610030F0DF /* MarketView.swift */; };
 		A3B562A5268463340030F0DF /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B562A4268463340030F0DF /* PostCard.swift */; };
 		A3B562A72684775D0030F0DF /* DetailPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B562A62684775D0030F0DF /* DetailPostView.swift */; };
@@ -161,11 +166,16 @@
 		A39AF4DC2671187C00778D05 /* HarvestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HarvestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A39AF4E02671187C00778D05 /* HarvestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestAppUITests.swift; sourceTree = "<group>"; };
 		A39AF4E22671187C00778D05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3A060882698324B0015A115 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		A3A0608A269842FA0015A115 /* BookProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookProductView.swift; sourceTree = "<group>"; };
 		A3A38D3026952AD9001276FE /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A3A38D32269542A3001276FE /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
 		A3A38D34269545C0001276FE /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		A3A38D362695A602001276FE /* PostCardInStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardInStock.swift; sourceTree = "<group>"; };
 		A3A58315268F673D002D9C95 /* FacebookLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginView.swift; sourceTree = "<group>"; };
+		A3AB6662269976810011F0F8 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		A3AB66642699792C0011F0F8 /* ItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRepository.swift; sourceTree = "<group>"; };
+		A3AB666626997AFD0011F0F8 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		A3B562A1268461610030F0DF /* MarketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketView.swift; sourceTree = "<group>"; };
 		A3B562A4268463340030F0DF /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
 		A3B562A62684775D0030F0DF /* DetailPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostView.swift; sourceTree = "<group>"; };
@@ -327,6 +337,7 @@
 				A38549CB26904942002C1A04 /* StockViewModel.swift */,
 				A378CB1D2692FAAB00159BD1 /* CategoryViewModel.swift */,
 				A3A38D34269545C0001276FE /* PostViewModel.swift */,
+				A3AB666626997AFD0011F0F8 /* ItemViewModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -362,6 +373,7 @@
 				A38549CE269049C2002C1A04 /* StockRepository.swift */,
 				A378CB1B2692F8BA00159BD1 /* CategoryRepository.swift */,
 				A3A38D32269542A3001276FE /* PostRepository.swift */,
+				A3AB66642699792C0011F0F8 /* ItemRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -460,6 +472,7 @@
 				A3B562A3268462CC0030F0DF /* Components */,
 				A3B562A1268461610030F0DF /* MarketView.swift */,
 				A3B562A62684775D0030F0DF /* DetailPostView.swift */,
+				A3A0608A269842FA0015A115 /* BookProductView.swift */,
 			);
 			path = MarketView;
 			sourceTree = "<group>";
@@ -480,6 +493,8 @@
 				A38549C726903FE7002C1A04 /* Product.swift */,
 				A378CB192692F7BF00159BD1 /* Category.swift */,
 				A3A38D3026952AD9001276FE /* Post.swift */,
+				A3A060882698324B0015A115 /* Notification.swift */,
+				A3AB6662269976810011F0F8 /* Item.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -674,6 +689,7 @@
 			files = (
 				A30D02F62688630700C4DFFB /* ImagePicker.swift in Sources */,
 				A3A38D33269542A3001276FE /* PostRepository.swift in Sources */,
+				A3A060892698324B0015A115 /* Notification.swift in Sources */,
 				A3465ABE267335E900FE3077 /* SignInView.swift in Sources */,
 				A38549C626903FD2002C1A04 /* Stock.swift in Sources */,
 				A34959A82679D9340070E795 /* UpdateWeightView.swift in Sources */,
@@ -705,6 +721,7 @@
 				A3465AC026734BD200FE3077 /* SignUpView.swift in Sources */,
 				A32A3E72267FA1DB005CDFC9 /* InStockView.swift in Sources */,
 				A3C8D1F8268CBEA4001915EF /* UserRepository.swift in Sources */,
+				A3AB66652699792C0011F0F8 /* ItemRepository.swift in Sources */,
 				A32A3E74267FA928005CDFC9 /* DetailInStockView.swift in Sources */,
 				A366C1082697419800D60138 /* DetailSoldView.swift in Sources */,
 				A3465AC726734CEE00FE3077 /* RoundedBotton.swift in Sources */,
@@ -722,6 +739,8 @@
 				A3056DED26832B0D001AF64A /* TabBarStock.swift in Sources */,
 				A3A58316268F673D002D9C95 /* FacebookLoginView.swift in Sources */,
 				A389BF562684EDB600ACA2C5 /* PostView.swift in Sources */,
+				A3A0608B269842FA0015A115 /* BookProductView.swift in Sources */,
+				A3AB6663269976810011F0F8 /* Item.swift in Sources */,
 				A3C18BFE2676145B0065F10A /* ProductsView.swift in Sources */,
 				A3DECE8E26791DDF00C2A47E /* NameOfProductView.swift in Sources */,
 				A3056DE726831CC7001AF64A /* PostingView.swift in Sources */,
@@ -730,6 +749,7 @@
 				A3C18BF92675EDD90065F10A /* RoundedTop.swift in Sources */,
 				A378CB1E2692FAAB00159BD1 /* CategoryViewModel.swift in Sources */,
 				A3699B88267500C8006DEE22 /* CardView.swift in Sources */,
+				A3AB666726997AFD0011F0F8 /* ItemViewModel.swift in Sources */,
 				A34959A626799ECF0070E795 /* ListWeightView.swift in Sources */,
 				A38070882673B3BA00CD24A6 /* CustomTabBarView.swift in Sources */,
 				A389BF502684C8D000ACA2C5 /* ListNotificationView.swift in Sources */,

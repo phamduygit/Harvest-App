@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ProductDetailView: View {
     enum chose: String, CaseIterable {
@@ -15,26 +16,26 @@ struct ProductDetailView: View {
     @State private var currentIndex = 0
     @State private var selection : chose = .week
     @State private var isLike : Bool = false
+    @EnvironmentObject var userViewModel : UserViewModel
     @Binding var show : Bool
-    @Binding var showTabBar : Bool
+    @Binding var selectedItem: Item
     var body: some View {
         ZStack {
             Color("Color4").ignoresSafeArea()
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0) {
                     VStack(spacing: 10) {
-                        Image("rice")
+                        AnimatedImage(url: URL(string: selectedItem.image))
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
+                            .frame(height: UIScreen.main.bounds.height / 3)
                             .clipShape(RoundedBotton(cornerRaidus: 40))
-                            
                         VStack(spacing: 10) {
                             HStack {
-                                Text("Lúa jasmine")
+                                Text(selectedItem.name)
                                     .font(.title2)
                                     .fontWeight(.bold)
                                 Spacer()
-                                Text("5.900 đ/kg")
+                                Text("\(selectedItem.price, specifier: "%.0f") đ/kg")
                                     .font(.title2)
                                     .fontWeight(.bold)
                             }
@@ -45,7 +46,7 @@ struct ProductDetailView: View {
                                         .fontWeight(.bold)
                                         .foregroundColor(Color.black.opacity(0.6))
                                         .font(.title3)
-                                    Text("Lúa")
+                                    Text(selectedItem.category)
                                         .font(.headline)
                                         .fontWeight(.bold)
                                         .foregroundColor(Color.black.opacity(0.6))
@@ -65,7 +66,7 @@ struct ProductDetailView: View {
                                 .fontWeight(.bold)
                             Spacer()
                         }
-                        Text("Gạo Jasmine là loại lúa thơm dẻo có thời gian sinh trưởng ngắn ( hay còn gọi là lúa ngắn ngày). Gạo Jasmine hiện đang được trồng phổ biến rộng rãi chiếm diện tích lớn nhất trong tổng diện tích trồng lúa. Vì gạo jasmine cho năng suất và giá trị cao. Giống lúa cứng cây ít bị ngã đỗ, trỗ tập trung thích hợp trồng vụ đông xuân")
+                        Text(selectedItem.description)
                         
                     }
                     .padding()
@@ -112,7 +113,6 @@ struct ProductDetailView: View {
             HStack {
                 Button(action: {
                     self.show.toggle()
-                    self.showTabBar.toggle()
                 }, label: {
                     Image(systemName: "chevron.left")
                         .foregroundColor(Color.white)
@@ -123,10 +123,13 @@ struct ProductDetailView: View {
                 })
                 Spacer()
                 Button(action: {
-                    self.isLike.toggle()
+                    if isLove() {
+                        userViewModel.removeFavorite(itemID: selectedItem.id!)
+                    } else {
+                        userViewModel.addFavorite(itemID: selectedItem.id!)
+                    }
                 }, label: {
-                    
-                    Image(systemName: isLike ? "heart.fill" : "heart")
+                    Image(systemName: isLove() ? "heart.fill": "heart")
                         .foregroundColor(Color.white)
                         .padding(.vertical, 10)
                         .padding(.horizontal)
@@ -137,6 +140,9 @@ struct ProductDetailView: View {
             .padding(.horizontal)
             , alignment: .top
         )
+    }
+    func isLove() -> Bool {
+        return userViewModel.user.favorite.contains(selectedItem.id!)
     }
 }
 struct Data {
@@ -154,6 +160,6 @@ var data = [
 ]
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView(show: Binding.constant(false), showTabBar: Binding.constant(false))
+        ProductDetailView(show: Binding.constant(false), selectedItem: Binding.constant(Item()))
     }
 }
