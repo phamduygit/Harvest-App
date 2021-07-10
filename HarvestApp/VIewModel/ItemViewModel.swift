@@ -27,11 +27,11 @@ class ItemViewModel: ObservableObject {
             })
         }
 
-//        let dateFormatterGet = DateFormatter()
-//        dateFormatterGet.dateFormat = "yyyy-MM-dd"
-//        filteredItem = filteredItem.filter({ item in
-//            dateFormatterGet.string(from: (item.updateTime?.dateValue())!) == dateFormatterGet.string(from: updateDate)
-//        })
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd"
+        filteredItem = filteredItem.filter({ item in
+            dateFormatterGet.string(from: (item.updateTime?.dateValue())!) == dateFormatterGet.string(from: updateDate)
+        })
         
         return filteredItem
     }
