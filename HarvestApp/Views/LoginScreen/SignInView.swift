@@ -76,27 +76,6 @@ struct SignInView: View {
                             
                             Spacer()
                         }
-                        Divider()
-                            .padding(.horizontal)
-//                        FacebookLoginView()
-                        HStack (spacing: 30) {
-                            Spacer()
-                            Button(action: {}, label: {
-                                Image("gmail - icon")
-                                    .padding()
-                                    .background(Color.white)
-                                    .clipShape(Circle())
-                                    .shadow(radius: 2)
-                            })
-                            Button(action: {}, label: {
-                                Image("gmail - icon")
-                                    .padding()
-                                    .background(Color.white)
-                                    .clipShape(Circle())
-                                    .shadow(radius: 2)
-                            })
-                            Spacer()
-                        }
                     }
                     .padding()
                     .background(Color.white.ignoresSafeArea(.all, edges: .bottom))

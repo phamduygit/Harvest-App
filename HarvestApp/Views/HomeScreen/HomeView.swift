@@ -10,9 +10,15 @@ import SDWebImageSwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var userViewModel : UserViewModel
+    @EnvironmentObject var itemViewModel : ItemViewModel
+    @EnvironmentObject var postViewModel : PostViewModel
     @State private var key : String = ""
     @State private var isLike : Bool = true
     @State private var showNotification : Bool = false
+    @State private var selectedItem = Item()
+    @State private var showDetailProduct = false
+    @State private var selectedPost = Post()
+    @State private var showDetailPost = false
     var body: some View {
         ZStack {
             VStack (alignment: .leading){
@@ -33,7 +39,6 @@ struct HomeView: View {
                         })
                     }
                     .padding(.horizontal)
-                    .padding(.bottom)
                     VStack {
                         Text("Chào buổi sáng")
                         Text(userViewModel.user.fullName)
@@ -53,15 +58,40 @@ struct HomeView: View {
                     }
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack (spacing: 15) {
-                            CardView(isLike: $isLike)
-                                .padding(.leading)
-                            CardView(isLike: $isLike)
-                            CardView(isLike: $isLike)
+                            ForEach(itemViewModel.listItemFavorite(favorites: userViewModel.user.favorite)) { item in
+                                CardView(item: item)
+                                    .onTapGesture {
+                                        selectedItem = item
+                                        showDetailProduct.toggle()
+                                    }
+                            }
+                        }
+                    }
+                    HStack {
+                        Text("Các bài đăng mới nhất")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .padding(.leading)
+                        Spacer()
+                    }
+                    VStack {
+                        ForEach(postViewModel.posts) {post in
+                            PostCard(post: post)
+                                .onTapGesture {
+                                    selectedPost = post
+                                    showDetailPost.toggle()
+                                }
                         }
                     }
                 }
             }
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
+        }
+        .fullScreenCover(isPresented: $showDetailProduct, content: {
+            ProductDetailView(show: $showDetailProduct, selectedItem: $selectedItem)
+        })
+        .fullScreenCover(isPresented: $showDetailPost) {
+            DetailPostView(post: $selectedPost, show: $showDetailPost)
         }
     }
 }

@@ -19,6 +19,7 @@ struct UserView: View {
                         HStack {
                             Spacer()
                             AnimatedImage(url: URL(string: userVM.user.avatar))
+                                .resizable()
                                 .frame(width: 150, height: 150, alignment: .center)
                                 .clipShape(Circle())
                             Spacer()

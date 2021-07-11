@@ -33,6 +33,8 @@ struct ContentView: View {
                     TabView(selection: $selection) {
                         HomeView()
                             .environmentObject(userVM)
+                            .environmentObject(itemViewModel)
+                            .environmentObject(postViewModel)
                             .tag(0)
                         ProductsView(showTabBar: $showTabBar)
                             .environmentObject(itemViewModel)

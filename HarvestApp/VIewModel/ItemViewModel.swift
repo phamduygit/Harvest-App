@@ -26,13 +26,17 @@ class ItemViewModel: ObservableObject {
                 favorites.contains(item.id!)
             })
         }
-
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd"
         filteredItem = filteredItem.filter({ item in
             dateFormatterGet.string(from: (item.updateTime?.dateValue())!) == dateFormatterGet.string(from: updateDate)
         })
-        
+        return filteredItem
+    }
+    func listItemFavorite(favorites: [String]) -> [Item] {
+        let filteredItem = items.filter({ item in
+            favorites.contains(item.id!)
+        }) 
         return filteredItem
     }
 }
