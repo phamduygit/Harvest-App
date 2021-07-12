@@ -73,9 +73,11 @@ struct ProductsView: View {
                         }
                     }
                     .padding()
+                    .padding(.bottom, 60)
                     
                 }
             }
+            
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
         }
         .fullScreenCover(isPresented: $showDetail, content: {

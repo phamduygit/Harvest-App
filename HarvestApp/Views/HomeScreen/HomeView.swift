@@ -19,6 +19,7 @@ struct HomeView: View {
     @State private var showDetailProduct = false
     @State private var selectedPost = Post()
     @State private var showDetailPost = false
+    @State private var limit = 0
     var body: some View {
         ZStack {
             VStack (alignment: .leading){
@@ -64,9 +65,12 @@ struct HomeView: View {
                                         selectedItem = item
                                         showDetailProduct.toggle()
                                     }
+                                    
                             }
                         }
+                        .padding(.leading)
                     }
+                    
                     HStack {
                         Text("Các bài đăng mới nhất")
                             .font(.title2)
@@ -75,16 +79,19 @@ struct HomeView: View {
                         Spacer()
                     }
                     VStack {
-                        ForEach(postViewModel.posts) {post in
+                        ForEach(postViewModel.limitedPosts) {post in
                             PostCard(post: post)
+                                .padding(.horizontal)
                                 .onTapGesture {
                                     selectedPost = post
                                     showDetailPost.toggle()
                                 }
                         }
                     }
+                    .padding(.bottom, 60)
                 }
             }
+            
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
         }
         .fullScreenCover(isPresented: $showDetailProduct, content: {

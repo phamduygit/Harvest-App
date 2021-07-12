@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 
 class PostRepository: ObservableObject {
     @Published var posts = [Post]()
+    @Published var limitedPosts = [Post]()
     let db = Firestore.firestore()
     init() {
         db.collection("posts").order(by: "createdTime").addSnapshotListener { (snapshot, error) in
@@ -19,6 +20,15 @@ class PostRepository: ObservableObject {
                 return
             }
             self.posts = snapshot?.documents.compactMap {
+                try? $0.data(as: Post.self)
+            } ?? []
+        }
+        db.collection("posts").order(by: "createdTime").limit(to: 3).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            self.limitedPosts = snapshot?.documents.compactMap {
                 try? $0.data(as: Post.self)
             } ?? []
         }

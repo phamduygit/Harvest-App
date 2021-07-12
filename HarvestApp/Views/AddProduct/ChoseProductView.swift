@@ -9,21 +9,21 @@ import SwiftUI
 
 struct ChoseProductView: View {
     @StateObject var productViewModel = ProductViewModel()
-    @EnvironmentObject var categoryViewModel : CategoryViewModel
+    @StateObject var categoryViewModel = CategoryViewModel()
     @State private var listProductName = [String]()
     @State private var scrolled = 0
-    @State private var selected : String = "Lúa Jasmine"
+    @State private var selected : String = ""
     @State private var showNames : Bool = false
     @State private var showInputWeight : Bool = false
     @Binding var showAddProdct : Bool
     @State private var showAlert : Bool = false
-    @State private var type = "bao"
     var body: some View {
         ZStack {
             VStack {
                 ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
                     HStack {
                         Button(action: {
+                            scrolled = 0
                             self.showAddProdct.toggle()
                         }, label: {
                             Image(systemName: "chevron.left")

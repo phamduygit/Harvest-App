@@ -12,6 +12,7 @@ struct ScanView: View {
     @State private var image : Image?
     @State private var showingImagePicker = false
     @State private var inputImage : UIImage?
+    @Binding var number : String
     var body: some View {
         HStack {
             Spacer()
@@ -44,34 +45,10 @@ struct ScanView: View {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
     }
-//    let request = VNRecognizeTextRequest { request, error in
-//        guard let observations = request.results as? [VNRecognizedTextObservation] else {
-//            fatalError("Received invalid observations")
-//        }
-//
-//        for observation in observations {
-//            guard let bestCandidate = observation.topCandidates(1).first else {
-//                print("No candidate")
-//                continue
-//            }
-//
-//            print("Found this candidate: \(bestCandidate.string)")
-//        }
-//    }
-//    let requests = [request]
-//
-//    DispatchQueue.global(qos: .userInitiated).async {
-//        guard let img = UIImage(named: "testImage")?.cgImage else {
-//            fatalError("Missing image to scan")
-//        }
-//
-//        let handler = VNImageRequestHandler(cgImage: img, options: [:])
-//        try? handler.perform(requests)
-//    }
+    
 }
-
 struct ScanView_Previews: PreviewProvider {
     static var previews: some View {
-        ScanView()
+        ScanView(number: Binding.constant("0.0"))
     }
 }

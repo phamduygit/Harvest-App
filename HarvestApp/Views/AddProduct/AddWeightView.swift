@@ -92,7 +92,7 @@ struct AddWeightView: View {
                 NumPad(number: $number, product: $product, indexOfSack: $indexOfSack)
             } else {
                 Spacer()
-                ScanView()
+                ScanView(number: $number)
                 Spacer()
             }
         }

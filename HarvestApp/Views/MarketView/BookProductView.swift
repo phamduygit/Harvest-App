@@ -19,64 +19,67 @@ struct BookProductView: View {
     @State private var showAlert: Bool = false
     var body: some View {
         NavigationView {
-            VStack {
-                VStack (spacing: 10) {
-                    HStack {
-                        Text("Tên nông sản")
-                            .font(.headline)
-                        Spacer()
-                        Text(post.productName)
-                            .font(.headline)
-                            .foregroundColor(Color.black.opacity(0.4))
-                    }
-                    .padding(.vertical)
-                    VStack (alignment: .leading, spacing: 10 ) {
-                        Text("Sản lượng")
-                            .font(.headline)
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack {
+                    VStack (spacing: 10) {
                         HStack {
-                            Text("\(post.weight, specifier: "%.2f")")
+                            Text("Tên nông sản")
+                                .font(.headline)
                             Spacer()
-                            Text("kg")
+                            Text(post.productName)
+                                .font(.headline)
+                                .foregroundColor(Color.black.opacity(0.4))
                         }
-                        Divider()
-                    }
-                    VStack (alignment: .leading, spacing: 10 ) {
-                        Text("Giá")
-                            .font(.headline)
-                        HStack {
-                            TextField("Nhập giá", text: $price.value)
-                                .keyboardType(.decimalPad)
-                                .onAppear() {
-                                    price.value = String(format: "%.0f", (post.price))
-                                }
-                            Spacer()
-                            Text("đồng")
+                        .padding(.vertical)
+                        VStack (alignment: .leading, spacing: 10 ) {
+                            Text("Sản lượng")
+                                .font(.headline)
+                            HStack {
+                                Text("\(post.weight, specifier: "%.2f")")
+                                Spacer()
+                                Text("kg")
+                            }
+                            Divider()
                         }
-                        Divider()
-                    }
-                    VStack (alignment: .leading, spacing: 10 ) {
-                        Text("Giá đặt cọc")
-                            .font(.headline)
-                        HStack {
-                            TextField("Nhập giá đặt cọc", text: $bookPrice.value)
-                                .keyboardType(.decimalPad)
-                            Spacer()
-                            Text("đồng")
+                        VStack (alignment: .leading, spacing: 10 ) {
+                            Text("Giá")
+                                .font(.headline)
+                            HStack {
+                                TextField("Nhập giá", text: $price.value)
+                                    .keyboardType(.decimalPad)
+                                    .onAppear() {
+                                        price.value = String(format: "%.0f", (post.price))
+                                    }
+                                Spacer()
+                                Text("đồng")
+                            }
+                            Divider()
                         }
-                        Divider()
-                    }
-                    VStack (alignment: .leading, spacing: 10 ) {
-                        Text("Tin nhắn")
-                            .font(.headline)
-                        HStack {
-                            TextField("Nhập tin nhắn", text: $message)
-                            Spacer()
+                        VStack (alignment: .leading, spacing: 10 ) {
+                            Text("Giá đặt cọc")
+                                .font(.headline)
+                            HStack {
+                                TextField("Nhập giá đặt cọc", text: $bookPrice.value)
+                                    .keyboardType(.decimalPad)
+                                Spacer()
+                                Text("đồng")
+                            }
+                            Divider()
                         }
-                        Divider()
+                        VStack (alignment: .leading, spacing: 10 ) {
+                            Text("Tin nhắn")
+                                .font(.headline)
+                            HStack {
+                                TextField("Nhập tin nhắn", text: $message)
+                                Spacer()
+                            }
+                            Divider()
+                        }
                     }
+                    .padding()
+                    .padding(.bottom, 80)
+                    Spacer()
                 }
-                .padding()
-                Spacer()
             }
             .overlay(
                 HStack(spacing: 30) {
@@ -115,7 +118,7 @@ struct BookProductView: View {
                     }, label: {
                         HStack {
                             Spacer()
-                            Text("Chấp nhận")
+                            Text("Gửi")
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.white)
                             Spacer()

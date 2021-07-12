@@ -96,7 +96,7 @@ struct PostingView: View {
         }
         .padding(.bottom, 60)
         .alert(isPresented: $showAlert, content: {
-            Alert(title: Text("Sản lượng không đủ"), message: Text("Vui lòng nhập lại sản lượng muốn bán"), dismissButton: .default(Text("OK")))
+            Alert(title: Text("Sản lượng không hợp lệ"), message: Text("Vui lòng nhập lại sản lượng muốn bán"), dismissButton: .default(Text("OK")))
         })
         .overlay(
             HStack(spacing: 30) {
@@ -117,7 +117,7 @@ struct PostingView: View {
                 })
                 Button(action: {
                     posting()
-                    showDetail.toggle()
+                    
                 }, label: {
                     HStack {
                         Spacer()
@@ -139,16 +139,23 @@ struct PostingView: View {
         .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
     }
     func posting() {
-        if product.weight.reduce(0, +) - (weigth.value as NSString).floatValue == 0 {
-            postViewModel.addPost(product: product, userInfo: userViweModel.user, price: (price.value as NSString).floatValue, totalWeight: (weigth.value as NSString).floatValue, description: description)
-            product.status = 2
-            stockViewModel.saveProduct(product: product)
-        } else if product.weight.reduce(0, +) - (weigth.value as NSString).floatValue > 0 {
-            let newProduct = stockViewModel.postProdct(product: product, totalWeight: (weigth.value as NSString).floatValue)
-            postViewModel.addPost(product: newProduct, userInfo: userViweModel.user, price: (price.value as NSString).floatValue, totalWeight: (weigth.value as NSString).floatValue, description: description)
+        if (weigth.value as NSString).floatValue > 0 {
+            if product.weight.reduce(0, +) - (weigth.value as NSString).floatValue == 0 {
+                postViewModel.addPost(product: product, userInfo: userViweModel.user, price: (price.value as NSString).floatValue, totalWeight: (weigth.value as NSString).floatValue, description: description)
+                product.status = 2
+                stockViewModel.saveProduct(product: product)
+                showDetail.toggle()
+            } else if product.weight.reduce(0, +) - (weigth.value as NSString).floatValue > 0 {
+                let newProduct = stockViewModel.postProdct(product: product, totalWeight: (weigth.value as NSString).floatValue)
+                postViewModel.addPost(product: newProduct, userInfo: userViweModel.user, price: (price.value as NSString).floatValue, totalWeight: (weigth.value as NSString).floatValue, description: description)
+                showDetail.toggle()
+            } else {
+                self.showAlert.toggle()
+            }
         } else {
             self.showAlert.toggle()
         }
+        
     }
 }
 

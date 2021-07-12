@@ -38,7 +38,7 @@ struct MarketView: View {
                             }
                         })
                         Toggle(isOn: $showBookMark) {
-                            Label("Đã đánh dấu", systemImage: "heart.fill")
+                            Label("Đã đánh dấu", systemImage: "bookmark.fill")
                         }
                     } label: {
                         Image(systemName: "slider.horizontal.3")
@@ -61,6 +61,7 @@ struct MarketView: View {
                     .padding()
                 }
             }
+            .padding(.bottom, 60)
             .background(Color("Color4").ignoresSafeArea(.all, edges: .all))
         }
         .fullScreenCover(isPresented: $showDetailPost) {

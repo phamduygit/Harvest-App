@@ -11,11 +11,15 @@ import FirebaseAuth
 
 class PostViewModel: ObservableObject {
     @Published var posts = [Post]()
+    @Published var limitedPosts = [Post]()
     @Published var postRepository = PostRepository()
     private var cancellables : Set<AnyCancellable> = []
     init() {
         postRepository.$posts
             .assign(to: \.posts, on: self)
+            .store(in: &cancellables)
+        postRepository.$limitedPosts
+            .assign(to: \.limitedPosts, on: self)
             .store(in: &cancellables)
     }
     func addPost(product: Product, userInfo: User, price: Float, totalWeight: Float, description: String) {
@@ -70,6 +74,5 @@ class PostViewModel: ObservableObject {
                 post.category == category
             }
         }
-        
     }
 }

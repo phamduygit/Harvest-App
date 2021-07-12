@@ -55,6 +55,7 @@ struct SellingView: View {
                     }
                 }
                 .padding()
+                .padding(.bottom, 60)
                 Spacer()
             }
             .overlay(
@@ -103,7 +104,7 @@ struct SellingView: View {
                     })
                 }
                 .padding(.horizontal)
-                .padding(.bottom)
+                
                 , alignment: .bottom
             )
             .navigationBarTitle("Xác nhận đã bán")

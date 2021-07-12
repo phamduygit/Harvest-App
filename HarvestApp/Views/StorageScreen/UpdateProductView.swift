@@ -143,7 +143,6 @@ struct UpdateProductView: View {
                         .background(Color.yellow)
                         .clipShape(Capsule())
                         .padding()
-                        .padding(.bottom)
                         
                     })
                 }
